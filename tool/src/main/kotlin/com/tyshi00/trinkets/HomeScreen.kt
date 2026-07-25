@@ -57,7 +57,7 @@ data class HomeState(
     val morning: MorningPrompt? = null,
     val joke: Joke? = null,
     val trivia: TriviaItem? = null,
-    val historyCount: Int = 0,
+    val historyFact: HistoryFact? = null,
     val motivationIntensity: MotivationIntensity? = null,
     val dateFormat: DateFormat = DateFormat.MDY,
     val countdownTimerEnabled: Boolean = false,
@@ -119,7 +119,7 @@ class HomeViewModel(private val repo: TrinketsRepository) : LightViewModel<Unit>
                 morning = ContentRepository.morningPromptOfTheDay(intensity),
                 joke = ContentRepository.jokeOfTheDay(),
                 trivia = ContentRepository.triviaOfTheDay(),
-                historyCount = ContentRepository.historyFactsForToday().size,
+                historyFact = ContentRepository.historyFactOfTheDay(),
                 motivationIntensity = intensity,
                 dateFormat = dateFormat,
                 countdownTimerEnabled = countdownTimerEnabled,
@@ -178,7 +178,6 @@ class HomeScreen(sealedActivity: SealedLightActivity) : LightScreen<Unit, HomeVi
                         onOpenDetail = {
                             when (state.homeDefault) {
                                 HomeDefault.COUNTDOWN -> navigateTo(screenFactory = { CountdownScreen(it, repo) })
-                                HomeDefault.HISTORY -> navigateTo(screenFactory = { HistoryScreen(it) })
                                 HomeDefault.JOKE, HomeDefault.TRIVIA -> Unit // revealed in place, no navigation
                                 else -> {
                                     val feature = homeDefaultToFeature(state.homeDefault)
@@ -217,10 +216,10 @@ class HomeScreen(sealedActivity: SealedLightActivity) : LightScreen<Unit, HomeVi
     }
 }
 
-/** Null for Countdown/History, which navigate to their own dedicated screens instead. */
+/** Null only for Countdown, which navigates to its own dedicated screen instead. */
 private fun homeDefaultToFeature(homeDefault: HomeDefault): TrinketsFeature? = when (homeDefault) {
     HomeDefault.COUNTDOWN -> null
-    HomeDefault.HISTORY -> null
+    HomeDefault.HISTORY -> TrinketsFeature.HISTORY
     HomeDefault.POEM -> TrinketsFeature.POEM
     HomeDefault.EXCERPT -> TrinketsFeature.EXCERPT
     HomeDefault.PHILOSOPHY -> TrinketsFeature.PHILOSOPHY
@@ -275,14 +274,7 @@ private fun HomeContent(state: HomeState, onOpenDetail: () -> Unit) {
                     state.morning?.intensity?.label,
                     state.morning?.text,
                 )
-                HomeDefault.HISTORY -> {
-                    val countLabel = if (state.historyCount > 0) {
-                        "${state.historyCount} fact${if (state.historyCount == 1) "" else "s"} for today"
-                    } else {
-                        "Nothing logged for today yet"
-                    }
-                    TextHomeBlock("TODAY IN HISTORY", null, countLabel, hint = "Open to read them")
-                }
+                HomeDefault.HISTORY -> HistoryHomeBlock(state.historyFact)
                 else -> Unit
             }
         }
@@ -328,6 +320,15 @@ private fun CountdownHomeBlock(countdowns: List<CountdownDisplayItem>, timerEnab
             Spacer(modifier = Modifier.height(1.5f.gridUnitsAsDp()))
         }
     }
+}
+
+@Composable
+private fun HistoryHomeBlock(fact: HistoryFact?) {
+    TextHomeBlock(
+        label = "TODAY IN HISTORY",
+        title = fact?.let { "${it.year}, ${it.region}" },
+        body = fact?.event ?: "Nothing logged for today yet.",
+    )
 }
 
 @Composable

@@ -160,7 +160,16 @@ fun openFeatureScreen(
             emptyMessage = "No excerpts have been added yet.",
         )
     }
-    TrinketsFeature.HISTORY -> HistoryScreen(sealedActivity)
+    TrinketsFeature.HISTORY -> {
+        val fact = ContentRepository.historyFactOfTheDay()
+        TextContentScreen(
+            sealedActivity,
+            topBarTitle = "Today in History",
+            heading = fact?.let { "${it.year}, ${it.region}" }.orEmpty(),
+            body = fact?.event.orEmpty(),
+            emptyMessage = "No history facts logged for today yet.",
+        )
+    }
     TrinketsFeature.PHILOSOPHY -> {
         val prompt = ContentRepository.philosophyPromptOfTheDay()
         TextContentScreen(

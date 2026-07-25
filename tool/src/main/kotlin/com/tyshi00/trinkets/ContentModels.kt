@@ -63,14 +63,33 @@ object ContentRepository {
     fun triviaOfTheDay(): TriviaItem? = pickOfTheDay(TrinketsTrivia.ALL, categoryOffset = 409)
     fun philosophyPromptOfTheDay(): PhilosophyPrompt? = pickOfTheDay(TrinketsPhilosophyPrompts.ALL, categoryOffset = 563)
 
-    /** If a preferred intensity is set, only rotates through prompts at that intensity. */
+    /**
+     * If a preferred intensity is set, cycles day by day through just that
+     * intensity's prompts. If "Any" (null), rotates which intensity shows
+     * *each day* (Gentle, Steady, Energizing, repeating) so a short testing
+     * window actually sees variety, rather than walking straight through
+     * the underlying list, which happens to be stored in same-intensity
+     * blocks of 30. Either way, every prompt of the relevant intensity gets
+     * shown exactly once before any repeat.
+     */
     fun morningPromptOfTheDay(preferredIntensity: MotivationIntensity?): MorningPrompt? {
-        val pool = if (preferredIntensity == null) {
-            TrinketsMorningPrompts.ALL
-        } else {
-            TrinketsMorningPrompts.ALL.filter { it.intensity == preferredIntensity }.ifEmpty { TrinketsMorningPrompts.ALL }
+        if (preferredIntensity != null) {
+            val pool = TrinketsMorningPrompts.ALL.filter { it.intensity == preferredIntensity }
+                .ifEmpty { TrinketsMorningPrompts.ALL }
+            return pickOfTheDay(pool, categoryOffset = 701)
         }
-        return pickOfTheDay(pool, categoryOffset = 701)
+        val day = epochDay()
+        val intensities = MotivationIntensity.entries
+        val slotCount = intensities.size.toLong()
+        val todaysIntensity = intensities[(((day % slotCount) + slotCount) % slotCount).toInt()]
+        val pool = TrinketsMorningPrompts.ALL.filter { it.intensity == todaysIntensity }
+        if (pool.isEmpty()) return null
+        // Advances by one only every [slotCount] real days (this intensity's
+        // turn), so across a full rotation it still reaches every prompt of
+        // today's intensity rather than skipping most of them.
+        val turnIndex = Math.floorDiv(day, slotCount) + 701
+        val subIndex = ((turnIndex % pool.size) + pool.size) % pool.size
+        return pool[subIndex.toInt()]
     }
 
     fun historyFactsForToday(): List<HistoryFact> {
@@ -78,6 +97,22 @@ object ContentRepository {
         return TrinketsHistoryFacts.ALL
             .filter { it.month == today.monthValue && it.day == today.dayOfMonth }
             .sortedBy { it.year }
+    }
+
+    /**
+     * Some calendar dates have several logged facts. Rather than show them
+     * all at once, pick just one per day, rotating by the current year so a
+     * date with N facts cycles through all N before repeating (instead of
+     * showing the same first fact every year). This also means new facts
+     * can keep being added to a date over time without ever crowding the
+     * display; they just join that date's rotation.
+     */
+    fun historyFactOfTheDay(): HistoryFact? {
+        val candidates = historyFactsForToday()
+        if (candidates.isEmpty()) return null
+        val today = LocalDate.now()
+        val index = ((today.year % candidates.size) + candidates.size) % candidates.size
+        return candidates[index]
     }
 
     fun bucketSizes(): Map<String, Int> = mapOf(
