@@ -90,14 +90,14 @@ object TrinketsMorningPrompts {
         MorningPrompt(79, "Today, move like the outcome actually matters to you, because it does.", MotivationIntensity.ENERGIZING),
         MorningPrompt(80, "Get loud with your effort today. Quiet doubt doesn't stand a chance against it.", MotivationIntensity.ENERGIZING),
         MorningPrompt(81, "Today's a fight worth having. Step into it.", MotivationIntensity.ENERGIZING),
-        MorningPrompt(82, "Whatever you're building, today is another brick. Lay it hard.", MotivationIntensity.ENERGIZING),
+        MorningPrompt(82, "Whatever you're building, today is another brick. Set it well.", MotivationIntensity.ENERGIZING),
         MorningPrompt(83, "You want it? Prove it before noon.", MotivationIntensity.ENERGIZING),
         MorningPrompt(84, "Today, be relentless about the one thing that actually matters.", MotivationIntensity.ENERGIZING),
         MorningPrompt(85, "Stop waiting to feel motivated. Move first, and the motivation will catch up.", MotivationIntensity.ENERGIZING),
         MorningPrompt(86, "Today's a great day to become someone your past self would be proud of.", MotivationIntensity.ENERGIZING),
         MorningPrompt(87, "Chase today down. Don't let it just happen to you.", MotivationIntensity.ENERGIZING),
         MorningPrompt(88, "You've got one life and today's your shot at a piece of it. Take it seriously.", MotivationIntensity.ENERGIZING),
-        MorningPrompt(89, "Whatever's hard today, do it first and do it hardest.", MotivationIntensity.ENERGIZING),
+        MorningPrompt(89, "Whatever's hard today, do it first, before anything else gets in the way.", MotivationIntensity.ENERGIZING),
         MorningPrompt(90, "Rise like today already belongs to you.", MotivationIntensity.ENERGIZING),
 
         // Gentle, continued

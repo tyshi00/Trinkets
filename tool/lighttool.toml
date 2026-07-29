@@ -1,8 +1,8 @@
 [tool]
 id = "com.tyshi00.trinkets"
 label = "Trinkets"
-versionCode = 2
-versionName = "1.0.2"
+versionCode = 3
+versionName = "1.0.3"
 permissions = []
 # change if you run this on an LP3!
 # serverPackage = "com.lightos"

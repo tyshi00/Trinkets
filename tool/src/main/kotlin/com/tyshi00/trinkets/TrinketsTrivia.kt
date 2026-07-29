@@ -50,7 +50,7 @@ object TrinketsTrivia {
         TriviaItem(44, "What is the smallest bone in the human body?", "The stapes, located in the middle ear."),
         TriviaItem(45, "Which bird can fly backwards?", "The hummingbird, thanks to its unique flexible wing joints."),
         TriviaItem(46, "What was the first computer 'bug' actually caused by?", "A real moth that got trapped in the Harvard Mark II computer's relay in 1947."),
-        TriviaItem(47, "Which country is home to the world's largest desert, the Sahara, spans how many nations?", "Parts of the Sahara stretch across eleven countries in North Africa."),
+        TriviaItem(47, "The Sahara Desert stretches across how many African nations?", "Eleven, making it the largest hot desert in the world."),
         TriviaItem(48, "How many hearts does a hagfish have?", "Four."),
         TriviaItem(49, "What is the world's oldest known living tree species?", "Ginkgo biloba, which has existed largely unchanged for over 200 million years."),
         TriviaItem(50, "Which Southeast Asian country's flag is the only non-rectangular national flag?", "Nepal."),
