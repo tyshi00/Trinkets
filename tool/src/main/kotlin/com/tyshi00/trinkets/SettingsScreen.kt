@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -175,13 +176,14 @@ class SettingsScreen(
                             .padding(vertical = 0.75f.gridUnitsAsDp()),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
+                        LightIcon(
+                            icon = if (state.invertColors) LightIcons.TOGGLE_OFF else LightIcons.TOGGLE_ON,
+                        )
+                        Spacer(modifier = Modifier.width(0.75f.gridUnitsAsDp()))
                         LightText(
                             text = "Invert screen color",
                             variant = LightTextVariant.Copy,
                             modifier = Modifier.weight(1f),
-                        )
-                        LightIcon(
-                            icon = if (state.invertColors) LightIcons.TOGGLE_OFF else LightIcons.TOGGLE_ON,
                         )
                     }
 
@@ -277,6 +279,8 @@ class SettingsScreen(
                             .padding(vertical = 0.75f.gridUnitsAsDp()),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
+                        LightIcon(icon = if (state.countdownTimerEnabled) LightIcons.TOGGLE_OFF else LightIcons.TOGGLE_ON)
+                        Spacer(modifier = Modifier.width(0.75f.gridUnitsAsDp()))
                         Column(modifier = Modifier.weight(1f)) {
                             LightText(text = "Countdown timer", variant = LightTextVariant.Copy)
                             LightText(
@@ -285,7 +289,6 @@ class SettingsScreen(
                                 lighten = true,
                             )
                         }
-                        LightIcon(icon = if (state.countdownTimerEnabled) LightIcons.TOGGLE_OFF else LightIcons.TOGGLE_ON)
                     }
 
                     Row(
@@ -364,7 +367,8 @@ private fun FeatureToggleRow(label: String, enabled: Boolean, onToggle: () -> Un
             .padding(vertical = 0.75f.gridUnitsAsDp()),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        LightText(text = label, variant = LightTextVariant.Copy, modifier = Modifier.weight(1f))
         LightIcon(icon = if (enabled) LightIcons.TOGGLE_OFF else LightIcons.TOGGLE_ON)
+        Spacer(modifier = Modifier.width(0.75f.gridUnitsAsDp()))
+        LightText(text = label, variant = LightTextVariant.Copy, modifier = Modifier.weight(1f))
     }
 }

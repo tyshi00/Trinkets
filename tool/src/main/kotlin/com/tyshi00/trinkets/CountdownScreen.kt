@@ -222,7 +222,7 @@ private fun CountdownRow(item: CountdownDisplayItem, timerEnabled: Boolean, onEd
                 .lightClickable(onClick = onEdit)
                 .padding(0.5f.gridUnitsAsDp()),
         ) {
-            LightIcon(icon = LightIcons.PENCIL, contentDescription = "Edit ${item.name}")
+            LightIcon(icon = LightIcons.PENCIL, size = 1.5f, contentDescription = "Edit ${item.name}")
         }
     }
 }
