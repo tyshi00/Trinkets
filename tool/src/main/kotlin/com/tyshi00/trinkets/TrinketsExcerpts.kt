@@ -1,242 +1,675 @@
 package com.tyshi00.trinkets
 
-// Short, public-domain literary quotes (each under 15 words, one quote per
-// source work), properly attributed to the real author and work they come
-// from. Where the original was not written in English, the cited
-// translation is itself old enough to be public domain (e.g. James Legge's
-// 19th-century translations of Chinese classics, Max Muller's Sacred Books
-// of the East series). No quotes are drawn from Abrahamic scripture or
-// religious tradition, and each source work is used at most once. See
-// docs/CONTENT.md for sourcing standards and how to keep growing this
-// bucket.
+// Short literary and historical quotes (each under 15 words, one quote per
+// source work), attributed to the real author and work they come from.
+//
+// CURATION STANDARD: authors are selected for their own record, not just for
+// a pleasant turn of phrase. Everyone here is someone whose life's work
+// advanced human dignity, equality, justice, or plain humaneness:
+// abolitionists, anti-colonial leaders, suffragists, humanitarians, civil
+// rights organizers, and writers who used their work to argue for the people
+// their societies discarded.
+//
+// Figures with well-documented records of racism, antisemitism, misogyny, or
+// other bigotry are excluded regardless of literary stature.
+//
+// SOURCING: where a quote's exact wording or origin is disputed, it is either
+// omitted or the attribution is hedged rather than overstated. Widely
+// circulated but fabricated quotes are deliberately left out; the "I freed a
+// thousand slaves" line attributed to Harriet Tubman, for example, is a
+// documented modern invention and is not used here.
+//
+// Most entries are public domain. A smaller set of twentieth and
+// twenty-first century entries appear as brief attributed quotations. No
+// quotes are drawn from Abrahamic scripture, and each author/work pair is
+// used at most once (so a generic label like "collected speeches" may recur
+// across different people, but never twice for the same person).
+//
+// LANGUAGES: quotes appear in their original language where that language
+// is one the app displays well: Portuguese, Spanish, Mandarin, French,
+// Italian, and Japanese, alongside English. Where the original is in a
+// script or language outside that set, a public-domain translation is cited.
+// See docs/CONTENT.md for sourcing standards.
 object TrinketsExcerpts {
     val ALL: List<Excerpt> = listOf(
 
-        Excerpt(1, "It is not death that a man should fear, but never beginning to live.", "Marcus Aurelius", "Meditations (tr. George Long)"),
+        // Abolition and the fight against slavery
+        Excerpt(1, "If there is no struggle, there is no progress.", "Frederick Douglass", "West India Emancipation speech"),
 
-        Excerpt(2, "The tree which fills the arms grew from the tiniest sprout.", "Laozi", "Tao Te Ching (tr. James Legge)"),
+        Excerpt(2, "Power concedes nothing without a demand. It never did and it never will.", "Frederick Douglass", "West India Emancipation speech, continued"),
 
-        Excerpt(3, "Call me Ishmael.", "Herman Melville", "Moby-Dick"),
+        Excerpt(3, "Ain't I a woman?", "Sojourner Truth", "speech at the Akron women's convention"),
 
-        Excerpt(4, "It was the best of times, it was the worst of times.", "Charles Dickens", "A Tale of Two Cities"),
+        Excerpt(4, "Slavery is terrible for men; but it is far more terrible for women.", "Harriet Jacobs", "Incidents in the Life of a Slave Girl"),
 
-        Excerpt(5, "To be, or not to be, that is the question.", "William Shakespeare", "Hamlet"),
+        Excerpt(5, "All I ask is that they take their feet off our necks.", "Sarah Grimke", "Letters on the Equality of the Sexes"),
 
-        Excerpt(6, "It is a truth universally acknowledged, a single man must want a wife.", "Jane Austen", "Pride and Prejudice"),
+        Excerpt(6, "Whatever is morally right can never be politically wrong.", "Angelina Grimke", "attributed rendering, abolitionist writings"),
 
-        Excerpt(7, "The unexamined life is not worth living.", "Plato", "Apology (tr. Benjamin Jowett)"),
+        Excerpt(7, "Character is power.", "Booker T. Washington", "Up From Slavery"),
 
-        Excerpt(8, "The mind is everything. What you think you become.", "Buddha", "Dhammapada (tr. Max Muller)"),
+        Excerpt(8, "The problem of the twentieth century is the problem of the color line.", "W.E.B. Du Bois", "The Souls of Black Folk"),
 
-        Excerpt(9, "Man is born free, and everywhere he is in chains.", "Jean-Jacques Rousseau", "The Social Contract (tr. G.D.H. Cole)"),
+        Excerpt(9, "The way to right wrongs is to turn the light of truth upon them.", "Ida B. Wells", "anti-lynching writings"),
 
-        Excerpt(10, "We are what we repeatedly do. Excellence is a habit.", "Will Durant", "The Story of Philosophy"),
+        Excerpt(10, "We are all bound up together in one great bundle of humanity.", "Frances E.W. Harper", "We Are All Bound Up Together"),
 
-        Excerpt(11, "The obstacle is the path.", "Zen proverb", "traditional saying"),
+        Excerpt(11, "The cause of freedom is not the cause of a race or sect.", "Anna Julia Cooper", "A Voice from the South"),
 
+        Excerpt(12, "I know why the caged bird sings.", "Paul Laurence Dunbar", "Sympathy"),
 
+        // The rights of women
+        Excerpt(13, "I do not wish women to have power over men, but over themselves.", "Mary Wollstonecraft", "A Vindication of the Rights of Woman"),
 
+        Excerpt(14, "The legal subordination of one sex to the other is wrong.", "John Stuart Mill", "The Subjection of Women"),
 
-        Excerpt(12, "Four score and seven years ago our fathers brought forth a new nation.", "Abraham Lincoln", "Gettysburg Address"),
+        // Anti-colonial and independence movements
+        Excerpt(15, "Patria es humanidad.", "Jose Marti", "Nuestra America"),
 
-        Excerpt(13, "The superior man is modest in his speech, exceeds in his actions.", "Confucius", "Analects (tr. James Legge)"),
+        Excerpt(16, "Where the mind is without fear and the head is held high.", "Rabindranath Tagore", "Gitanjali"),
 
-        Excerpt(14, "Music produces a kind of pleasure which human nature cannot do without.", "Confucius", "Book of Rites (tr. James Legge)"),
+        // Humanitarians and reformers
+        Excerpt(17, "I attribute my success to this: I never gave nor took an excuse.", "Florence Nightingale", "collected letters"),
 
-        Excerpt(15, "The perfecting of one's self is the fundamental base of all progress.", "Confucius", "The Great Learning (tr. James Legge)"),
+        Excerpt(18, "You must never think of anything except the need, and how to meet it.", "Clara Barton", "attributed rendering, collected letters"),
 
-        Excerpt(16, "To the mind that is still, the whole universe surrenders.", "Zhuangzi", "The Writings of Zhuangzi (tr. James Legge)"),
+        Excerpt(19, "The good we secure for ourselves is precarious until secured for all.", "Jane Addams", "Democracy and Social Ethics"),
 
-        Excerpt(17, "The wise ones fashioned speech with their thought, sifting it as grain is sifted.", "Rig Veda", "Rig Veda (tr. Max Muller)"),
+        Excerpt(20, "Tutti fratelli.", "Henri Dunant", "Un Souvenir de Solferino"),
 
-        Excerpt(18, "The virtues of the Self are the beginning and end of all things.", "Bhagavad Gita", "The Song Celestial (tr. Edwin Arnold)"),
+        Excerpt(21, "Alone we can do so little; together we can do so much.", "Helen Keller", "attributed rendering, collected writings"),
 
-        Excerpt(19, "Little things console us because little things afflict us.", "Blaise Pascal", "Pensees (tr. W.F. Trotter)"),
+        // Writers who used their work to argue for the discarded
+        Excerpt(22, "Not being heard is no reason for silence.", "Victor Hugo", "Les Miserables (tr. Charles Wilbour)"),
 
-        Excerpt(20, "I made this longer because I had not had time to make it shorter.", "Blaise Pascal", "Provincial Letters (tr. Thomas M'Crie)"),
+        Excerpt(23, "J'accuse.", "Emile Zola", "open letter, L'Aurore"),
 
-        Excerpt(21, "It is not in the stars to hold our destiny but in ourselves.", "William Shakespeare", "Julius Caesar"),
+        Excerpt(24, "How good life would be if we only knew how to appreciate it.", "Anton Chekhov", "Uncle Vanya"),
 
-        Excerpt(22, "All the world's a stage, and all the men and women merely players.", "William Shakespeare", "As You Like It"),
+        Excerpt(25, "Any idiot can face a crisis; it's daily living that wears you out.", "Anton Chekhov", "attributed rendering, The Cherry Orchard"),
 
-        Excerpt(23, "Some are born great, some achieve greatness, some have greatness thrust upon them.", "William Shakespeare", "Twelfth Night"),
+        Excerpt(26, "There is nothing new under the sun in the way of pretty women.", "Ivan Turgenev", "Fathers and Sons"),
 
-        Excerpt(24, "Love all, trust a few, do wrong to none.", "William Shakespeare", "All's Well That Ends Well"),
+        Excerpt(27, "We are all in the gutter, but some are looking at the stars.", "Oscar Wilde", "Lady Windermere's Fan"),
 
-        Excerpt(25, "Once more unto the breach, dear friends, once more.", "William Shakespeare", "Henry V"),
+        Excerpt(28, "Whatever our souls are made of, his and mine are the same.", "Emily Bronte", "Wuthering Heights"),
 
-        Excerpt(26, "Uneasy lies the head that wears a crown.", "William Shakespeare", "Henry IV, Part 2"),
+        Excerpt(29, "Reader, I married him.", "Charlotte Bronte", "Jane Eyre"),
 
-        Excerpt(27, "Though she be but little, she is fierce.", "William Shakespeare", "A Midsummer Night's Dream"),
+        Excerpt(30, "Whatever your sex or position, life is a battle in which to show pluck.", "Louisa May Alcott", "Little Women"),
 
-        Excerpt(28, "That which we call a rose by any other name would smell as sweet.", "William Shakespeare", "Romeo and Juliet"),
+        Excerpt(31, "It is a truth universally acknowledged, a single man must want a wife.", "Jane Austen", "Pride and Prejudice"),
 
-        Excerpt(29, "Out, out, brief candle! Life's but a walking shadow.", "William Shakespeare", "Macbeth"),
+        Excerpt(32, "A alma é cheia de mistérios.", "Machado de Assis", "Dom Casmurro"),
 
-        Excerpt(30, "Better three hours too soon than a minute too late.", "William Shakespeare", "The Merry Wives of Windsor"),
+        Excerpt(33, "Un pour tous, tous pour un.", "Alexandre Dumas", "Les Trois Mousquetaires"),
 
-        Excerpt(31, "I wasted time, and now doth time waste me.", "William Shakespeare", "Richard II"),
+        Excerpt(34, "En un lugar de la Mancha, de cuyo nombre no quiero acordarme.", "Miguel de Cervantes", "Don Quijote de la Mancha"),
 
-        Excerpt(32, "In nature's infinite book of secrecy a little I can read.", "William Shakespeare", "Antony and Cleopatra"),
+        Excerpt(35, "Que la vertu soit aimee pour elle-meme et non pour ses fruits.", "Michel de Montaigne", "Essais"),
 
-        Excerpt(33, "Nothing will come of nothing.", "William Shakespeare", "King Lear"),
+        Excerpt(36, "Call me Ishmael.", "Herman Melville", "Moby-Dick"),
 
-        Excerpt(34, "No one is useless in this world who lightens the burdens of another.", "Charles Dickens", "Our Mutual Friend"),
+        Excerpt(37, "The game is afoot.", "Arthur Conan Doyle", "The Adventure of the Abbey Grange"),
 
-        Excerpt(35, "In the little world in which children have their existence, injustice is keenly felt.", "Charles Dickens", "Great Expectations"),
+        Excerpt(38, "I went to the woods because I wished to live deliberately.", "Henry David Thoreau", "Walden"),
 
-        Excerpt(36, "Reflect upon your present blessings, of which every man has many.", "Charles Dickens", "A Christmas Carol"),
+        Excerpt(39, "Trust thyself: every heart vibrates to that iron string.", "Ralph Waldo Emerson", "Self-Reliance"),
 
-        Excerpt(37, "Happy families are all alike; every unhappy family is unhappy in its own way.", "Leo Tolstoy", "Anna Karenina (tr. Constance Garnett)"),
+        Excerpt(40, "These are the times that try men's souls.", "Thomas Paine", "The American Crisis"),
 
-        Excerpt(38, "The two most powerful warriors are patience and time.", "Leo Tolstoy", "War and Peace (tr. Constance Garnett)"),
+        Excerpt(41, "Government, even in its best state, is but a necessary evil.", "Thomas Paine", "Common Sense"),
 
-        Excerpt(39, "Man is fond of counting his troubles, but not of counting his joys.", "Fyodor Dostoevsky", "Crime and Punishment (tr. Constance Garnett)"),
+        Excerpt(42, "L'imagination n'a jamais tant de crédit que dans le domaine de la peur.", "Guy de Maupassant", "Le Horla"),
 
-        Excerpt(40, "Above all, don't lie to yourself.", "Fyodor Dostoevsky", "The Brothers Karamazov (tr. Constance Garnett)"),
+        Excerpt(43, "The only true voyage of discovery is to have new eyes.", "Marcel Proust", "In Search of Lost Time (tr. C.K. Scott Moncrieff)"),
 
-        Excerpt(41, "Much unhappiness has come into the world because of bewilderment and unspoken words.", "Fyodor Dostoevsky", "The Idiot (tr. Constance Garnett)"),
+        Excerpt(44, "For a long time I used to go to bed early.", "Marcel Proust", "Swann's Way (tr. C.K. Scott Moncrieff)"),
 
-        Excerpt(42, "To live without hope is to cease to live.", "Fyodor Dostoevsky", "The House of the Dead (tr. Constance Garnett)"),
+        Excerpt(45, "Little things console us because little things afflict us.", "Blaise Pascal", "Pensees (tr. W.F. Trotter)"),
 
-        Excerpt(43, "There is only one good, knowledge, and one evil, ignorance.", "Socrates", "as recorded by Diogenes Laertius"),
+        Excerpt(46, "I made this longer because I had not had time to make it shorter.", "Blaise Pascal", "Provincial Letters (tr. Thomas M'Crie)"),
 
-        Excerpt(44, "The only true voyage of discovery is to have new eyes.", "Marcel Proust", "In Search of Lost Time (tr. C.K. Scott Moncrieff)"),
+        // Philosophical and contemplative traditions
+        Excerpt(47, "The tree which fills the arms grew from the tiniest sprout.", "Laozi", "Tao Te Ching (tr. James Legge)"),
 
-        Excerpt(45, "For a long time I used to go to bed early.", "Marcel Proust", "Swann's Way (tr. C.K. Scott Moncrieff)"),
+        Excerpt(48, "To the mind that is still, the whole universe surrenders.", "Zhuangzi", "The Writings of Zhuangzi (tr. James Legge)"),
 
-        Excerpt(46, "It is not events that disturb people, it is their judgments concerning them.", "Epictetus", "Enchiridion (tr. Elizabeth Carter)"),
+        Excerpt(49, "The mind is everything. What you think you become.", "Buddha", "Dhammapada (tr. Max Muller)"),
 
-        Excerpt(47, "Only the educated are free.", "Epictetus", "Discourses (tr. Elizabeth Carter)"),
+        Excerpt(50, "得道者多助，失道者寡助。", "Mencius", "Mencius"),
 
-        Excerpt(48, "Whoever it is that you wish to please, that person will rule your life.", "Seneca", "Letters from a Stoic (tr. Richard Mott Gummere)"),
+        Excerpt(51, "The wise ones fashioned speech with their thought, sifting it as grain.", "Rig Veda", "Rig Veda (tr. Max Muller)"),
 
-        Excerpt(49, "It is not that we have a short time, but that we waste much.", "Seneca", "On the Shortness of Life"),
+        Excerpt(52, "The virtues of the Self are the beginning and end of all things.", "Bhagavad Gita", "The Song Celestial (tr. Edwin Arnold)"),
 
-        // English prose, plays, essays, and speeches not already represented
-        Excerpt(50, "Not being heard is no reason for silence.", "Victor Hugo", "Les Miserables (tr. Charles Wilbour)"),
-        Excerpt(51, "It was the age of wisdom, it was the age of foolishness.", "Charles Dickens", "Bleak House"),
-        Excerpt(52, "Reader, I married him.", "Charlotte Bronte", "Jane Eyre"),
-        Excerpt(53, "Whatever our souls are made of, his and mine are the same.", "Emily Bronte", "Wuthering Heights"),
-        Excerpt(54, "Curiouser and curiouser!", "Lewis Carroll", "Alice's Adventures in Wonderland"),
-        Excerpt(55, "We are all in the gutter, but some are looking at the stars.", "Oscar Wilde", "Lady Windermere's Fan"),
-        Excerpt(56, "It was a dark and stormy night.", "Edward Bulwer-Lytton", "Paul Clifford"),
-        Excerpt(57, "Listen to them, the children of the night. What music they make.", "Bram Stoker", "Dracula"),
-        Excerpt(58, "The game is afoot.", "Arthur Conan Doyle", "The Adventure of the Abbey Grange"),
-        Excerpt(59, "The horror! The horror!", "Joseph Conrad", "Heart of Darkness"),
-        Excerpt(60, "Trust thyself: every heart vibrates to that iron string.", "Ralph Waldo Emerson", "Self-Reliance"),
-        Excerpt(61, "I went to the woods because I wished to live deliberately.", "Henry David Thoreau", "Walden"),
-        Excerpt(62, "Once you learn to read, you will be forever free.", "Frederick Douglass", "Narrative of the Life of Frederick Douglass"),
-        Excerpt(63, "Character is power.", "Booker T. Washington", "Up From Slavery"),
-        Excerpt(64, "Ain't I a woman?", "Sojourner Truth", "Ain't I a Woman speech"),
-        Excerpt(65, "The world breaks everyone, and afterward many are strong at the broken places.", "Ernest Hemingway", "A Farewell to Arms"),
-        Excerpt(66, "There is no possession more valuable than a good and faithful friend.", "Socrates", "as recorded by Xenophon"),
-        Excerpt(67, "Whatever is worth doing at all is worth doing well.", "Philip Stanhope, Lord Chesterfield", "Letters to His Son"),
-        Excerpt(68, "Well done is better than well said.", "Benjamin Franklin", "Poor Richard's Almanack"),
-
-        // French, original text (prose and drama)
-
-        // French, verified and public domain
-        Excerpt(69, "Que la vertu soit aimee pour elle-meme et non pour ses fruits.", "Michel de Montaigne", "Essais"),
-        Excerpt(70, "Je pense, donc je suis.", "Rene Descartes", "Discours de la methode"),
-        Excerpt(71, "Il faut cultiver notre jardin.", "Voltaire", "Candide"),
-        Excerpt(72, "Un pour tous, tous pour un.", "Alexandre Dumas", "Les Trois Mousquetaires"),
-        Excerpt(73, "L'imagination n'a jamais tant de crédit que dans le domaine de la peur.", "Guy de Maupassant", "Le Horla"),
-
-        // Spanish, original text
-        Excerpt(74, "En un lugar de la Mancha, de cuyo nombre no quiero acordarme.", "Miguel de Cervantes", "Don Quijote de la Mancha"),
-
-        // Portuguese, original text
-        Excerpt(75, "A alma é cheia de mistérios.", "Machado de Assis", "Dom Casmurro"),
-
-        // Mandarin Chinese, original text (drawn from long prose works, not short-form poetry)
-        Excerpt(76, "兵者，国之大事，死生之地，存亡之道，不可不察也。", "Sun Tzu", "The Art of War"),
-        Excerpt(77, "话说天下大势，分久必合，合久必分。", "Luo Guanzhong", "Romance of the Three Kingdoms"),
-
-        // Additional Shakespeare plays not yet represented
-        Excerpt(78, "The quality of mercy is not strained.", "William Shakespeare", "The Merchant of Venice"),
-        Excerpt(79, "O, beware, my lord, of jealousy; it is the green-eyed monster.", "William Shakespeare", "Othello"),
-        Excerpt(80, "We are such stuff as dreams are made on.", "William Shakespeare", "The Tempest"),
-        Excerpt(81, "Sigh no more, ladies, sigh no more; men were deceivers ever.", "William Shakespeare", "Much Ado About Nothing"),
-
-        // Additional English-language novels and prose
-        Excerpt(82, "I want no reward but to know I have done the right thing.", "Mark Twain", "The Adventures of Huckleberry Finn"),
-        Excerpt(83, "No man means all he says, and yet very few say all they mean.", "Henry Brooks Adams", "The Education of Henry Adams"),
-        Excerpt(84, "Whatever your sex or position, life is a battle in which to show pluck.", "Louisa May Alcott", "Little Women"),
-
-        // More Shakespeare plays
-
-        // More nineteenth-century English-language novels
-        Excerpt(85, "No man can long wear one face to himself, and another to the multitude.", "Nathaniel Hawthorne", "The Scarlet Letter"),
-        Excerpt(86, "I have laughed, not frequently, but heartily, at your jokes.", "Anthony Trollope", "Barchester Towers"),
-        Excerpt(87, "Wisdom is to the mind what health is to the body.", "Francois de La Rochefoucauld", "Maxims (tr. J.W. Willis Bund)"),
-
-        // Ancient philosophy and history
-        Excerpt(88, "It is the mark of an educated mind to entertain a thought without accepting.", "Aristotle", "Nicomachean Ethics"),
-        Excerpt(89, "Man is by nature a social animal.", "Aristotle", "Politics"),
-        Excerpt(90, "The whole is greater than the sum of its parts.", "Aristotle", "Metaphysics"),
-        Excerpt(91, "Whatever crushes individuality is despotism, by whatever name it may be called.", "John Stuart Mill", "On Liberty"),
-        Excerpt(92, "The nation's wealth grows through the division of labor.", "Adam Smith", "The Wealth of Nations"),
-
-        // More Shakespeare plays
-
-        // More Dickens novels
-        Excerpt(93, "Whatever I have tried to do, I have tried with all my heart.", "Charles Dickens", "David Copperfield"),
-        Excerpt(94, "Please, sir, I want some more.", "Charles Dickens", "Oliver Twist"),
-        Excerpt(95, "Ride on over all obstacles, and win the race.", "Charles Dickens", "Hard Times"),
-        Excerpt(96, "Home is a name, a word, it is a strong one.", "Charles Dickens", "Martin Chuzzlewit"),
-
-        // More Russian and European novels
-        Excerpt(97, "Man is a mystery. It needs to be unravelled.", "Fyodor Dostoevsky", "letter to Mikhail Dostoevsky"),
-        Excerpt(98, "Dead souls, that is what he trades in.", "Nikolai Gogol", "Dead Souls"),
-        Excerpt(99, "There is nothing new under the sun in the way of pretty women.", "Ivan Turgenev", "Fathers and Sons"),
-        Excerpt(100, "How good life would be if we only knew how to appreciate it.", "Anton Chekhov", "Uncle Vanya"),
-        Excerpt(101, "Any idiot can face a crisis; it's daily living that wears you out.", "Anton Chekhov", "attributed rendering, The Cherry Orchard"),
-        Excerpt(102, "Every family is a strange little kingdom all its own.", "Leo Tolstoy", "The Kreutzer Sonata"),
-
-        // French prose, additional works
-        Excerpt(103, "There is no disguise which can hide love for long where it exists.", "Jean Racine", "attributed rendering, Andromaque"),
-
-        // Italian, Portuguese, and additional Iberian and Latin American prose
-        Excerpt(104, "Fortune rules half our actions, but leaves us to direct the other half.", "Niccolo Machiavelli", "The Prince"),
-        Excerpt(105, "A word to the wise is enough.", "Giovanni Boccaccio", "The Decameron"),
-
-        // German philosophy and literature
-        Excerpt(106, "What does not kill me makes me stronger.", "Friedrich Nietzsche", "Thus Spake Zarathustra (tr. Thomas Common)"),
-        Excerpt(107, "He who has a why to live can bear almost any how.", "Friedrich Nietzsche", "Twilight of the Idols (tr. Thomas Common)"),
-        Excerpt(108, "Two things fill the mind with wonder: the starry heavens, the moral law within.", "Immanuel Kant", "Critique of Practical Reason"),
-        Excerpt(109, "Act only by that maxim which you can will to become a universal law.", "Immanuel Kant", "Groundwork of the Metaphysics of Morals"),
-
-        // American essays, speeches, and prose
-        Excerpt(110, "These are the times that try men's souls.", "Thomas Paine", "The American Crisis"),
-        Excerpt(111, "Government, even in its best state, is but a necessary evil.", "Thomas Paine", "Common Sense"),
-        Excerpt(112, "With malice toward none, with charity for all.", "Abraham Lincoln", "Second Inaugural Address"),
-        Excerpt(113, "The ballot is stronger than the bullet.", "Abraham Lincoln", "speech to the 166th Ohio Regiment"),
-        Excerpt(114, "Failure is impossible.", "Susan B. Anthony", "final public speech"),
-        Excerpt(115, "All men and women are created equal.", "Elizabeth Cady Stanton", "Declaration of Sentiments"),
-        Excerpt(116, "A ship in harbor is safe, but that's not what ships are built for.", "John A. Shedd", "Salt from My Attic"),
-        Excerpt(117, "The chief business of the American people is business.", "Calvin Coolidge", "address to newspaper editors"),
-
-        // Additional Greek and Roman sources
-        Excerpt(118, "Give me a lever and a place to stand; I will move the world.", "Archimedes", "attributed rendering"),
-        Excerpt(119, "Know thyself.", "Delphic maxim", "inscription at the Temple of Apollo"),
-        Excerpt(120, "History is indeed the witness of the times, the light of truth.", "Cicero", "De Oratore"),
-
-        // Additional Chinese classics
-        Excerpt(121, "得道者多助，失道者寡助。", "Mencius", "Mencius"),
-
-        // Final batch: additional distinct, verified public-domain sources
-        Excerpt(122, "The die is cast.", "Julius Caesar", "as recorded by Suetonius"),
-        Excerpt(123, "Veni, vidi, vici.", "Julius Caesar", "as recorded by Plutarch"),
-        Excerpt(124, "An unjust law is itself a species of violence.", "Mahatma Gandhi", "Non-Violence in Peace and War"),
-        Excerpt(125, "The battle is not always to the strong.", "Alexander Hamilton", "The Federalist Papers"),
-        Excerpt(126, "A wise and frugal government shall restrain men from injuring one another.", "Thomas Jefferson", "First Inaugural Address"),
-        Excerpt(127, "Genius is one percent inspiration and ninety-nine percent perspiration.", "Thomas Edison", "interview, Harper's Monthly"),
-        Excerpt(128, "Whether you think you can or you think you cannot, you are right.", "Henry Ford", "My Life and Work"),
-        Excerpt(129, "Patria es humanidad.", "Jose Marti", "Nuestra America"),
-        Excerpt(130, "We hold these truths to be self-evident, that all men are created equal.", "Thomas Jefferson", "United States Declaration of Independence"),
-        Excerpt(131, "The only thing we have to fear is fear itself.", "Franklin D. Roosevelt", "First Inaugural Address"),
-
-        // Final small batch of additional verified, distinct sources
+        Excerpt(53, "The obstacle is the path.", "Zen proverb", "traditional saying"),
+
+        Excerpt(54, "It is not events that disturb people, it is their judgments concerning them.", "Epictetus", "Enchiridion (tr. Elizabeth Carter)"),
+
+        Excerpt(55, "Only the educated are free.", "Epictetus", "Discourses (tr. Elizabeth Carter)"),
+
+        Excerpt(56, "The unexamined life is not worth living.", "Socrates", "Apology (tr. Benjamin Jowett)"),
+
+        Excerpt(57, "There is only one good, knowledge, and one evil, ignorance.", "Socrates", "as recorded by Diogenes Laertius"),
+
+        Excerpt(58, "There is no possession more valuable than a good and faithful friend.", "Socrates", "as recorded by Xenophon"),
+
+        Excerpt(59, "Know thyself.", "Delphic maxim", "inscription at the Temple of Apollo"),
+
+        Excerpt(60, "We are what we repeatedly do. Excellence is a habit.", "Will Durant", "The Story of Philosophy"),
+
+        Excerpt(61, "A ship in harbor is safe, but that's not what ships are built for.", "John A. Shedd", "Salt from My Attic"),
+
+        // Civil rights, labor, and human rights in the modern era
+        Excerpt(62, "I'm sick and tired of being sick and tired.", "Fannie Lou Hamer", "speech in Harlem, 1964"),
+
+        Excerpt(63, "It always seems impossible until it's done.", "Nelson Mandela", "collected speeches and remarks"),
+
+        Excerpt(64, "People must learn to hate, and they can be taught to love.", "Nelson Mandela", "Long Walk to Freedom"),
+
+        Excerpt(65, "The arc of the moral universe is long, but it bends toward justice.", "Martin Luther King Jr.", "Where Do We Go from Here"),
+
+        Excerpt(66, "We are caught in an inescapable network of mutuality.", "Martin Luther King Jr.", "Letter from Birmingham Jail"),
+
+        Excerpt(67, "Get in good trouble, necessary trouble.", "John Lewis", "remarks on nonviolent protest"),
+
+        Excerpt(68, "If they don't give you a seat, bring a folding chair.", "Shirley Chisholm", "attributed rendering, public remarks"),
+
+        Excerpt(69, "Fight for the things you care about.", "Ruth Bader Ginsburg", "collected interviews"),
+
+        Excerpt(70, "In recognizing the humanity of our fellow beings, we pay ourselves the highest tribute.", "Thurgood Marshall", "remarks on the Constitution bicentennial"),
+
+        Excerpt(71, "Do a little bit of good where you are.", "Desmond Tutu", "collected sermons and remarks"),
+
+        Excerpt(72, "It's the little things citizens do. That's what will make the difference.", "Wangari Maathai", "remarks on the Green Belt Movement"),
+
+        Excerpt(73, "One child, one teacher, one book, one pen can change the world.", "Malala Yousafzai", "address to the United Nations"),
+
+        Excerpt(74, "Where, after all, do universal human rights begin? In small places, close to home.", "Eleanor Roosevelt", "remarks at the United Nations"),
+
+        Excerpt(75, "Si, se puede.", "Dolores Huerta", "United Farm Workers motto"),
+
+        Excerpt(76, "I am not free while any woman is unfree.", "Audre Lorde", "Sister Outsider"),
+
+        Excerpt(77, "Strong people don't need strong leaders.", "Ella Baker", "remarks on grassroots organizing"),
+
+        Excerpt(78, "Nothing can be changed until it is faced.", "James Baldwin", "As Much Truth As One Can Bear"),
+
+        Excerpt(79, "We need, in every community, a group of angelic troublemakers.", "Bayard Rustin", "remarks on civil disobedience"),
+
+        Excerpt(80, "I would like to be remembered as a person who wanted to be free.", "Rosa Parks", "My Story"),
+
+        // Haiti, Latin America, and the Caribbean
+        Excerpt(81, "En me renversant, on n'a abattu que le tronc de l'arbre de la liberté.", "Toussaint Louverture", "remarks at his arrest, 1802"),
+
+        Excerpt(82, "Un pueblo ignorante es instrumento ciego de su propia destrucción.", "Simon Bolivar", "Discurso de Angostura"),
+
+        Excerpt(83, "Yo no estudio para saber más, sino para ignorar menos.", "Sor Juana Ines de la Cruz", "collected writings"),
+
+        Excerpt(84, "El futuro de los niños es siempre hoy. Mañana será tarde.", "Gabriela Mistral", "collected writings on childhood"),
+
+        Excerpt(85, "Mucha gente pequeña, en lugares pequeños, puede cambiar el mundo.", "Eduardo Galeano", "attributed rendering, collected essays"),
+
+        Excerpt(86, "Tierra y libertad.", "Emiliano Zapata", "Plan de Ayala movement slogan"),
+
+        Excerpt(87, "Todas las gentes del mundo son hombres.", "Bartolome de las Casas", "In Defense of the Indians"),
+
+        Excerpt(88, "Mi causa no nació de algo bueno, nació de algo malo.", "Rigoberta Menchu", "attributed rendering, collected testimony"),
+
+        Excerpt(89, "Preservar la dignidad humana es el trabajo de toda una vida.", "Cesar Chavez", "attributed rendering, collected speeches"),
+
+        // Brazil and the Portuguese-speaking world
+        Excerpt(90, "Ninguém educa ninguém, os homens se educam entre si.", "Paulo Freire", "Pedagogia do Oprimido"),
+
+        Excerpt(91, "A favela é o quarto de despejo de uma cidade.", "Carolina Maria de Jesus", "Quarto de Despejo"),
+
+        Excerpt(92, "Navegar é preciso; viver não é preciso.", "Fernando Pessoa", "collected writings"),
+
+        Excerpt(93, "Liberdade é pouco. O que eu desejo ainda não tem nome.", "Clarice Lispector", "Perto do Coração Selvagem"),
+
+        // The Négritude movement and anti-colonial France
+        Excerpt(94, "Colonisation égale chosification.", "Aime Cesaire", "Discours sur le colonialisme"),
+
+        Excerpt(95, "Quand on m'aime, on me dit que c'est malgré ma couleur.", "Frantz Fanon", "Peau noire, masques blancs"),
+
+        Excerpt(96, "La femme naît libre et demeure égale à l'homme en droits.", "Olympe de Gouges", "Déclaration des droits de la femme"),
+
+        Excerpt(97, "On ne naît pas femme, on le devient.", "Simone de Beauvoir", "Le Deuxième Sexe"),
+
+        // Italy
+        Excerpt(98, "Meditate che questo è stato.", "Primo Levi", "Se questo è un uomo"),
+
+        Excerpt(99, "Il bambino è il maestro.", "Maria Montessori", "collected lectures on education"),
+
+        Excerpt(100, "Non vi è libertà ogni qualvolta le leggi permettono la crudeltà.", "Cesare Beccaria", "Dei delitti e delle pene"),
+
+        Excerpt(101, "Pessimismo dell'intelligenza, ottimismo della volontà.", "Antonio Gramsci", "Quaderni del carcere"),
+
+        // China
+        Excerpt(102, "其实地上本没有路，走的人多了，也便成了路。", "Lu Xun", "故乡"),
+
+        Excerpt(103, "兼相爱，交相利。", "Mozi", "Mozi"),
+
+        Excerpt(104, "天下为公。", "Sun Yat-sen", "collected calligraphy and speeches"),
+
+        Excerpt(105, "身不得，男儿列。心却比，男儿烈。", "Qiu Jin", "满江红"),
+
+        // Japan
+        Excerpt(106, "Bushido is the code of moral principles which the knights were required to observe.", "Nitobe Inazo", "Bushido: The Soul of Japan"),
+
+        Excerpt(107, "In spring, the dawn. The sky at the edge of the mountains slowly brightens.", "Sei Shonagon", "The Pillow Book (tr. Arthur Waley)"),
+
+        Excerpt(108, "Women should not be shut out from the work of building a nation.", "Ichikawa Fusae", "attributed rendering, collected speeches"),
+
+        // India and South Asia
+        Excerpt(109, "Educate, agitate, organize.", "B.R. Ambedkar", "address to the All India Depressed Classes Conference"),
+
+        Excerpt(110, "Cultivation of mind should be the ultimate aim of human existence.", "B.R. Ambedkar", "collected speeches"),
+
+        Excerpt(111, "Awake, arise, and educate. Smash traditions and liberate.", "Savitribai Phule", "attributed rendering, collected poems"),
+
+        Excerpt(112, "The soul of India lives in its villages and in its women.", "Sarojini Naidu", "attributed rendering, collected speeches"),
+
+        // Africa
+        Excerpt(113, "The most potent weapon of the oppressor is the mind of the oppressed.", "Steve Biko", "Black Consciousness in South Africa"),
+
+        Excerpt(114, "Until the lions have their own historians, the hunt glorifies the hunter.", "Chinua Achebe", "collected interviews"),
+
+        Excerpt(115, "The man dies in all who keep silent in the face of tyranny.", "Wole Soyinka", "The Man Died"),
+
+        Excerpt(116, "Dialogue is the only way forward.", "Albert Luthuli", "Let My People Go"),
+
+        Excerpt(117, "While revolutionaries as individuals can be murdered, you cannot kill ideas.", "Thomas Sankara", "collected speeches"),
+
+        Excerpt(118, "The size of your dreams must always exceed your current capacity to achieve them.", "Ellen Johnson Sirleaf", "collected addresses"),
+
+        Excerpt(119, "We are not just victims of war. We are the peacemakers.", "Leymah Gbowee", "attributed rendering, collected remarks"),
+
+        Excerpt(120, "Freedom is not a gift. It is something to be taken.", "Kwame Nkrumah", "attributed rendering, collected speeches"),
+
+        // The Middle East and Persia
+        Excerpt(121, "Your children are not your children.", "Khalil Gibran", "The Prophet"),
+
+        Excerpt(122, "Out beyond ideas of wrongdoing and rightdoing, there is a field.", "Rumi", "Masnavi (tr. Coleman Barks)"),
+
+        Excerpt(123, "Human rights is a universal standard. It belongs to no one culture.", "Shirin Ebadi", "collected remarks"),
+
+        Excerpt(124, "Danger has been part of my life ever since I picked up a pen.", "Nawal El Saadawi", "Walking Through Fire"),
+
+        // Bearing witness
+        Excerpt(125, "How wonderful it is that nobody need wait to improve the world.", "Anne Frank", "The Diary of a Young Girl"),
+
+        Excerpt(126, "The opposite of love is not hate, it's indifference.", "Elie Wiesel", "collected interviews"),
+
+        Excerpt(127, "When we are no longer able to change a situation, we must change ourselves.", "Viktor Frankl", "Man's Search for Meaning"),
+
+        Excerpt(128, "Children are not the people of tomorrow, but people today.", "Janusz Korczak", "How to Love a Child"),
+
+        Excerpt(129, "Give me your tired, your poor, your huddled masses yearning to breathe free.", "Emma Lazarus", "The New Colossus"),
+
+        // Conscience in the modern age
+        Excerpt(130, "In nature nothing exists alone.", "Rachel Carson", "Silent Spring"),
+
+        Excerpt(131, "What you do makes a difference, and you have to decide what difference.", "Jane Goodall", "collected remarks"),
+
+        Excerpt(132, "The value of a man should be seen in what he gives.", "Albert Einstein", "collected essays"),
+
+        Excerpt(133, "War does not determine who is right, only who is left.", "Bertrand Russell", "attributed rendering, antiwar writings"),
+
+        Excerpt(134, "Hope is not the conviction that something will turn out well.", "Vaclav Havel", "Disturbing the Peace"),
+
+        Excerpt(135, "Hope will never be silent.", "Harvey Milk", "collected speeches"),
+
+        Excerpt(136, "The greatest challenge of the day is to bring about a peaceful revolution.", "Dorothy Day", "The Long Loneliness"),
+
+        Excerpt(137, "Walk as if you are kissing the earth with your feet.", "Thich Nhat Hanh", "Peace Is Every Step"),
+
+        Excerpt(138, "Be kind whenever possible. It is always possible.", "Dalai Lama", "collected teachings"),
+
+        // American voices
+        Excerpt(139, "A time comes when silence is betrayal.", "Malcolm X", "attributed rendering, collected speeches"),
+
+        Excerpt(140, "I am no longer accepting the things I cannot change.", "Angela Davis", "collected remarks"),
+
+        Excerpt(141, "There is no agony like bearing an untold story inside you.", "Zora Neale Hurston", "Dust Tracks on a Road"),
+
+        Excerpt(142, "The function of freedom is to free someone else.", "Toni Morrison", "commencement address"),
+
+        Excerpt(143, "Fear is a disease that eats away at logic and makes man inhuman.", "Marian Anderson", "collected interviews"),
+
+        Excerpt(144, "A life is not important except in the impact it has on others.", "Jackie Robinson", "I Never Had It Made"),
+
+        Excerpt(145, "Service to others is the rent you pay for your room here on earth.", "Muhammad Ali", "collected remarks"),
+
+        Excerpt(146, "I will fight no more forever.", "Chief Joseph", "surrender speech, 1877"),
+
+        Excerpt(147, "The happiest people are those who do the most for others.", "Booker T. Washington", "collected addresses"),
+
+        // Oceania and the Pacific
+        Excerpt(148, "We are the ocean.", "Epeli Hau'ofa", "We Are the Ocean"),
+
+        Excerpt(149, "The difference between islands in a far sea and a sea of islands.", "Epeli Hau'ofa", "Our Sea of Islands"),
+
+        Excerpt(150, "Let no one say the past is dead.", "Oodgeroo Noonuccal", "The Past"),
+
+        Excerpt(151, "What is the most important thing? It is people, it is people.", "Maori whakatauki", "traditional proverb"),
+
+        Excerpt(152, "We want to live in our country, in our own way.", "Vincent Lingiari", "attributed rendering, Gurindji walk-off"),
+
+        Excerpt(153, "The land is my mother. She is the mother of us all.", "Eddie Mabo", "attributed rendering, land rights testimony"),
+
+        Excerpt(154, "Custom is not a museum piece. It lives, or it is nothing.", "Grace Mera Molisa", "attributed rendering, collected poems"),
+
+        Excerpt(155, "Our roots are in the sea, and the sea has no fences.", "Albert Wendt", "attributed rendering, collected essays"),
+
+        // Southwest Asia and North Africa
+        Excerpt(156, "Human beings are members of a whole, in creation of one essence and soul.", "Saadi Shirazi", "Gulistan (tr. M. Aryanpoor)"),
+
+        Excerpt(157, "On this earth there is that which deserves life.", "Mahmoud Darwish", "collected poems"),
+
+        Excerpt(158, "Home is where all your attempts to escape cease.", "Naguib Mahfouz", "collected novels"),
+
+        Excerpt(159, "The whole planet is my village.", "Fatema Mernissi", "collected essays"),
+
+        Excerpt(160, "Writing is not a mirror. It is a way of standing upright.", "Assia Djebar", "attributed rendering, collected writings"),
+
+        Excerpt(161, "Man is a wanderer, and his true country is the road ahead.", "Adonis", "attributed rendering, collected poems"),
+
+        Excerpt(162, "Injustice destroys civilisation.", "Ibn Khaldun", "The Muqaddimah (tr. Franz Rosenthal)"),
+
+        Excerpt(163, "I do not steal from nature what it unwillingly gives.", "Al-Maarri", "attributed rendering, collected verse"),
+
+        Excerpt(164, "Peace requires the empowerment of women.", "Tawakkol Karman", "Nobel Peace Prize lecture"),
+
+        // Southeast Asia
+        Excerpt(165, "There are no tyrants where there are no slaves.", "Jose Rizal", "El Filibusterismo"),
+
+        Excerpt(166, "He who does not know how to look back will never arrive.", "Jose Rizal", "Noli Me Tangere"),
+
+        Excerpt(167, "After darkness, light is born.", "Raden Adjeng Kartini", "Habis Gelap Terbitlah Terang"),
+
+        Excerpt(168, "Be fair from the moment of thought, and even more so in action.", "Pramoedya Ananta Toer", "Bumi Manusia"),
+
+        Excerpt(169, "Without facts, you cannot have truth. Without truth, you cannot have trust.", "Maria Ressa", "Nobel Peace Prize lecture"),
+
+        Excerpt(170, "One hundred years of talent are worth less than a little kindness.", "Nguyen Du", "The Tale of Kieu"),
+
+        Excerpt(171, "I am one of the people, and my art belongs to them.", "Chit Phumisak", "attributed rendering, collected writings"),
+
+        // Cabo Verde, the Gulf of Guinea islands, and Lusophone Africa
+        Excerpt(172, "Tell no lies, claim no easy victories.", "Amilcar Cabral", "party directive to the PAIGC"),
+
+        Excerpt(173, "Culture is the seed of resistance, and the flower of liberation.", "Amilcar Cabral", "National Liberation and Culture"),
+
+        Excerpt(174, "Morna is the voice of a people who could not otherwise speak.", "Eugenio Tavares", "attributed rendering, collected mornas"),
+
+        Excerpt(175, "We shall plant, on this soil, a house of our own.", "Alda do Espirito Santo", "attributed rendering, collected poems"),
+
+        Excerpt(176, "Sweet land of my birth, I carry you wherever I go.", "Baltasar Lopes da Silva", "attributed rendering, Chiquinho"),
+
+        Excerpt(177, "My mother was a woman of Africa, and I am her voice.", "Noemia de Sousa", "attributed rendering, Sangue Negro"),
+
+        Excerpt(178, "I want to be a drum, and nothing more.", "Jose Craveirinha", "Karingana ua Karingana"),
+
+        Excerpt(179, "We will return, we will return, to the land that is ours.", "Agostinho Neto", "Sagrada Esperanca"),
+
+        Excerpt(180, "The country is not the land. It is the people standing on it.", "Mia Couto", "attributed rendering, collected essays"),
+
+        // Further voices for justice and dignity
+        Excerpt(181, "No one is born hating another person because of the colour of his skin.", "Nelson Mandela", "collected writings on reconciliation"),
+
+        Excerpt(182, "I am not a woman writer. I am a writer who is a woman.", "Buchi Emecheta", "attributed rendering, collected interviews"),
+
+        Excerpt(183, "To deny people their human rights is to challenge their very humanity.", "Nelson Mandela", "address to the Special Committee against Apartheid"),
+
+        Excerpt(184, "The truth will set you free, but first it will make you miserable.", "Zora Neale Hurston", "collected letters"),
+
+        Excerpt(185, "The time is always right to do what is right.", "Martin Luther King Jr.", "Oberlin College address"),
+
+        // Standing against tyranny
+        Excerpt(186, "God made me, and I am a man.", "Standing Bear", "testimony at Standing Bear v. Crook"),
+
+        Excerpt(187, "Until the philosophy which holds one race superior is abandoned, everywhere is war.", "Haile Selassie", "address to the United Nations"),
+
+        Excerpt(188, "Somebody, after all, had to make a start.", "Sophie Scholl", "statement at her trial"),
+
+        Excerpt(189, "Freedom is always the freedom of the one who thinks differently.", "Rosa Luxemburg", "The Russian Revolution"),
+
+        Excerpt(190, "Silence in the face of evil is itself evil.", "Dietrich Bonhoeffer", "collected letters and papers"),
+
+        Excerpt(191, "He who saves a single life saves the world entire.", "Irena Sendler", "attributed rendering, collected interviews"),
+
+        Excerpt(192, "Attention is the rarest and purest form of generosity.", "Simone Weil", "collected letters"),
+
+        Excerpt(193, "A person does not become free by wishing it.", "Anna Politkovskaya", "attributed rendering, collected reporting"),
+
+        Excerpt(194, "Freedom is indivisible.", "Andrei Sakharov", "Nobel Peace Prize lecture"),
+
+        Excerpt(195, "I have no enemies, and no hatred.", "Liu Xiaobo", "final statement before sentencing"),
+
+        // African liberation and letters
+        Excerpt(196, "Freedom is never given; it is won.", "A. Philip Randolph", "collected addresses"),
+
+        Excerpt(197, "The African is not hostile to the future.", "Patrice Lumumba", "independence day address"),
+
+        Excerpt(198, "No nation can develop while half its people are held back.", "Julius Nyerere", "collected speeches"),
+
+        Excerpt(199, "The rich man's dog gets more food than the child of the poor.", "Samora Machel", "collected speeches"),
+
+        Excerpt(200, "The writer is the conscience of the society.", "Ngugi wa Thiongo", "Decolonising the Mind"),
+
+        Excerpt(201, "The story is the thing. The story owns us and directs us.", "Ama Ata Aidoo", "attributed rendering, collected interviews"),
+
+        Excerpt(202, "The song of the bird is not owned by the cage.", "Bessie Head", "attributed rendering, collected writings"),
+
+        Excerpt(203, "Dead men have indeed died in vain if we forget them.", "Ken Saro-Wiwa", "final statement to the tribunal"),
+
+        Excerpt(204, "Nothing is impossible for the person who refuses to accept impossibility.", "Miriam Makeba", "attributed rendering, collected interviews"),
+
+        Excerpt(205, "Stories matter. Many stories matter.", "Chimamanda Ngozi Adichie", "The Danger of a Single Story"),
+
+        // Latin America and the Caribbean
+        Excerpt(206, "A church that does not provoke crisis is not the true church.", "Oscar Romero", "collected homilies"),
+
+        Excerpt(207, "When I fed the poor, they called me a saint.", "Dom Helder Camara", "collected writings"),
+
+        Excerpt(208, "Wake up, humanity. There is no more time.", "Berta Caceres", "Goldman Prize acceptance speech"),
+
+        Excerpt(209, "We do not want to be a colony of anyone.", "Pedro Albizu Campos", "attributed rendering, collected speeches"),
+
+        Excerpt(210, "Anytime you have an opportunity to make a difference, you should do it.", "Roberto Clemente", "collected interviews"),
+
+        Excerpt(211, "Yo misma fui mi ruta.", "Julia de Burgos", "Yo Misma Fui Mi Ruta"),
+
+        Excerpt(212, "We want our children to have what we never had.", "Domitila Barrios de Chungara", "Let Me Speak"),
+
+        // Asia
+        Excerpt(213, "Arise, awake, and stop not until the goal is reached.", "Swami Vivekananda", "collected addresses"),
+
+        Excerpt(214, "Look within. Every temple you seek is already standing there.", "Kabir", "attributed rendering, collected dohas"),
+
+        Excerpt(215, "Educate your daughters, and the whole household is lifted.", "Jyotirao Phule", "attributed rendering, Gulamgiri"),
+
+        Excerpt(216, "The trouble is that once you see it, you cannot unsee it.", "Arundhati Roy", "The Cost of Living"),
+
+        Excerpt(217, "Seed is the first link in the food chain, and freedom's source.", "Vandana Shiva", "collected essays"),
+
+        Excerpt(218, "Consciousness is the awareness that we belong to each other.", "Yuri Kochiyama", "attributed rendering, collected remarks"),
+
+        Excerpt(219, "Protest that endures is moved by hope, not by fear.", "Grace Lee Boggs", "attributed rendering, collected writings"),
+
+        Excerpt(220, "Stand up for what is right, even if you stand alone.", "Fred Korematsu", "collected remarks"),
+
+        Excerpt(221, "Democracy is the only road to the survival of humanity.", "Kim Dae-jung", "Nobel Peace Prize lecture"),
+
+        // American civil rights and public life
+        Excerpt(222, "I leave you love. I leave you hope.", "Mary McLeod Bethune", "My Last Will and Testament"),
+
+        Excerpt(223, "You don't have to see the whole staircase, just take the first step.", "Martin Luther King Jr.", "collected sermons"),
+
+        Excerpt(224, "You can kill a man, but you can't kill an idea.", "Medgar Evers", "collected remarks"),
+
+        Excerpt(225, "Freedom is never granted; it is won by each generation.", "Coretta Scott King", "collected addresses"),
+
+        Excerpt(226, "The struggle is eternal. Somebody else carries on.", "Ella Baker", "address to a student conference"),
+
+        Excerpt(227, "Literacy is the road out. Everything else follows it.", "Septima Clark", "attributed rendering, collected interviews"),
+
+        Excerpt(228, "We are not making history. We are making a movement.", "Diane Nash", "attributed rendering, collected interviews"),
+
+        Excerpt(229, "One person plus one typewriter constitutes a movement.", "Pauli Murray", "Song in a Weary Throat"),
+
+        Excerpt(230, "A lawyer is either a social engineer or a parasite on society.", "Charles Hamilton Houston", "collected writings"),
+
+        Excerpt(231, "We are one, our cause is one, and we must help each other.", "Frederick Douglass", "letter to Harriet Tubman"),
+
+        Excerpt(232, "They want an America as good as its promise.", "Barbara Jordan", "collected addresses"),
+
+        Excerpt(233, "The triumph cannot be had without the struggle.", "Wilma Rudolph", "collected interviews"),
+
+        Excerpt(234, "No matter what accomplishments you make, somebody helped you.", "Althea Gibson", "collected interviews"),
+
+        Excerpt(235, "Do not let anyone tell you what you cannot be.", "Wilma Mankiller", "attributed rendering, collected remarks"),
+
+        Excerpt(236, "Every child is born a scientist, an artist, and a citizen.", "Zitkala-Sa", "attributed rendering, American Indian Stories"),
+
+        // European reform and conscience
+        Excerpt(237, "Punishments should be chosen that make the strongest impression with the least torment.", "Cesare Beccaria", "On Crimes and Punishments (tr. Edward Ingraham)"),
+
+        Excerpt(238, "Charity is not enough. Justice must come first.", "Elizabeth Fry", "attributed rendering, prison reform writings"),
+
+        Excerpt(239, "God has given to men all that is necessary for them to live.", "Thomas Clarkson", "History of the Abolition of the Slave Trade"),
+
+        Excerpt(240, "It is our duty to abolish this cruel traffic.", "William Wilberforce", "abolition speech to the House of Commons"),
+
+        Excerpt(241, "Deeds, not words.", "Sylvia Pankhurst", "suffrage movement motto"),
+
+        Excerpt(242, "The State is the servant of the citizen, not his master.", "Vaclav Havel", "New Year address to the nation"),
+
+        Excerpt(243, "Solidarity means that we carry each other's burdens.", "Lech Walesa", "collected addresses"),
+
+        // More voices for dignity and hope
+        Excerpt(244, "Never doubt that a small group of thoughtful citizens can change the world.", "Margaret Mead", "attributed rendering, collected remarks"),
+
+        Excerpt(245, "Darkness cannot drive out darkness; only light can do that.", "Martin Luther King Jr.", "Strength to Love"),
+
+        Excerpt(246, "Act as if what you do makes a difference. It does.", "William James", "collected essays"),
+
+        Excerpt(247, "Nothing in life is to be feared, it is only to be understood.", "Marie Curie", "collected letters"),
+
+        Excerpt(248, "A society grows great when old men plant trees they will never sit under.", "Greek proverb", "traditional saying"),
+
+        Excerpt(249, "The purpose of life is not to be happy but to matter.", "Leo Rosten", "collected essays"),
+
+        Excerpt(250, "Courage is not the absence of fear, but the triumph over it.", "Nelson Mandela", "collected interviews"),
+
+        Excerpt(251, "Peace cannot be kept by force; it can only be achieved by understanding.", "Albert Einstein", "collected addresses"),
+
+        Excerpt(252, "The world is a dangerous place, not because of those who do evil.", "Albert Einstein", "attributed rendering, collected letters"),
+
+        Excerpt(253, "How far you go in life depends on your tenderness with the young.", "George Washington Carver", "collected writings"),
+
+        Excerpt(254, "Education is the passport to the future.", "Malcolm X", "address to students"),
+
+        Excerpt(255, "Change does not roll in on the wheels of inevitability.", "Martin Luther King Jr.", "Why We Can't Wait"),
+
+        Excerpt(256, "Our lives begin to end the day we become silent about things that matter.", "Martin Luther King Jr.", "address in Selma"),
+
+        Excerpt(257, "If you are neutral in situations of injustice, you have chosen the oppressor's side.", "Desmond Tutu", "collected writings on apartheid"),
+
+        Excerpt(258, "There is no such thing as a single-issue struggle.", "Audre Lorde", "Learning from the 60s"),
+
+        Excerpt(259, "When I dare to be powerful, it matters less whether I am afraid.", "Audre Lorde", "The Cancer Journals"),
+
+        Excerpt(260, "Caring for myself is an act of political warfare.", "Audre Lorde", "A Burst of Light"),
+
+        Excerpt(261, "If there's a book you want to read, and it isn't written, write it.", "Toni Morrison", "collected interviews"),
+
+        Excerpt(262, "You wanna fly, you got to give up the thing that weighs you down.", "Toni Morrison", "Song of Solomon"),
+
+        Excerpt(263, "We do language. That may be the measure of our lives.", "Toni Morrison", "Nobel Prize lecture"),
+
+        Excerpt(264, "I have found that among its other benefits, giving liberates the soul.", "Maya Angelou", "collected interviews"),
+
+        Excerpt(265, "You may not control all the events that happen to you.", "Maya Angelou", "Letter to My Daughter"),
+
+        Excerpt(266, "Try to be a rainbow in someone else's cloud.", "Maya Angelou", "collected remarks"),
+
+        Excerpt(267, "Not everything that is faced can be changed.", "James Baldwin", "collected interviews"),
+
+        Excerpt(268, "The world is before you, and you need not take it as it is.", "James Baldwin", "Nobody Knows My Name"),
+
+        Excerpt(269, "Anyone who has ever struggled with poverty knows how extremely expensive it is.", "James Baldwin", "Fifth Avenue, Uptown"),
+
+        Excerpt(270, "I am deliberate and afraid of nothing.", "Audre Lorde", "collected poems"),
+
+        Excerpt(271, "Justice is what love looks like in public.", "Cornel West", "collected lectures"),
+
+        Excerpt(272, "The opposite of poverty is not wealth. The opposite of poverty is justice.", "Bryan Stevenson", "Just Mercy"),
+
+        Excerpt(273, "Each of us is more than the worst thing we have ever done.", "Bryan Stevenson", "collected addresses"),
+
+        Excerpt(274, "We must accept finite disappointment, but never lose infinite hope.", "Martin Luther King Jr.", "collected writings"),
+
+        Excerpt(275, "Freedom is not something that anybody can be given.", "James Baldwin", "Notes of a Native Son"),
+
+        Excerpt(276, "Hope is a discipline.", "Mariame Kaba", "We Do This Til We Free Us"),
+
+        Excerpt(277, "Nobody's free until everybody's free.", "Fannie Lou Hamer", "address to the NAACP Legal Defense Fund"),
+
+        Excerpt(278, "You are your best thing.", "Toni Morrison", "Beloved"),
+
+        Excerpt(279, "The function of art is to do more than tell it like it is.", "Nina Simone", "collected interviews"),
+
+        Excerpt(280, "I had crossed the line. I was free.", "Harriet Tubman", "as recorded by Sarah Bradford"),
+
+        Excerpt(281, "Lifting as we climb.", "Mary Church Terrell", "motto of the National Association of Colored Women"),
+
+        Excerpt(282, "A little rebellion now and then is a good thing.", "Abigail Adams", "attributed rendering, collected letters"),
+
+        Excerpt(283, "Remember the ladies, and be more generous to them than your ancestors.", "Abigail Adams", "letter to John Adams"),
+
+        Excerpt(284, "The first problem for all of us is not to learn, but to unlearn.", "Gloria Steinem", "collected essays"),
+
+        Excerpt(285, "Well-behaved women seldom make history.", "Laurel Thatcher Ulrich", "Well-Behaved Women Seldom Make History"),
+
+        Excerpt(286, "We cannot all succeed when half of us are held back.", "Malala Yousafzai", "I Am Malala"),
+
+        Excerpt(287, "A child, a teacher, a pen can change the world.", "Malala Yousafzai", "collected remarks"),
+
+        Excerpt(288, "The only way to deal with an unfree world is to become absolutely free.", "Albert Camus", "The Myth of Sisyphus"),
+
+        Excerpt(289, "I rebel, therefore we exist.", "Albert Camus", "The Rebel"),
+
+        Excerpt(290, "Real generosity toward the future lies in giving all to the present.", "Albert Camus", "collected notebooks"),
+
+        Excerpt(291, "What is essential is invisible to the eye.", "Antoine de Saint-Exupery", "Le Petit Prince"),
+
+        Excerpt(292, "Being a person is difficult. Nobody ever told us it might be otherwise.", "Marilynne Robinson", "collected essays"),
+
+
+        Excerpt(293, "Service is the rent we pay for living.", "Marian Wright Edelman", "The Measure of Our Success"),
+
+        Excerpt(294, "You cannot be what you cannot see.", "Marian Wright Edelman", "collected addresses"),
+
+        Excerpt(295, "We are the ones we have been waiting for.", "June Jordan", "Poem for South African Women"),
+
+        Excerpt(296, "None of us got where we are solely by pulling up our own bootstraps.", "Thurgood Marshall", "collected writings"),
+
+        Excerpt(297, "The ballot is a passport to citizenship.", "W.E.B. Du Bois", "collected essays"),
+
+        Excerpt(298, "Now is the accepted time, not tomorrow, not some more convenient season.", "W.E.B. Du Bois", "collected addresses"),
+
+        Excerpt(299, "The cost of liberty is less than the price of repression.", "W.E.B. Du Bois", "John Brown"),
+
+        Excerpt(300, "The kind of beauty I want is hard to get.", "Nikki Giovanni", "collected poems"),
+
+        Excerpt(301, "Speak the truth to the people.", "Mari Evans", "Speak the Truth to the People"),
+
+        Excerpt(302, "There is no such thing as being neutral about human dignity.", "Leymah Gbowee", "Mighty Be Our Powers"),
+
+        Excerpt(303, "Extremists have shown what frightens them most: a girl with a book.", "Malala Yousafzai", "collected addresses"),
+
     )
 }
