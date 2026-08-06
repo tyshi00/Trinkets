@@ -47,6 +47,9 @@ data class SettingsState(
     val countdownTimerEnabled: Boolean = false,
     val dateFormat: DateFormat = DateFormat.MDY,
     val timeFormat: TimeFormat = TimeFormat.AM_PM,
+    val splitHomeEnabled: Boolean = false,
+    val splitPrimary: SplitSlot = SplitSlot.COUNTDOWN,
+    val splitSecondary: SplitSlot = SplitSlot.MORNING,
 )
 
 class SettingsViewModel(private val repo: TrinketsRepository) : LightViewModel<Unit>() {
@@ -67,6 +70,9 @@ class SettingsViewModel(private val repo: TrinketsRepository) : LightViewModel<U
                 countdownTimerEnabled = repo.getCountdownTimerEnabled(),
                 dateFormat = repo.getDateFormat(),
                 timeFormat = repo.getTimeFormat(),
+                splitHomeEnabled = repo.getSplitHomeEnabled(),
+                splitPrimary = repo.getSplitPrimary(),
+                splitSecondary = repo.getSplitSecondary(),
             )
         }
     }
@@ -84,6 +90,46 @@ class SettingsViewModel(private val repo: TrinketsRepository) : LightViewModel<U
         viewModelScope.launch(Dispatchers.IO) {
             repo.setHomeDefault(value)
             _state.value = _state.value.copy(homeDefault = value)
+        }
+    }
+
+    fun toggleSplitHome() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val newValue = !_state.value.splitHomeEnabled
+            repo.setSplitHomeEnabled(newValue)
+            _state.value = _state.value.copy(splitHomeEnabled = newValue)
+        }
+    }
+
+    /**
+     * Both halves picking the same feature would just show it twice, so if the
+     * new primary matches the current secondary the two are swapped instead.
+     */
+    fun setSplitPrimary(value: SplitSlot) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val current = _state.value
+            if (value == current.splitSecondary) {
+                repo.setSplitSecondary(current.splitPrimary)
+                repo.setSplitPrimary(value)
+                _state.value = current.copy(splitPrimary = value, splitSecondary = current.splitPrimary)
+            } else {
+                repo.setSplitPrimary(value)
+                _state.value = current.copy(splitPrimary = value)
+            }
+        }
+    }
+
+    fun setSplitSecondary(value: SplitSlot) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val current = _state.value
+            if (value == current.splitPrimary) {
+                repo.setSplitPrimary(current.splitSecondary)
+                repo.setSplitSecondary(value)
+                _state.value = current.copy(splitSecondary = value, splitPrimary = current.splitSecondary)
+            } else {
+                repo.setSplitSecondary(value)
+                _state.value = current.copy(splitSecondary = value)
+            }
         }
     }
 
@@ -215,6 +261,66 @@ class SettingsScreen(
                             LightText(text = state.homeDefault.label, variant = LightTextVariant.Fine, lighten = true)
                         }
                         LightIcon(icon = LightIcons.ARROW_RIGHT)
+                    }
+
+                    // Split home screen, with the two slot pickers nested
+                    // underneath and only shown while it's switched on.
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .lightClickable { viewModel.toggleSplitHome() }
+                            .padding(vertical = 0.75f.gridUnitsAsDp()),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        LightIcon(icon = if (state.splitHomeEnabled) LightIcons.TOGGLE_OFF else LightIcons.TOGGLE_ON)
+                        Spacer(modifier = Modifier.width(0.75f.gridUnitsAsDp()))
+                        Column(modifier = Modifier.weight(1f)) {
+                            LightText(text = "Split home screen", variant = LightTextVariant.Copy)
+                            LightText(
+                                text = "Shows two features at once, stacked",
+                                variant = LightTextVariant.Fine,
+                                lighten = true,
+                            )
+                        }
+                    }
+
+                    if (state.splitHomeEnabled) {
+                        val slotOptions = buildList {
+                            add(SplitSlot.COUNTDOWN)
+                            if (state.visibility.poemEnabled) add(SplitSlot.POEM)
+                            if (state.visibility.excerptEnabled) add(SplitSlot.EXCERPT)
+                            if (state.visibility.historyEnabled) add(SplitSlot.HISTORY)
+                            if (state.visibility.philosophyEnabled) add(SplitSlot.PHILOSOPHY)
+                            if (state.visibility.morningEnabled) add(SplitSlot.MORNING)
+                            if (state.visibility.jokeEnabled) add(SplitSlot.JOKE)
+                            if (state.visibility.triviaEnabled) add(SplitSlot.TRIVIA)
+                        }
+
+                        SplitSlotRow(
+                            label = "Top feature",
+                            value = state.splitPrimary.label,
+                            onClick = {
+                                navigateTo(
+                                    screenFactory = {
+                                        SplitSlotPickerScreen(it, "Top feature", state.splitPrimary, slotOptions)
+                                    },
+                                    resultCallback = { result -> if (result != null) viewModel.setSplitPrimary(result) },
+                                )
+                            },
+                        )
+
+                        SplitSlotRow(
+                            label = "Bottom feature",
+                            value = state.splitSecondary.label,
+                            onClick = {
+                                navigateTo(
+                                    screenFactory = {
+                                        SplitSlotPickerScreen(it, "Bottom feature", state.splitSecondary, slotOptions)
+                                    },
+                                    resultCallback = { result -> if (result != null) viewModel.setSplitSecondary(result) },
+                                )
+                            },
+                        )
                     }
 
                     Spacer(modifier = Modifier.height(0.5f.gridUnitsAsDp()))
@@ -355,6 +461,24 @@ class SettingsScreen(
                 LightBottomBar(items = listOf())
             }
         }
+    }
+}
+
+/** An indented picker row for one half of the split Home screen. */
+@Composable
+private fun SplitSlotRow(label: String, value: String, onClick: () -> Unit) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .lightClickable(onClick = onClick)
+            .padding(start = 2.5f.gridUnitsAsDp(), top = 0.5f.gridUnitsAsDp(), bottom = 0.5f.gridUnitsAsDp()),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Column(modifier = Modifier.weight(1f)) {
+            LightText(text = label, variant = LightTextVariant.Copy)
+            LightText(text = value, variant = LightTextVariant.Fine, lighten = true)
+        }
+        LightIcon(icon = LightIcons.ARROW_RIGHT)
     }
 }
 

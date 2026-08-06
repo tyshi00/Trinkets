@@ -59,6 +59,8 @@ data class CountdownListState(
     val canAddMore: Boolean = true,
     val loaded: Boolean = false,
     val timerEnabled: Boolean = false,
+    /** Starred countdown shown on Home; null falls back to the soonest upcoming. */
+    val featuredId: Long? = null,
 )
 
 class CountdownListViewModel(private val repo: TrinketsRepository) : LightViewModel<Unit>() {
@@ -74,6 +76,7 @@ class CountdownListViewModel(private val repo: TrinketsRepository) : LightViewMo
             val entries = repo.getCountdowns()
             val dateFormat = repo.getDateFormat()
             val timerEnabled = repo.getCountdownTimerEnabled()
+            val featuredId = repo.getFeaturedCountdownId()
             val items = entries
                 .map {
                     CountdownDisplayItem(
@@ -93,7 +96,20 @@ class CountdownListViewModel(private val repo: TrinketsRepository) : LightViewMo
                 canAddMore = entries.size < MAX_COUNTDOWNS,
                 loaded = true,
                 timerEnabled = timerEnabled,
+                featuredId = featuredId,
             )
+        }
+    }
+
+    /**
+     * Tapping the star sets that countdown as the one Home shows; tapping the
+     * already-starred one clears the pick and reverts to the soonest upcoming.
+     */
+    fun toggleFeatured(id: Long) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val newValue = if (_state.value.featuredId == id) null else id
+            repo.setFeaturedCountdownId(newValue)
+            _state.value = _state.value.copy(featuredId = newValue)
         }
     }
 }
@@ -154,6 +170,12 @@ class CountdownScreen(
                             CountdownRow(
                                 item = item,
                                 timerEnabled = state.timerEnabled,
+                                // Nothing is starred until the person picks one.
+                                // Home still falls back to the soonest upcoming
+                                // on its own, so an empty star here means "auto"
+                                // rather than "nothing will show".
+                                isFeatured = state.featuredId == item.id,
+                                onToggleFeatured = { viewModel.toggleFeatured(item.id) },
                                 onEdit = {
                                     navigateTo(
                                         screenFactory = { CountdownEditScreen(it, repo, existing = item) },
@@ -190,7 +212,13 @@ class CountdownScreen(
 }
 
 @Composable
-private fun CountdownRow(item: CountdownDisplayItem, timerEnabled: Boolean, onEdit: () -> Unit) {
+private fun CountdownRow(
+    item: CountdownDisplayItem,
+    timerEnabled: Boolean,
+    isFeatured: Boolean,
+    onToggleFeatured: () -> Unit,
+    onEdit: () -> Unit,
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -216,6 +244,21 @@ private fun CountdownRow(item: CountdownDisplayItem, timerEnabled: Boolean, onEd
                     maxLines = 2,
                 )
             }
+        }
+        Box(
+            modifier = Modifier
+                .lightClickable(onClick = onToggleFeatured)
+                .padding(0.5f.gridUnitsAsDp()),
+        ) {
+            LightIcon(
+                icon = if (isFeatured) LightIcons.STAR else LightIcons.STAR_OUTLINE,
+                size = 1.5f,
+                contentDescription = if (isFeatured) {
+                    "${item.name} is shown on home"
+                } else {
+                    "Show ${item.name} on home"
+                },
+            )
         }
         Box(
             modifier = Modifier

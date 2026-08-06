@@ -38,6 +38,12 @@ import kotlinx.coroutines.launch
 data class FeaturesListState(
     val visibility: FeatureVisibility = FeatureVisibility(),
     val motivationIntensity: MotivationIntensity? = null,
+    /**
+     * Features already shown on Home, so the list doesn't just repeat them.
+     * In classic mode that's the single Home default; in split mode it's both
+     * halves. Countdowns isn't a content feature, so it contributes nothing.
+     */
+    val featuresOnHome: Set<TrinketsFeature> = emptySet(),
 )
 
 class FeaturesListViewModel(private val repo: TrinketsRepository) : LightViewModel<Unit>() {
@@ -46,9 +52,16 @@ class FeaturesListViewModel(private val repo: TrinketsRepository) : LightViewMod
 
     override fun onScreenShow(screen: SimpleLightScreen<Unit>) {
         viewModelScope.launch(Dispatchers.IO) {
+            val onHome = if (repo.getSplitHomeEnabled()) {
+                setOfNotNull(repo.getSplitPrimary().toFeature(), repo.getSplitSecondary().toFeature())
+            } else {
+                setOfNotNull(homeDefaultToFeatureOrNull(repo.getHomeDefault()))
+            }
+
             _state.value = FeaturesListState(
                 visibility = repo.getFeatureVisibility(),
                 motivationIntensity = repo.getMotivationIntensity(),
+                featuresOnHome = onHome,
             )
         }
     }
@@ -85,7 +98,9 @@ class FeaturesListScreen(
                     modifier = Modifier.padding(bottom = 1f.gridUnitsAsDp()),
                 )
 
-                val visible = TrinketsFeature.entries.filter { state.visibility.isEnabled(it) }
+                val visible = TrinketsFeature.entries
+                    .filter { state.visibility.isEnabled(it) }
+                    .filterNot { it in state.featuresOnHome }
 
                 if (visible.isEmpty()) {
                     Box(
@@ -96,7 +111,11 @@ class FeaturesListScreen(
                         contentAlignment = Alignment.Center,
                     ) {
                         LightText(
-                            text = "Every feature is turned off. Enable some in Settings.",
+                            text = if (state.featuresOnHome.isEmpty()) {
+                                "Every feature is turned off. Enable some in Settings."
+                            } else {
+                                "Everything that's on is already showing on your home screen."
+                            },
                             variant = LightTextVariant.Copy,
                             lighten = true,
                         )
@@ -131,6 +150,18 @@ class FeaturesListScreen(
             }
         }
     }
+}
+
+/** Null for Countdowns, which is not one of the rotating content features. */
+fun homeDefaultToFeatureOrNull(homeDefault: HomeDefault): TrinketsFeature? = when (homeDefault) {
+    HomeDefault.COUNTDOWN -> null
+    HomeDefault.POEM -> TrinketsFeature.POEM
+    HomeDefault.EXCERPT -> TrinketsFeature.EXCERPT
+    HomeDefault.HISTORY -> TrinketsFeature.HISTORY
+    HomeDefault.PHILOSOPHY -> TrinketsFeature.PHILOSOPHY
+    HomeDefault.MORNING -> TrinketsFeature.MORNING
+    HomeDefault.JOKE -> TrinketsFeature.JOKE
+    HomeDefault.TRIVIA -> TrinketsFeature.TRIVIA
 }
 
 /** Builds the right screen instance (with today's content baked in) for a given feature. */

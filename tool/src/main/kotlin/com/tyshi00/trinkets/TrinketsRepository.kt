@@ -27,6 +27,34 @@ enum class HomeDefault(val label: String) {
     TRIVIA("Trivia"),
 }
 
+/**
+ * A slot choice for the split Home screen. Mirrors [HomeDefault] (Countdowns
+ * plus every content feature) and can be used for either the primary (top) or
+ * secondary (bottom) half.
+ */
+enum class SplitSlot(val label: String) {
+    COUNTDOWN("Countdowns"),
+    POEM("Poem of the Day"),
+    EXCERPT("Literary Excerpt"),
+    HISTORY("Today in History"),
+    PHILOSOPHY("Philosophy Prompt"),
+    MORNING("Morning Prompt"),
+    JOKE("Joke of the Day"),
+    TRIVIA("Trivia");
+
+    /** The matching content feature, or null for Countdowns which isn't a rotating feature. */
+    fun toFeature(): TrinketsFeature? = when (this) {
+        COUNTDOWN -> null
+        POEM -> TrinketsFeature.POEM
+        EXCERPT -> TrinketsFeature.EXCERPT
+        HISTORY -> TrinketsFeature.HISTORY
+        PHILOSOPHY -> TrinketsFeature.PHILOSOPHY
+        MORNING -> TrinketsFeature.MORNING
+        JOKE -> TrinketsFeature.JOKE
+        TRIVIA -> TrinketsFeature.TRIVIA
+    }
+}
+
 /** Every rotating content feature, used for the feature list screen and the settings on/off toggles. */
 enum class TrinketsFeature(val label: String) {
     POEM("Poem of the Day"),
@@ -74,6 +102,10 @@ class TrinketsRepository(private val db: TrinketsDatabase) {
         private const val PREF_COUNTDOWN_TIMER_ENABLED = "countdown_timer_enabled"
         private const val PREF_DATE_FORMAT = "date_format"
         private const val PREF_TIME_FORMAT = "time_format"
+        private const val PREF_SPLIT_HOME_ENABLED = "split_home_enabled"
+        private const val PREF_SPLIT_PRIMARY = "split_primary"
+        private const val PREF_SPLIT_SECONDARY = "split_secondary"
+        private const val PREF_FEATURED_COUNTDOWN = "featured_countdown_id"
 
         @Volatile private var INSTANCE: TrinketsRepository? = null
 
@@ -113,6 +145,47 @@ class TrinketsRepository(private val db: TrinketsDatabase) {
 
     suspend fun setHomeDefault(value: HomeDefault) =
         db.preferenceDao().set(PreferenceEntry(PREF_HOME_DEFAULT, value.name))
+
+    // === Split Home screen ===
+    /**
+     * When enabled, Home shows two features stacked vertically (primary on top,
+     * secondary beneath) instead of the single [getHomeDefault] feature.
+     */
+    suspend fun getSplitHomeEnabled(): Boolean =
+        db.preferenceDao().get(PREF_SPLIT_HOME_ENABLED)?.value == "true"
+
+    suspend fun setSplitHomeEnabled(value: Boolean) =
+        db.preferenceDao().set(PreferenceEntry(PREF_SPLIT_HOME_ENABLED, value.toString()))
+
+    suspend fun getSplitPrimary(): SplitSlot {
+        val raw = db.preferenceDao().get(PREF_SPLIT_PRIMARY)?.value ?: return SplitSlot.COUNTDOWN
+        return SplitSlot.entries.firstOrNull { it.name == raw } ?: SplitSlot.COUNTDOWN
+    }
+
+    suspend fun setSplitPrimary(value: SplitSlot) =
+        db.preferenceDao().set(PreferenceEntry(PREF_SPLIT_PRIMARY, value.name))
+
+    suspend fun getSplitSecondary(): SplitSlot {
+        val raw = db.preferenceDao().get(PREF_SPLIT_SECONDARY)?.value ?: return SplitSlot.MORNING
+        return SplitSlot.entries.firstOrNull { it.name == raw } ?: SplitSlot.MORNING
+    }
+
+    suspend fun setSplitSecondary(value: SplitSlot) =
+        db.preferenceDao().set(PreferenceEntry(PREF_SPLIT_SECONDARY, value.name))
+
+    // === Featured countdown ===
+    /**
+     * Which countdown to show when Home (or a split slot) displays Countdowns.
+     * Null means "no explicit pick", so callers fall back to the soonest upcoming.
+     * Stored as a preference rather than a column on the entry so that starring
+     * doesn't require a Room schema migration.
+     */
+    suspend fun getFeaturedCountdownId(): Long? =
+        db.preferenceDao().get(PREF_FEATURED_COUNTDOWN)?.value?.toLongOrNull()
+
+    /** Pass null to clear the pick and fall back to the soonest upcoming countdown. */
+    suspend fun setFeaturedCountdownId(id: Long?) =
+        db.preferenceDao().set(PreferenceEntry(PREF_FEATURED_COUNTDOWN, id?.toString() ?: ""))
 
     // === Countdown timer + formats ===
     suspend fun getCountdownTimerEnabled(): Boolean =
