@@ -260,7 +260,6 @@ class SettingsScreen(
                             LightText(text = "Home screen shows", variant = LightTextVariant.Copy)
                             LightText(text = state.homeDefault.label, variant = LightTextVariant.Fine, lighten = true)
                         }
-                        LightIcon(icon = LightIcons.ARROW_RIGHT)
                     }
 
                     // Split home screen, with the two slot pickers nested
@@ -371,7 +370,6 @@ class SettingsScreen(
                                     lighten = true,
                                 )
                             }
-                            LightIcon(icon = LightIcons.ARROW_RIGHT)
                         }
                     }
 
@@ -413,7 +411,6 @@ class SettingsScreen(
                             LightText(text = "Default date format", variant = LightTextVariant.Copy)
                             LightText(text = state.dateFormat.label, variant = LightTextVariant.Fine, lighten = true)
                         }
-                        LightIcon(icon = LightIcons.ARROW_RIGHT)
                     }
 
                     Row(
@@ -432,7 +429,6 @@ class SettingsScreen(
                             LightText(text = "Default time format", variant = LightTextVariant.Copy)
                             LightText(text = state.timeFormat.label, variant = LightTextVariant.Fine, lighten = true)
                         }
-                        LightIcon(icon = LightIcons.ARROW_RIGHT)
                     }
 
                     Spacer(modifier = Modifier.height(0.5f.gridUnitsAsDp()))
@@ -478,7 +474,6 @@ private fun SplitSlotRow(label: String, value: String, onClick: () -> Unit) {
             LightText(text = label, variant = LightTextVariant.Copy)
             LightText(text = value, variant = LightTextVariant.Fine, lighten = true)
         }
-        LightIcon(icon = LightIcons.ARROW_RIGHT)
     }
 }
 
