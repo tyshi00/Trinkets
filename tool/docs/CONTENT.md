@@ -15,33 +15,74 @@ restriction entirely.
 | Bucket | File | Count today |
 |---|---|---|
 | Poems | `TrinketsPoems.kt` | 360 |
-| Literary excerpts | `TrinketsExcerpts.kt` | 131 (see note below, this one has a hard ceiling that isn't just about effort) |
 | Philosophy prompts | `TrinketsPhilosophyPrompts.kt` | 360 |
 | Morning prompts | `TrinketsMorningPrompts.kt` | 360 (120 gentle / 120 steady / 120 energizing) |
-| Jokes | `TrinketsJokes.kt` | 360 |
 | Trivia | `TrinketsTrivia.kt` | 360 |
-| Today in History | `TrinketsHistoryFacts.kt` | 360 facts across ~200 distinct dates |
+| Today in History | `TrinketsHistoryFacts.kt` | 582 facts across 347 distinct dates |
+| Literary excerpts | `TrinketsExcerpts.kt` | 303 (see note below, this one has a hard ceiling that isn't just about effort) |
+| Jokes | `TrinketsJokes.kt` | 207 |
+| Reflection prompts | `TrinketsReflectionPrompts.kt` | 94 (three offered per day, see below) |
 
-At 360 items, every bucket except Excerpts rotates through a full year
-without a single repeat (the daily pick is `epochDay % bucketSize`, so 360
-distinct items means 360 distinct days before the cycle repeats).
+At 360 items, a bucket rotates through a full year without a single repeat
+(the daily pick is `epochDay % bucketSize`, so 360 distinct items means 360
+distinct days before the cycle repeats). Poems, philosophy, morning prompts,
+and trivia are all there.
+
+Three buckets sit below that line for reasons that aren't just effort:
+excerpts and jokes have to be real, attributable things rather than filler
+(see below), and Reflection is newer. Today in History runs above 360 because
+it's keyed to actual calendar dates rather than a flat rotation, so a date
+with several notable events holds several facts.
+
+## Reflection: a different rotation
+
+Reflection doesn't use `epochDay % bucketSize`. It offers three prompts a day,
+drawn from the ones you haven't checked off yet, so the whole pool cycles
+before anything comes back. Checking a prompt off (the circle button) removes
+it from future draws; checking it again puts it back. When fewer than three
+unused prompts remain, the set is topped up from used ones so a full three
+always show. The daily draw is seeded on the date, so it's stable across the
+day and across app restarts.
+
+The prompts are adapted from Light Phone's Reflect tool. Reflect grouped them
+into nine categories with a filter screen; Trinkets drops the categories and
+draws from the whole pool. See the credits section in the root README for
+licence details.
+
+## Jokes: two formats
+
+Most jokes are setup and punchline. One-liners that have no natural question
+borrow one of a small set of rotating openers ("Wanna hear a joke?", "Up for a
+laugh?", and so on) so the tap-to-reveal screen still has something to
+withhold. Keep that set small, around five to seven, so the openers stay
+familiar rather than feeling random.
+
+A joke can also be pinned to a specific calendar date via `PINNED_JOKES` in
+`ContentModels.kt`, which overrides the normal rotation for that day.
 
 ## Why Excerpts is capped well under 360
 
-Poems, Jokes, Trivia, Philosophy, and Morning Prompts are all original
-writing produced for Trinkets, nothing in those buckets is reproduced
-from an external source, so there's no ceiling on how large they can get
-beyond the effort of writing more.
+Poems, Trivia, Philosophy, and Morning Prompts are all original writing
+produced for Trinkets, nothing in those buckets is reproduced from an
+external source, so there's no ceiling on how large they can get beyond
+the effort of writing more.
 
-Excerpts is different by design: each entry is a short (under 15 words),
-verifiably public-domain quote from a real literary work: a poem, a
-novel, a philosophical text, properly attributed to its author and
-source, rather than original writing. Two hard rules apply here that
-don't apply to the other buckets:
+Jokes sit in between. Traditional dad jokes are folk humour with no
+identifiable author and circulate freely, so they're fair to use;
+someone else's edited compilation is not, and nothing here is scraped
+from a commercial joke site. See the header of `TrinketsJokes.kt`.
+
+Excerpts is different again: each entry is a short (under 15 words)
+attributed quote from a real work, rather than original writing. Most are
+public domain. A smaller set of twentieth and twenty-first century
+entries appear as brief attributed quotations, kept short deliberately.
+Authors are also selected for their own record, not just for a good turn
+of phrase, see the header of `TrinketsExcerpts.kt`. Two hard rules apply
+here that don't apply to the other buckets:
 
 1. **Every quote stays under 15 words.** This is a strict, non-negotiable
    ceiling regardless of the source's copyright status.
-2. **Each source work is used at most once across the entire bucket.**
+2. **Each author/work pair is used at most once across the entire bucket.**
    Meditations by Marcus Aurelius can supply exactly one quote, not
    thirty, even though the book obviously contains many more quotable
    lines.

@@ -243,6 +243,7 @@ class SettingsScreen(
                                     if (state.visibility.poemEnabled) add(HomeDefault.POEM)
                                     if (state.visibility.excerptEnabled) add(HomeDefault.EXCERPT)
                                     if (state.visibility.historyEnabled) add(HomeDefault.HISTORY)
+                                    if (state.visibility.reflectionEnabled) add(HomeDefault.REFLECTION)
                                     if (state.visibility.philosophyEnabled) add(HomeDefault.PHILOSOPHY)
                                     if (state.visibility.morningEnabled) add(HomeDefault.MORNING)
                                     if (state.visibility.jokeEnabled) add(HomeDefault.JOKE)
@@ -289,6 +290,7 @@ class SettingsScreen(
                             if (state.visibility.poemEnabled) add(SplitSlot.POEM)
                             if (state.visibility.excerptEnabled) add(SplitSlot.EXCERPT)
                             if (state.visibility.historyEnabled) add(SplitSlot.HISTORY)
+                            if (state.visibility.reflectionEnabled) add(SplitSlot.REFLECTION)
                             if (state.visibility.philosophyEnabled) add(SplitSlot.PHILOSOPHY)
                             if (state.visibility.morningEnabled) add(SplitSlot.MORNING)
                             if (state.visibility.jokeEnabled) add(SplitSlot.JOKE)
@@ -333,6 +335,9 @@ class SettingsScreen(
                     }
                     FeatureToggleRow("Today in History", state.visibility.historyEnabled) {
                         viewModel.toggleFeature(TrinketsFeature.HISTORY)
+                    }
+                    FeatureToggleRow("Reflection", state.visibility.reflectionEnabled) {
+                        viewModel.toggleFeature(TrinketsFeature.REFLECTION)
                     }
                     FeatureToggleRow("Philosophy prompt", state.visibility.philosophyEnabled) {
                         viewModel.toggleFeature(TrinketsFeature.PHILOSOPHY)

@@ -162,6 +162,7 @@ fun homeDefaultToFeatureOrNull(homeDefault: HomeDefault): TrinketsFeature? = whe
     HomeDefault.MORNING -> TrinketsFeature.MORNING
     HomeDefault.JOKE -> TrinketsFeature.JOKE
     HomeDefault.TRIVIA -> TrinketsFeature.TRIVIA
+    HomeDefault.REFLECTION -> TrinketsFeature.REFLECTION
 }
 
 /** Builds the right screen instance (with today's content baked in) for a given feature. */
@@ -191,12 +192,14 @@ fun openFeatureScreen(
             emptyMessage = "No excerpts have been added yet.",
         )
     }
+    TrinketsFeature.REFLECTION -> ReflectionScreen(sealedActivity)
+
     TrinketsFeature.HISTORY -> {
         val fact = ContentRepository.historyFactOfTheDay()
         TextContentScreen(
             sealedActivity,
             topBarTitle = "Today in History",
-            heading = fact?.let { "${it.year}, ${it.region}" }.orEmpty(),
+            heading = fact?.heading.orEmpty(),
             body = fact?.event.orEmpty(),
             emptyMessage = "No history facts logged for today yet.",
         )

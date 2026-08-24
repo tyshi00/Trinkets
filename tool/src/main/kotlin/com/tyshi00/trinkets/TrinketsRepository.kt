@@ -21,6 +21,7 @@ enum class HomeDefault(val label: String) {
     POEM("Poem of the Day"),
     EXCERPT("Literary Excerpt"),
     HISTORY("Today in History"),
+    REFLECTION("Reflection"),
     PHILOSOPHY("Philosophy Prompt"),
     MORNING("Morning Prompt"),
     JOKE("Joke of the Day"),
@@ -37,6 +38,7 @@ enum class SplitSlot(val label: String) {
     POEM("Poem of the Day"),
     EXCERPT("Literary Excerpt"),
     HISTORY("Today in History"),
+    REFLECTION("Reflection"),
     PHILOSOPHY("Philosophy Prompt"),
     MORNING("Morning Prompt"),
     JOKE("Joke of the Day"),
@@ -48,6 +50,7 @@ enum class SplitSlot(val label: String) {
         POEM -> TrinketsFeature.POEM
         EXCERPT -> TrinketsFeature.EXCERPT
         HISTORY -> TrinketsFeature.HISTORY
+        REFLECTION -> TrinketsFeature.REFLECTION
         PHILOSOPHY -> TrinketsFeature.PHILOSOPHY
         MORNING -> TrinketsFeature.MORNING
         JOKE -> TrinketsFeature.JOKE
@@ -60,6 +63,7 @@ enum class TrinketsFeature(val label: String) {
     POEM("Poem of the Day"),
     EXCERPT("Literary Excerpt"),
     HISTORY("Today in History"),
+    REFLECTION("Reflection"),
     PHILOSOPHY("Philosophy Prompt"),
     MORNING("Morning Prompt"),
     JOKE("Joke of the Day"),
@@ -74,11 +78,13 @@ data class FeatureVisibility(
     val morningEnabled: Boolean = true,
     val jokeEnabled: Boolean = true,
     val triviaEnabled: Boolean = true,
+    val reflectionEnabled: Boolean = true,
 ) {
     fun isEnabled(feature: TrinketsFeature): Boolean = when (feature) {
         TrinketsFeature.POEM -> poemEnabled
         TrinketsFeature.EXCERPT -> excerptEnabled
         TrinketsFeature.HISTORY -> historyEnabled
+        TrinketsFeature.REFLECTION -> reflectionEnabled
         TrinketsFeature.PHILOSOPHY -> philosophyEnabled
         TrinketsFeature.MORNING -> morningEnabled
         TrinketsFeature.JOKE -> jokeEnabled
@@ -99,6 +105,8 @@ class TrinketsRepository(private val db: TrinketsDatabase) {
         private const val PREF_MORNING_ENABLED = "morning_enabled"
         private const val PREF_JOKE_ENABLED = "joke_enabled"
         private const val PREF_TRIVIA_ENABLED = "trivia_enabled"
+        private const val PREF_REFLECTION_ENABLED = "reflection_enabled"
+        private const val PREF_REFLECTION_USED = "reflection_used_ids"
         private const val PREF_COUNTDOWN_TIMER_ENABLED = "countdown_timer_enabled"
         private const val PREF_DATE_FORMAT = "date_format"
         private const val PREF_TIME_FORMAT = "time_format"
@@ -229,6 +237,7 @@ class TrinketsRepository(private val db: TrinketsDatabase) {
         morningEnabled = db.preferenceDao().get(PREF_MORNING_ENABLED)?.value != "false",
         jokeEnabled = db.preferenceDao().get(PREF_JOKE_ENABLED)?.value != "false",
         triviaEnabled = db.preferenceDao().get(PREF_TRIVIA_ENABLED)?.value != "false",
+        reflectionEnabled = db.preferenceDao().get(PREF_REFLECTION_ENABLED)?.value != "false",
     )
 
     suspend fun setFeatureEnabled(feature: TrinketsFeature, enabled: Boolean) {
@@ -240,6 +249,7 @@ class TrinketsRepository(private val db: TrinketsDatabase) {
             TrinketsFeature.MORNING -> PREF_MORNING_ENABLED
             TrinketsFeature.JOKE -> PREF_JOKE_ENABLED
             TrinketsFeature.TRIVIA -> PREF_TRIVIA_ENABLED
+            TrinketsFeature.REFLECTION -> PREF_REFLECTION_ENABLED
         }
         db.preferenceDao().set(PreferenceEntry(key, enabled.toString()))
         // If the currently-hidden feature was the Home default, Home screen
@@ -248,6 +258,31 @@ class TrinketsRepository(private val db: TrinketsDatabase) {
     }
 
     // === Reset ===
+    // === Reflection: used prompts ===
+    /**
+     * Ids the person has checked off. Daily sets are drawn from the unused
+     * prompts first, so the whole pool cycles through before anything repeats.
+     * Stored as a comma separated string in the existing preference table,
+     * which avoids a Room schema migration.
+     */
+    suspend fun getUsedReflectionIds(): Set<Int> {
+        val raw = db.preferenceDao().get(PREF_REFLECTION_USED)?.value.orEmpty()
+        if (raw.isBlank()) return emptySet()
+        return raw.split(",").mapNotNull { it.trim().toIntOrNull() }.toSet()
+    }
+
+    suspend fun setUsedReflectionIds(ids: Set<Int>) {
+        db.preferenceDao().set(PreferenceEntry(PREF_REFLECTION_USED, ids.sorted().joinToString(",")))
+    }
+
+    /** Checks a prompt off, or un-checks it if it was already marked used. */
+    suspend fun toggleReflectionUsed(id: Int) {
+        val current = getUsedReflectionIds()
+        setUsedReflectionIds(if (id in current) current - id else current + id)
+    }
+
+    suspend fun clearUsedReflectionIds() = setUsedReflectionIds(emptySet())
+
     suspend fun resetAll() {
         db.countdownDao().resetAll()
         db.preferenceDao().resetAll()

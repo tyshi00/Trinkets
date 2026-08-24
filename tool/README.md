@@ -6,15 +6,17 @@ This repo is built on Light's SDK scaffolding for Light Phone III tools, but at 
 
 ## What it does
 
-- **Countdowns**: track up to 3 countdowns to whatever you're looking forward to, a trip, a birthday, an anniversary, a milestone. Each one has a name, a date (past or future, so it works for "days since" too), and optional notes. Add or delete them from the calendar icon on the Home screen's bottom bar.
+- **Countdowns**: track up to 7 countdowns to whatever you're looking forward to, a trip, a birthday, an anniversary, a milestone. Each one has a name, a date (past or future, so it works for "days since" too), and optional notes. Add or delete them from the calendar icon on the Home screen's bottom bar. Star one to pin it to the Home screen; leave them all unstarred and Home shows whichever is soonest.
 - **Poem of the Day**: a short original poem, one per day, 360 in rotation
 - **Literary Excerpt**: a short, verified, attributed quote from a real public-domain literary work, one per day
 - **Today in History**: real historical events that happened on today's date, deliberately sourced from across Africa, Asia, the Americas, the Middle East, and Oceania rather than any one region
+- **Reflection**: an open journaling prompt to sit with. Three are offered each day; tap or shake the phone to move between them, and check one off with the circle button once you've used it so it drops out of the rotation until the rest of the pool has cycled through
 - **Philosophy Prompt**: a daily thought experiment with a follow-up question, meant to sit with for a minute
 - **Morning Prompt**: a motivational line, ranging from gentle to steady to energizing, with a Settings option to lock in your preferred intensity
-- **Joke of the Day**: a wholesome, dad-joke-style setup and punchline (tap to reveal)
+- **Joke of the Day**: a wholesome, dad-joke-style setup and punchline (tap to reveal). One-liners without a natural setup borrow one of a few rotating openers instead
 - **Trivia**: a short, off-beat Q&A fact (tap to reveal the answer)
-- **Settings**: turn any of the seven daily features on or off, choose what the Home screen shows by default (Countdowns or any enabled feature), set your preferred Morning Prompt intensity, invert the screen color, or reset all data
+- **Split home screen**: an optional Settings toggle that shows two features at once, stacked, with a divider between them. Pick which goes on top and which underneath; either slot can hold Countdowns
+- **Settings**: turn any of the eight daily features on or off, choose what the Home screen shows by default (Countdowns or any enabled feature), enable the split home screen and pick its two features, set your preferred Morning Prompt intensity, choose date and time formats, invert the screen color, or reset all data
 
 ## Navigation
 
@@ -29,6 +31,27 @@ Install the APK on your Light Phone III, or side-load it onto an Android emulato
 
 ## Content
 
-Poems, excerpts, jokes, trivia, philosophy prompts, morning prompts, and Today in History facts are all bundled directly into the app, not fetched from the network, everything works offline. They rotate day to day with no repeats until each bucket has fully cycled through. Six of the seven buckets hold 360 items each (a full year of daily rotation with no repeats). The Literary Excerpt bucket is smaller (131 items) by design, since each entry there is a real, verified quote from a distinct public-domain work rather than original writing, see [`tool/docs/CONTENT.md`](tool/docs/CONTENT.md) for the full explanation and how to keep growing each bucket over time.
+All content is bundled directly into the app, not fetched from the network, so everything works offline. Each bucket rotates day to day and cycles fully before repeating.
+
+| Bucket | Items |
+| --- | --- |
+| Poems | 360 |
+| Philosophy prompts | 360 |
+| Morning prompts | 360 |
+| Trivia | 360 |
+| Today in History | 582 |
+| Literary excerpts | 303 |
+| Jokes | 207 |
+| Reflection prompts | 94 |
+
+The buckets aren't the same size on purpose. Poems, philosophy, morning prompts, and trivia are original writing, so they hit a full 360-day year. Today in History is larger because it's keyed to real calendar dates rather than a rotation. Excerpts, jokes, and reflection prompts are smaller because each entry has to be a real, attributable thing rather than something invented to fill a slot. See [`tool/docs/CONTENT.md`](tool/docs/CONTENT.md) for sourcing rules and how to keep growing each bucket.
+
+## Credits and licence
+
+Trinkets is built on the [Light SDK](https://github.com/lightphone/light-sdk) by The Light Phone, which is MIT licensed. The MIT licence and copyright notice are retained in [`LICENSE`](./LICENSE).
+
+The Reflection prompts are adapted from Light Phone's **Reflect** tool. Trinkets uses the prompt text but drops Reflect's nine-category filtering, drawing from the whole pool instead, and adds the check-off system. Reflect is distributed as a standalone extraction of an `examples/reflect` module from the Light SDK repo; the extraction itself ships no licence file, so the MIT licence is inherited from the upstream SDK rather than stated directly on that repo.
+
+The shake-to-shuffle gesture uses `LightShakeDetector` and `LightHapticFeedback`, ported from a newer Light SDK release than the one vendored here.
 
 ## [Complete SDK Documentation](./docs)

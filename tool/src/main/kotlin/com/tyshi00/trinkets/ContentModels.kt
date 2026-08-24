@@ -36,7 +36,17 @@ data class Joke(val id: Int, val setup: String, val punchline: String)
 data class TriviaItem(val id: Int, val question: String, val answer: String)
 
 /** One fact tied to a specific real month/day, drawn from global history. */
-data class HistoryFact(val id: Int, val month: Int, val day: Int, val year: Int, val region: String, val event: String)
+data class HistoryFact(val id: Int, val month: Int, val day: Int, val year: Int, val region: String, val event: String) {
+    /**
+     * Year as shown to the reader. Anything before the year 1000 gets an
+     * explicit "CE" so a fact from the year 30 doesn't read as a bare number
+     * that looks like an error. Modern years are left plain.
+     */
+    val yearLabel: String get() = if (year < 1000) "$year CE" else "$year"
+
+    /** Full heading line, e.g. "30 CE, Africa" or "1969, North America". */
+    val heading: String get() = "$yearLabel, $region"
+}
 
 /**
  * Picks an "item of the day" per category from an epoch-day index. Same day
@@ -59,9 +69,66 @@ object ContentRepository {
 
     fun poemOfTheDay(): Poem? = pickOfTheDay(TrinketsPoems.ALL, categoryOffset = 0)
     fun excerptOfTheDay(): Excerpt? = pickOfTheDay(TrinketsExcerpts.ALL, categoryOffset = 137)
-    fun jokeOfTheDay(): Joke? = pickOfTheDay(TrinketsJokes.ALL, categoryOffset = 271)
+    /**
+     * Jokes pinned to a specific calendar date, keyed by month to day. These
+     * always win over the normal rotation, so a joke tied to a date shows up
+     * every year on that date.
+     */
+    private val PINNED_JOKES: Map<Pair<Int, Int>, Int> = mapOf(
+        // August 22: scuba joke, by request.
+        (8 to 22) to TrinketsJokes.SCUBA_JOKE_ID,
+    )
+
+    fun jokeOfTheDay(): Joke? {
+        val today = LocalDate.now()
+        PINNED_JOKES[today.monthValue to today.dayOfMonth]?.let { pinnedId ->
+            TrinketsJokes.ALL.firstOrNull { it.id == pinnedId }?.let { return it }
+        }
+        return pickOfTheDay(TrinketsJokes.ALL, categoryOffset = 271)
+    }
     fun triviaOfTheDay(): TriviaItem? = pickOfTheDay(TrinketsTrivia.ALL, categoryOffset = 409)
     fun philosophyPromptOfTheDay(): PhilosophyPrompt? = pickOfTheDay(TrinketsPhilosophyPrompts.ALL, categoryOffset = 563)
+
+    /** How many Reflection prompts are offered each day. */
+    const val REFLECTION_DAILY_COUNT = 3
+
+    /**
+     * Today's Reflection prompts, drawn from the unused pool first so the whole
+     * bucket cycles before anything repeats. When fewer than
+     * [REFLECTION_DAILY_COUNT] unused prompts remain, the rest are topped up
+     * from the used ones so a full set always shows.
+     *
+     * The draw is seeded on the date, so it's stable across the day and across
+     * app restarts, but shifts to a new set tomorrow.
+     */
+    fun reflectionPromptsForToday(usedIds: Set<Int> = emptySet()): List<ReflectionPrompt> {
+        val all = TrinketsReflectionPrompts.ALL
+        if (all.isEmpty()) return emptyList()
+
+        val seed = epochDay()
+        val unused = all.filterNot { it.id in usedIds }
+        val chosen = unused.rotatedBy(seed).take(REFLECTION_DAILY_COUNT)
+        if (chosen.size >= REFLECTION_DAILY_COUNT) return chosen
+
+        // Everything (or nearly everything) has been checked off: top up from
+        // the already-used prompts rather than showing a short set.
+        val fallback = all.filter { it.id in usedIds }
+            .rotatedBy(seed)
+            .filterNot { p -> chosen.any { it.id == p.id } }
+            .take(REFLECTION_DAILY_COUNT - chosen.size)
+        return chosen + fallback
+    }
+
+    /**
+     * Deterministic rotation: same list and seed always give the same order,
+     * without needing a shuffle whose implementation could change between
+     * Kotlin versions.
+     */
+    private fun <T> List<T>.rotatedBy(seed: Long): List<T> {
+        if (isEmpty()) return this
+        val start = ((seed % size) + size).toInt() % size
+        return subList(start, size) + subList(0, start)
+    }
 
     /**
      * If a preferred intensity is set, cycles day by day through just that

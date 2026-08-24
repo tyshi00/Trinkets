@@ -67,6 +67,7 @@ data class HomeState(
     val splitPrimary: SplitSlot = SplitSlot.COUNTDOWN,
     val splitSecondary: SplitSlot = SplitSlot.MORNING,
     val featuredCountdownId: Long? = null,
+    val reflection: ReflectionPrompt? = null,
 ) {
     /**
      * The countdown to show when a Home slot displays Countdowns: the starred
@@ -105,6 +106,7 @@ class HomeViewModel(private val repo: TrinketsRepository) : LightViewModel<Unit>
                 HomeDefault.MORNING -> visibility.morningEnabled
                 HomeDefault.JOKE -> visibility.jokeEnabled
                 HomeDefault.TRIVIA -> visibility.triviaEnabled
+                HomeDefault.REFLECTION -> visibility.reflectionEnabled
             }
             if (!defaultStillVisible) homeDefault = HomeDefault.COUNTDOWN
 
@@ -151,6 +153,9 @@ class HomeViewModel(private val repo: TrinketsRepository) : LightViewModel<Unit>
                 splitPrimary = splitPrimary,
                 splitSecondary = splitSecondary,
                 featuredCountdownId = repo.getFeaturedCountdownId(),
+                reflection = ContentRepository
+                    .reflectionPromptsForToday(repo.getUsedReflectionIds())
+                    .firstOrNull(),
             )
         }
     }
@@ -186,7 +191,7 @@ class HomeScreen(sealedActivity: SealedLightActivity) : LightScreen<Unit, HomeVi
             ) {
                 LightTopBar(
                     center = LightTopBarCenter.Text("Trinkets"),
-                    modifier = Modifier.padding(bottom = 1f.gridUnitsAsDp()),
+                    modifier = Modifier.padding(bottom = 0.5f.gridUnitsAsDp()),
                 )
 
                 val openSlot: (SplitSlot) -> Unit = { slot ->
@@ -201,28 +206,25 @@ class HomeScreen(sealedActivity: SealedLightActivity) : LightScreen<Unit, HomeVi
                 }
 
                 if (state.splitHomeEnabled) {
-                    // Primary on top, secondary beneath, 60/40. Each half is
-                    // independently scrollable so a long poem in one doesn't
-                    // push the other off screen, and tapping either opens that
-                    // feature's own screen (including Joke/Trivia, which are
-                    // too cramped to reveal in place at this size).
+                    // Two equal halves. Each is independently scrollable so a
+                    // long poem in one doesn't push the other off screen, and
+                    // tapping either opens that feature's own screen (including
+                    // Joke/Trivia, which are too cramped to reveal in place).
                     //
-                    // Each half centers its content, so without the extra
-                    // padding below they'd sit at the middle of their own half
-                    // (roughly a third and four fifths down the screen), which
-                    // reads as drifting to the outer edges. Padding the outer
-                    // side of each half pulls both in toward the divider.
+                    // Content is centered within each half. Centering only
+                    // works while the block fits: an overflowing child in a
+                    // scrolling Column stops centering and clips instead, which
+                    // is why the line caps in SlotContent matter. The split is
+                    // slightly above even (46/54) so the divider sits a touch
+                    // high, which reads better than a dead-centre rule and
+                    // leaves the taller secondary block more room.
                     Column(
                         modifier = Modifier
-                            .weight(0.6f)
+                            .weight(0.46f)
                             .fillMaxWidth()
                             .verticalScroll(rememberScrollState())
                             .lightClickable { openSlot(state.splitPrimary) }
-                            .padding(
-                                start = 1f.gridUnitsAsDp(),
-                                end = 1f.gridUnitsAsDp(),
-                                top = 2f.gridUnitsAsDp(),
-                            ),
+                            .padding(horizontal = 1f.gridUnitsAsDp()),
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
@@ -233,15 +235,11 @@ class HomeScreen(sealedActivity: SealedLightActivity) : LightScreen<Unit, HomeVi
 
                     Column(
                         modifier = Modifier
-                            .weight(0.4f)
+                            .weight(0.54f)
                             .fillMaxWidth()
                             .verticalScroll(rememberScrollState())
                             .lightClickable { openSlot(state.splitSecondary) }
-                            .padding(
-                                start = 1f.gridUnitsAsDp(),
-                                end = 1f.gridUnitsAsDp(),
-                                bottom = 2f.gridUnitsAsDp(),
-                            ),
+                            .padding(horizontal = 1f.gridUnitsAsDp()),
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
@@ -314,6 +312,7 @@ private fun homeDefaultToFeature(homeDefault: HomeDefault): TrinketsFeature? = w
     HomeDefault.MORNING -> TrinketsFeature.MORNING
     HomeDefault.JOKE -> TrinketsFeature.JOKE
     HomeDefault.TRIVIA -> TrinketsFeature.TRIVIA
+    HomeDefault.REFLECTION -> TrinketsFeature.REFLECTION
 }
 
 @Composable
@@ -363,6 +362,12 @@ private fun HomeContent(state: HomeState, onOpenDetail: () -> Unit) {
                     state.morning?.text,
                 )
                 HomeDefault.HISTORY -> HistoryHomeBlock(state.historyFact)
+                HomeDefault.REFLECTION -> TextHomeBlock(
+                    "REFLECTION",
+                    null,
+                    state.reflection?.text,
+                    hint = "Tap to open",
+                )
                 else -> Unit
             }
         }
@@ -400,7 +405,11 @@ private fun SplitDivider() {
  */
 @Composable
 private fun SlotContent(slot: SplitSlot, state: HomeState, compact: Boolean) {
-    val bodyLines = if (compact) 3 else 6
+    // Both halves are equal now, so the compact slot can show real content.
+    // These caps exist to stop a very long poem from running past its half,
+    // not to squeeze text: truncating a trivia question mid-sentence reads
+    // worse than letting it use the space it needs.
+    val bodyLines = if (compact) 5 else 6
     when (slot) {
         SplitSlot.COUNTDOWN -> FeaturedCountdownBlock(
             item = state.featuredCountdown,
@@ -433,7 +442,7 @@ private fun SlotContent(slot: SplitSlot, state: HomeState, compact: Boolean) {
         )
         SplitSlot.HISTORY -> TextHomeBlock(
             "TODAY IN HISTORY",
-            state.historyFact?.let { "${it.year}, ${it.region}" },
+            state.historyFact?.let { it.heading },
             state.historyFact?.event ?: "Nothing logged for today yet.",
             maxBodyLines = bodyLines,
         )
@@ -444,6 +453,12 @@ private fun SlotContent(slot: SplitSlot, state: HomeState, compact: Boolean) {
             null,
             state.joke?.setup,
             hint = "Tap to see the punchline",
+            maxBodyLines = bodyLines,
+        )
+        SplitSlot.REFLECTION -> TextHomeBlock(
+            "REFLECTION",
+            null,
+            state.reflection?.text,
             maxBodyLines = bodyLines,
         )
         SplitSlot.TRIVIA -> TextHomeBlock(
@@ -538,7 +553,7 @@ private fun CountdownHomeBlock(countdowns: List<CountdownDisplayItem>, timerEnab
 private fun HistoryHomeBlock(fact: HistoryFact?) {
     TextHomeBlock(
         label = "TODAY IN HISTORY",
-        title = fact?.let { "${it.year}, ${it.region}" },
+        title = fact?.let { it.heading },
         body = fact?.event ?: "Nothing logged for today yet.",
     )
 }
