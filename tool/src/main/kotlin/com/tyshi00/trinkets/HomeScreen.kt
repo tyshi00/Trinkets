@@ -278,22 +278,24 @@ class HomeScreen(sealedActivity: SealedLightActivity) : LightScreen<Unit, HomeVi
                     }
                 }
 
+                // Settings sits in the far left slot to match native LightOS
+                // menus, so the order reads settings, list, countdowns.
                 LightBottomBar(
                     items = listOf(
-                        LightBarButton.Icon(
-                            painter = painterResource(id = calendarIconRes),
-                            contentDescription = "Countdowns",
-                            onClick = { navigateTo(screenFactory = { CountdownScreen(it, repo) }) },
+                        LightBarButton.LightIcon(
+                            icon = LightIcons.SETTINGS,
+                            contentDescription = "Settings",
+                            onClick = { navigateTo(screenFactory = { SettingsScreen(it, repo) }) },
                         ),
                         LightBarButton.LightIcon(
                             icon = LightIcons.LIST,
                             contentDescription = "Features",
                             onClick = { navigateTo(screenFactory = { FeaturesListScreen(it, repo) }) },
                         ),
-                        LightBarButton.LightIcon(
-                            icon = LightIcons.SETTINGS,
-                            contentDescription = "Settings",
-                            onClick = { navigateTo(screenFactory = { SettingsScreen(it, repo) }) },
+                        LightBarButton.Icon(
+                            painter = painterResource(id = calendarIconRes),
+                            contentDescription = "Countdowns",
+                            onClick = { navigateTo(screenFactory = { CountdownScreen(it, repo) }) },
                         ),
                     ),
                 )
