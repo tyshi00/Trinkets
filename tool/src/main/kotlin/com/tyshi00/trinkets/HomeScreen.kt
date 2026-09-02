@@ -350,7 +350,13 @@ private fun HomeContent(state: HomeState, onOpenDetail: () -> Unit) {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             when (state.homeDefault) {
-                HomeDefault.POEM -> TextHomeBlock("POEM OF THE DAY", state.poem?.title, state.poem?.body)
+                HomeDefault.POEM -> TextHomeBlock(
+                    "POEM OF THE DAY",
+                    state.poem?.title,
+                    state.poem?.body,
+                    hint = state.poem?.author?.let { "— $it" },
+                    bodyAlign = TextAlign.Start,
+                )
                 HomeDefault.EXCERPT -> TextHomeBlock(
                     "LITERARY EXCERPT",
                     null,
@@ -421,7 +427,9 @@ private fun SlotContent(slot: SplitSlot, state: HomeState, compact: Boolean) {
             "POEM OF THE DAY",
             state.poem?.title,
             state.poem?.body,
+            hint = state.poem?.author?.let { "— $it" },
             maxBodyLines = bodyLines,
+            bodyAlign = TextAlign.Start,
         )
         SplitSlot.EXCERPT -> TextHomeBlock(
             "LITERARY EXCERPT",
@@ -567,6 +575,7 @@ private fun TextHomeBlock(
     body: String?,
     hint: String? = null,
     maxBodyLines: Int = 6,
+    bodyAlign: TextAlign = TextAlign.Center,
 ) {
     LightText(text = label, variant = LightTextVariant.Detail, lighten = true, align = TextAlign.Center)
     Spacer(modifier = Modifier.height(0.75f.gridUnitsAsDp()))
@@ -578,7 +587,7 @@ private fun TextHomeBlock(
         text = body ?: "Nothing to show yet.",
         variant = LightTextVariant.Paragraph,
         maxLines = maxBodyLines,
-        align = TextAlign.Center,
+        align = bodyAlign,
     )
     if (hint != null) {
         Spacer(modifier = Modifier.height(0.5f.gridUnitsAsDp()))

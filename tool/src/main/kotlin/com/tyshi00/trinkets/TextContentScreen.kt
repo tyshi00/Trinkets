@@ -45,6 +45,8 @@ class TextContentScreen(
     private val body: String,
     private val secondaryLine: String? = null,
     private val emptyMessage: String = "Nothing to show yet.",
+    // Poems set this to Start so deliberate line breaks and indents survive.
+    private val bodyAlign: TextAlign = TextAlign.Center,
 ) : SimpleLightScreen<Unit>(sealedActivity) {
 
     @Composable
@@ -95,7 +97,7 @@ class TextContentScreen(
                             LightText(text = heading, variant = LightTextVariant.Subheading, align = TextAlign.Center)
                             Spacer(modifier = Modifier.height(1f.gridUnitsAsDp()))
                         }
-                        LightText(text = body, variant = LightTextVariant.ParagraphWide, align = TextAlign.Center)
+                        LightText(text = body, variant = LightTextVariant.ParagraphWide, align = bodyAlign)
                         if (!secondaryLine.isNullOrBlank()) {
                             Spacer(modifier = Modifier.height(1.5f.gridUnitsAsDp()))
                             LightText(

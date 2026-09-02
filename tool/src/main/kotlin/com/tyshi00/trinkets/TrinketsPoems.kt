@@ -1,2208 +1,2088 @@
 package com.tyshi00.trinkets
 
-// Original poems written for Trinkets. None of these are excerpts,
-// paraphrases, or adaptations of any existing published poem. They were
-// composed fresh for this app. See docs/CONTENT.md for how to keep growing
-// this bucket toward the long-term 2,500 target.
+// Two kinds of poem live here:
+//
+// 1. Original writing for this app. Usually author = null; a few carry a
+//    byline (the ones credited to "MVt", a pseudonym).
+// 2. Public-domain poems, reproduced in full with the author set. Rules:
+//    - US public domain only (author long dead, or first published before
+//      1929). Contemporary poems are never reproduced in full; a short
+//      attributed line can go in Excerpts instead.
+//    - No devotional or overtly religious poems: nothing that is a hymn,
+//      prayer, or whose subject is God, Christ, or faith. Incidental
+//      references ("Eden", "whatever gods may be") are fine.
+//    - Authors with well-documented records of racism, antisemitism,
+//      homophobia, transphobia, or similar bigotry are excluded.
+//
+// Poem text is left-aligned on screen (see TextContentScreen), so line
+// breaks and indentation in the raw strings below are shown as written.
+// See docs/CONTENT.md before adding more.
 object TrinketsPoems {
     val ALL: List<Poem> = listOf(
-        Poem(1, "Small Hours", """
-            The kettle ticks before the light does,
-            steam rising like a held breath let go.
-            Nothing is finished yet, nothing is ruined,
-            the day is still just an idea in the window.
-        """.trimIndent()),
-        Poem(2, "What the Root Knows", """
-            Underground, the root doesn't ask
-            if the season is fair. It simply holds on,
-            drinks what it's given, waits in the dark
-            for a spring it can't see but somehow trusts.
-        """.trimIndent()),
-        Poem(3, "Unfinished", """
-            I used to think a life was a straight road,
-            paved once and walked forever.
-            Now I know it's built each morning,
-            one uncertain stone at a time,
-            and that the builder is always exactly
-            as ready as she needs to be.
-        """.trimIndent()),
-        Poem(4, "Low Tide", """
-            The ocean doesn't apologize for pulling back,
-            it simply trusts the moon to bring it home again.
-            So let this quiet season be a tide, not an ending.
-            What recedes in you is only gathering its return.
-        """.trimIndent()),
-        Poem(5, "Ordinary Light", """
-            No trumpet announced this Tuesday.
-            No one wrote it down in advance.
-            And still the sun found its way
-            through the same tired blinds,
-            laying itself, patient as ever,
-            across the floor like it mattered.
-        """.trimIndent()),
-        Poem(6, "The Long Way", """
-            Some doors open easy, some need
-            your whole shoulder and half your doubt.
-            Push anyway. The hinge doesn't care
-            how long you've been standing there,
-            only that, eventually, you did.
-        """.trimIndent()),
-        Poem(7, "Weathering", """
-            The old fence leans but has not fallen.
-            Twenty winters have tried and failed
-            to take it down entirely.
-            Maybe that's not survival,
-            maybe that's just what standing looks like,
-            up close, for long enough.
-        """.trimIndent()),
-        Poem(8, "Between Stations", """
-            I am not who I was at the last stop,
-            not yet who I'll be at the next one.
-            Right now I am only motion,
-            only the space between two names for myself,
-            and that, it turns out, is allowed.
-        """.trimIndent()),
-        Poem(9, "Kept Warm", """
-            Someone, somewhere, is thinking of you
-            more gently than you think of yourself.
-            You may never know who.
-            Let that be reason enough
-            to be gentle with someone else today.
-        """.trimIndent()),
-        Poem(10, "Practice", """
+
+        // --- Original poems ---
+
+        Poem(1, "Practice", """
             I am not good at this yet,
             not the waking early, not the patience,
             not the letting go of what I can't hold.
             But a beginner is not a failure.
             A beginner is only early in the story.
         """.trimIndent()),
-        Poem(11, "Field Notes", """
-            The field doesn't grieve the frost.
-            It simply waits, brown and unhurried,
-            for a warmth it has never once doubted.
-            Learn this, if nothing else today:
-            dormant is not the same as dead.
+        Poem(2, "Borrowed Courage", """
+            Some days my courage is entirely my own.
+            Other days I'm just borrowing it
+            from someone who believed in me
+            before I believed in myself.
         """.trimIndent()),
-        Poem(12, "The Weight of Small Things", """
-            It wasn't the mountain that finally moved me,
-            it was a note left on the counter,
-            three words, nothing more,
-            proof that someone had been paying attention
-            all along, even when I hadn't noticed.
-        """.trimIndent()),
-        Poem(13, "Afterward", """
-            The storm always leaves the air cleaner
-            than it found it, washed, brighter, new.
-            No one thanks the storm for that.
-            But you can. Thank the hard thing
-            for the clarity it left behind.
-        """.trimIndent()),
-        Poem(14, "Almost", """
-            I keep circling the edge of the thing
-            I actually want to do,
-            like a swimmer testing cold water
-            with one careful toe.
-            Today, I am going to jump in
-            before I talk myself out of it again.
-        """.trimIndent()),
-        Poem(15, "Anchor", """
-            You don't need to hold the whole sky up.
-            You only need to hold your own small corner of it,
-            steady, for one more day,
-            the way a single post
-            can keep an entire fence from wandering.
-        """.trimIndent()),
-        Poem(16, "Late Bloomer", """
-            The last flower in the garden
-            isn't behind schedule.
-            It's simply keeping its own time,
-            unbothered by the ones
-            who already had their turn.
-        """.trimIndent()),
-        Poem(17, "Repair", """
-            Every mended thing carries the seam
-            where it was broken, and that's not shame,
-            that's proof it was worth fixing.
-            Wear your seams. They're not scars.
-            They're the record of your staying.
-        """.trimIndent()),
-        Poem(18, "The Long Exhale", """
-            Somewhere in the middle of today
-            you will finally stop bracing.
-            Your shoulders will drop an inch
-            you didn't know they were holding.
-            Let that be the whole point of the morning,
-            just to reach that one exhale.
-        """.trimIndent()),
-        Poem(19, "Enough", """
-            Not everything needs to become something.
-            Not every hour needs a harvest.
-            Some days, the only job
-            is to be here, fully,
-            and let that be its own kind of yield.
-        """.trimIndent()),
-        Poem(20, "Compass", """
-            I don't always know the way,
-            but I know which way feels honest,
-            and for now, that's a compass enough,
-            not certainty, just direction,
-            just one true step and then another.
-        """.trimIndent()),
-        Poem(21, "First Frost", """
-            The garden doesn't panic
-            when the first frost comes.
-            It simply lets go of what it must,
-            trusting the roots underneath
-            to carry the rest through winter.
-        """.trimIndent()),
-        Poem(22, "Unlearning", """
-            Some of what I was taught to fear
-            was never actually dangerous,
-            just unfamiliar, just new.
-            Today I am practicing
-            the difference between the two.
-        """.trimIndent()),
-        Poem(23, "Room to Grow", """
-            The tree doesn't apologize
-            for taking up more sky each year.
-            Neither should you, for becoming
-            larger than the space
-            someone once measured you for.
-        """.trimIndent()),
-        Poem(24, "Quiet Victory", """
-            No one clapped when I finally did
-            the thing I'd been avoiding for months.
-            The kitchen was just as quiet after
-            as it was before.
-            But I was not the same person in it.
-        """.trimIndent()),
-        Poem(25, "Held", """
-            You are allowed to need
-            more than you can give yourself today.
-            That's not weakness, that's just
-            what being human has always meant:
-            needing, and being met.
-        """.trimIndent()),
-        Poem(26, "Threshold", """
-            Every doorway asks the same quiet question:
-            will you stay where it's familiar,
-            or step through into what you don't know yet?
-            Today, just once, choose the threshold.
-        """.trimIndent()),
-        Poem(27, "Salt Air", """
-            The coast doesn't rush its tides.
-            It lets the water come and go
-            on a schedule older than memory.
-            Learn this patience from the shoreline:
-            what's meant to return, will.
-        """.trimIndent()),
-        Poem(28, "Undone", """
-            Not every loose thread needs mending today.
-            Some things can stay a little undone
-            while you rest, while you breathe,
-            while you decide, without shame,
-            that today simply isn't the day for it.
-        """.trimIndent()),
-        Poem(29, "Small Mercies", """
+        Poem(3, "Small Mercies", """
             A warm cup held in cold hands.
             A stranger who let you merge.
             A song that arrived right on time.
             Notice these. They are the quiet proof
             that the world is not only hard.
         """.trimIndent()),
-        Poem(30, "The Long Game", """
-            No one builds a forest in a season.
-            It takes decades of quiet insistence,
-            one small root reaching at a time.
-            Whatever you're building, let it take
-            exactly as long as it needs to.
-        """.trimIndent()),
-        Poem(31, "Morning Inventory", """
-            Two working hands. One steady breath.
-            A little more courage than yesterday.
-            That's the whole inventory I need
-            to start this morning,
-            everything else, I'll find along the way.
-        """.trimIndent()),
-        Poem(32, "After the Rain", """
-            The ground doesn't resent the storm
-            for softening it. It welcomes the loosening,
-            it's easier, after, for something new
-            to finally take root.
-        """.trimIndent()),
-        Poem(33, "Steady Hands", """
-            My hands have shaken before
-            and still managed to hold on.
-            That's the only proof I need today
-            that they'll manage it again.
-        """.trimIndent()),
-        Poem(34, "The Unhurried Path", """
-            I stopped racing the calendar
-            somewhere around the third missed deadline
-            that turned out, in the end,
-            not to matter at all.
-            Now I walk. It's slower. It's mine.
-        """.trimIndent()),
-        Poem(35, "Ledger", """
-            Count today not in tasks completed
-            but in moments you were kind
-            when it would have been easier not to be.
-            That's the ledger that actually matters.
-        """.trimIndent()),
-        Poem(36, "Wildflower", """
-            No one planted this one on purpose.
-            It grew anyway, sideways, stubborn,
-            right through a crack in the pavement,
-            proof that permission was never
-            actually required to bloom.
-        """.trimIndent()),
-        Poem(37, "Not Yet, Not Never", """
-            The thing you haven't done yet
-            isn't the same as the thing
-            you'll never do.
-            Give today permission to be
-            simply another 'not yet.'
-        """.trimIndent()),
-        Poem(38, "Quiet Company", """
-            You don't have to carry this alone,
-            even on the days it feels that way.
-            Somewhere, someone is quietly rooting for you
-            without needing you to ask.
-        """.trimIndent()),
-        Poem(39, "The Turning", """
-            Every year the leaves let go
-            without knowing, for certain,
-            that spring is coming back.
-            They release anyway. That's the whole lesson,
-            trust doesn't require proof, just practice.
-        """.trimIndent()),
-        Poem(40, "First Light", """
-            Before the world gets loud,
-            before the list, before the noise,
-            there is this: one window,
-            one quiet color spreading across the sky,
-            asking nothing of you but to notice.
-        """.trimIndent()),
-        Poem(41, "Deep Roots", """
-            The tallest trees are not the ones
-            that grew the fastest,
-            they are the ones whose roots
-            went down before they ever went up.
-        """.trimIndent()),
-        Poem(42, "Mending", """
-            A cracked cup still holds the tea.
-            A mended sleeve still keeps you warm.
-            Not broken things are useless things,
-            they are simply things that survived.
-        """.trimIndent()),
-        Poem(43, "The Watcher", """
-            I used to think waiting was wasted time,
-            a gap between the moments that mattered.
-            Now I think waiting is its own quiet work,
-            the patient tending of something not yet ready.
-        """.trimIndent()),
-        Poem(44, "Sunday Kitchen", """
-            Flour on the counter, a pot on low heat,
-            nothing urgent, nothing owed.
-            Some days the whole point
-            is simply to move slowly through them.
-        """.trimIndent()),
-        Poem(45, "Windbreak", """
-            The old row of trees along the field
-            was never meant for beauty,
-            only to stand between the wind and what it might destroy.
-            Sometimes purpose looks exactly that plain, and that important.
-        """.trimIndent()),
-        Poem(46, "What Remains", """
-            After the argument, after the apology,
-            what remains is not who was right,
-            but whether you both still chose
-            to stay in the room together.
-        """.trimIndent()),
-        Poem(47, "Small Craft", """
-            No one taught me the whole ocean at once.
-            I learned it wave by wave, mistake by mistake,
-            until one day I noticed I wasn't afraid of it anymore,
-            just careful, which is a different, better thing.
-        """.trimIndent()),
-        Poem(48, "The Given Day", """
-            I did not earn this morning.
-            It simply arrived, unasked for,
-            full and quiet and mine to use.
-            Let that be reason enough to use it well.
-        """.trimIndent()),
-        Poem(49, "Ordinary Miracle", """
-            The seed does not perform a miracle.
-            It simply does the only thing it knows,
-            and the miracle happens anyway,
-            slow and certain, underground.
-        """.trimIndent()),
-        Poem(50, "Patchwork", """
-            My life is not one long unbroken thread.
-            It is a hundred small, mismatched patches,
-            sewn together by hands that were still learning,
-            and somehow, it holds.
-        """.trimIndent()),
-        Poem(51, "The Return", """
-            Every evening the birds come back
-            to the same worn branch, the same quiet tree,
-            not because the day was easy,
-            but because home doesn't ask for easy, only for return.
-        """.trimIndent()),
-        Poem(52, "Held Breath", """
-            There is a moment right before the good news,
-            right before the hard news,
-            when nothing has happened yet.
-            Learn to be at peace there too.
-        """.trimIndent()),
-        Poem(53, "The Slow Fix", """
-            Some things mend overnight.
-            Others take a whole season,
-            and a few take years,
-            and all of them are still mending, even now.
-        """.trimIndent()),
-        Poem(54, "Borrowed Light", """
-            The moon makes no light of its own.
-            It only reflects what the sun gives it,
-            and still it guides ships home at night.
-            You don't need to be the source to be useful.
-        """.trimIndent()),
-        Poem(55, "The Long List", """
-            I crossed off three small things today
-            and left the fourth undone.
-            That is not failure. That is Tuesday,
-            and Tuesday is allowed to be unfinished.
-        """.trimIndent()),
-        Poem(56, "What the Fire Knows", """
-            The fire does not resent the wood
-            for burning slowly instead of all at once.
-            It simply keeps catching, ember to ember,
-            until the whole log is warm through.
-        """.trimIndent()),
-        Poem(57, "Late Start", """
-            I began later than most,
-            slower than most, quieter than most.
-            But the field doesn't check what time you arrived,
-            only whether you're still standing in it by harvest.
-        """.trimIndent()),
-        Poem(58, "The Unlocked Door", """
-            For years I thought the door was locked,
-            pushed against it, gave up, tried again.
-            Turns out it only ever needed
-            a gentler hand and a little more patience.
-        """.trimIndent()),
-        Poem(59, "Winter Light", """
-            Even in the shortest days,
-            the sun still finds an hour to spare,
-            slanting low and gold across the floor,
-            proof that light doesn't disappear, it only rations.
-        """.trimIndent()),
-        Poem(60, "The Practice of Staying", """
-            Anyone can start something.
-            Fewer people learn to stay with it
-            through the parts that are slow, and plain,
-            and don't feel like progress yet.
-        """.trimIndent()),
-        Poem(61, "Small Hands, Big Work", """
-            No single hand built the cathedral.
-            It was raised stone by stone,
-            by people who never saw it finished,
-            and still gave it their whole afternoon.
-        """.trimIndent()),
-        Poem(62, "The Quiet Ones", """
-            Not every strength announces itself.
-            Some of it just shows up, again and again,
-            in the unremarkable decision
-            to keep going when no one's watching.
-        """.trimIndent()),
-        Poem(63, "After the Fall", """
-            The tree that lost its leaves in October
-            does not consider itself ruined.
-            It simply waits, bare and unbothered,
-            for a spring it has never once doubted.
-        """.trimIndent()),
-        Poem(64, "The Long Thaw", """
-            Some winters end all at once.
-            Others melt slow, inch by careful inch,
-            and both kinds still, eventually,
-            give way to green.
-        """.trimIndent()),
-        Poem(65, "What the Lamp Knows", """
-            The lamp does not choose which room to light.
-            It simply burns, wherever it's placed,
-            steady and unselfish,
-            asking nothing of the dark it holds back.
-        """.trimIndent()),
-        Poem(66, "Open Hands", """
-            I used to hold everything with a closed fist,
-            afraid that letting go meant losing.
-            Now I hold things with open hands,
-            and somehow, more stays than ever left.
-        """.trimIndent()),
-        Poem(67, "The Long View", """
-            From here, the mountain looks impossible.
-            From the summit, the whole climb
-            will look like a single, sensible line,
-            one step following the one before it.
-        """.trimIndent()),
-        Poem(68, "Evening Tally", """
-            Not every day ends in triumph.
-            Some end simply in survival,
-            and survival, some weeks,
-            is the whole quiet victory.
-        """.trimIndent()),
-        Poem(69, "The Seed's Patience", """
-            No seed complains about the dark.
-            It trusts the soil completely,
-            does its slow invisible work,
-            and waits for a light it hasn't seen yet.
-        """.trimIndent()),
-        Poem(70, "What Grows Back", """
-            The field burned black in August
-            was green again by spring,
-            proof that some kinds of ruin
-            are only ever temporary.
-        """.trimIndent()),
-        Poem(71, "The Weight We Choose", """
-            Not every burden is forced on us.
-            Some we pick up willingly,
-            because we've decided, quietly,
-            that the person on the other side is worth carrying it for.
-        """.trimIndent()),
-        Poem(72, "Small Repairs", """
-            I didn't fix everything today.
-            I fixed one hinge, one small complaint,
-            one loose thread in an otherwise ordinary afternoon,
-            and called that enough.
-        """.trimIndent()),
-        Poem(73, "The Long Correspondence", """
-            Some friendships are built in a single summer.
-            Others are built letter by letter,
-            year by year, mostly silence,
-            and somehow still entirely intact.
-        """.trimIndent()),
-        Poem(74, "What the River Teaches", """
-            The river does not fight the rocks.
-            It simply moves around them,
-            patient and unbothered,
-            and somehow still arrives at the sea.
-        """.trimIndent()),
-        Poem(75, "The Half Finished Painting", """
-            It doesn't look like much yet,
-            just a few uncertain strokes,
-            but every finished thing
-            once looked exactly this unfinished.
-        """.trimIndent()),
-        Poem(76, "Borrowed Courage", """
-            Some days my courage is entirely my own.
-            Other days I'm just borrowing it
-            from someone who believed in me
-            before I believed in myself.
-        """.trimIndent()),
-        Poem(77, "The Kindness of Strangers", """
-            A door held open. A seat offered.
-            A small unremarkable moment
-            that cost someone nothing
-            and gave me, somehow, everything I needed that day.
-        """.trimIndent()),
-        Poem(78, "What the Anchor Holds", """
-            The anchor doesn't stop the storm.
-            It simply keeps the ship from drifting,
-            steady beneath all that motion,
-            until the water calms again.
-        """.trimIndent()),
-        Poem(79, "The Long Apprentice", """
-            I am still learning how to be patient,
-            still learning how to rest,
-            still, after all these years,
-            just an apprentice to my own better habits.
-        """.trimIndent()),
-        Poem(80, "Evening Prayer", """
-            Let today be enough,
-            not perfect, just enough,
-            a single honest day
-            laid quietly down to rest.
-        """.trimIndent()),
-        Poem(81, "The Unclaimed Hour", """
-            Somewhere in the middle of today
-            there is an hour no one has claimed yet,
-            not work, not errands, not obligation,
-            just an open hour, waiting to be yours.
-        """.trimIndent()),
-        Poem(82, "What the Compass Trusts", """
-            The compass does not know the whole journey.
-            It only ever points one direction,
-            and trusts that true north,
-            followed faithfully, eventually gets you home.
-        """.trimIndent()),
-        Poem(83, "The Long Correction", """
-            I was wrong about a lot of things
-            I once believed with my whole chest.
-            Growing up, it turns out,
-            is just getting better at admitting that.
-        """.trimIndent()),
-        Poem(84, "Small Fires", """
-            Not every flame needs to be a bonfire.
-            Some are meant to be small,
-            just enough warmth
-            to get one more person through the night.
-        """.trimIndent()),
-        Poem(85, "What the Harvest Knows", """
-            No harvest arrives without a planting season
-            no one remembers to celebrate.
-            Every good result
-            has a forgotten, unglamorous beginning.
-        """.trimIndent()),
-        Poem(86, "The Practice of Returning", """
-            I fall out of my good habits constantly.
-            The only real skill I've built
-            is getting better, each time,
-            at simply coming back to them.
-        """.trimIndent()),
-        Poem(87, "Wordless Comfort", """
-            Some people fill a room with noise.
-            Others fill it just by being present,
-            a steady, wordless comfort
-            that somehow says everything.
-        """.trimIndent()),
-        Poem(88, "The Long Correspondence with Myself", """
-            Every journal entry is a letter
-            to a version of me I haven't met yet,
-            written by a version of me
-            who was doing the very best she could that day.
-        """.trimIndent()),
-        Poem(89, "What Survives Winter", """
-            Not everything is meant to survive the cold.
-            Some things are meant to fall away,
-            so that what's left standing in spring
-            is only what truly belonged there.
-        """.trimIndent()),
-        Poem(90, "The Simple Ledger", """
-            Today I was patient once.
-            Today I was honest twice.
-            That is the whole ledger,
-            and tonight, it balances just fine.
-        """.trimIndent()),
-        Poem(91, "The Cartographer's Grace", """
-            No map has ever been finished.
-            There is always another coastline,
-            another unexplored corner,
-            and still the map is useful, exactly as it is.
-        """.trimIndent()),
-        Poem(92, "What the Bridge Carries", """
-            The bridge does not choose
-            who crosses it, or why.
-            It simply holds, day after day,
-            asking nothing in return but to be trusted.
-        """.trimIndent()),
-        Poem(93, "Small Weather", """
-            Not every storm needs a name.
-            Some are small, private, brief,
-            just a passing gray afternoon
-            before the sun finds its way back.
-        """.trimIndent()),
-        Poem(94, "The Long Correspondence with Doubt", """
-            Doubt writes to me often.
-            I've learned not to answer every letter,
-            just to read it, set it aside,
-            and keep walking anyway.
-        """.trimIndent()),
-        Poem(95, "What the Orchard Remembers", """
-            Every tree in the orchard
-            remembers the hand that planted it,
-            even decades later,
-            in the shape of the fruit it still gives.
-        """.trimIndent()),
-        Poem(96, "The Practice of Arriving", """
-            I used to think arriving was the goal.
-            Now I think arriving is just a pause,
-            a breath before the next quiet beginning,
-            over and over, for as long as I'm lucky enough to keep going.
-        """.trimIndent()),
-        Poem(97, "Held Ground", """
-            The old stone wall has stood
-            through a hundred winters,
-            not because it never cracked,
-            but because someone always came back to mend it.
-        """.trimIndent()),
-        Poem(98, "What the Candle Gives", """
-            The candle does not keep its light for itself.
-            It burns down, entirely, freely,
-            just to hold back the dark
-            for exactly as long as it's needed.
-        """.trimIndent()),
-        Poem(99, "The Long Unlearning", """
-            Some of what I know is wrong,
-            inherited, untested, simply repeated.
-            The bravest thing I do some days
-            is admit that and start again.
-        """.trimIndent()),
-        Poem(100, "Small Country", """
-            My life is a small country,
-            with its own quiet weather,
-            its own uncertain borders,
-            and I am still, gently, learning to govern it well.
-        """.trimIndent()),
-        Poem(101, "What the Ferry Knows", """
-            The ferry doesn't rush the crossing.
-            It simply keeps moving, steady,
-            trusting the far shore
-            to still be there when it arrives.
-        """.trimIndent()),
-        Poem(102, "The Unfinished Symphony", """
-            Some songs are never finished,
-            not because they failed,
-            but because the composer decided
-            the unfinished parts were honest too.
-        """.trimIndent()),
-        Poem(103, "Held Together", """
-            Not by rope, not by nails,
-            just by the quiet decision,
-            made again each morning,
-            to keep showing up for what matters.
-        """.trimIndent()),
-        Poem(104, "What the Field Forgives", """
-            The field forgives the drought.
-            It forgives the flood.
-            It simply waits for better weather
-            and grows again when it comes.
-        """.trimIndent()),
-        Poem(105, "The Long Correction of the Compass", """
-            Even a compass drifts sometimes,
-            needs to be checked, recalibrated,
-            and that isn't failure,
-            that's just what staying true actually requires.
-        """.trimIndent()),
-        Poem(106, "Small Rescue", """
-            No one saw it happen,
-            the quiet decision to keep going
-            on a day that offered
-            every reason to stop.
-        """.trimIndent()),
-        Poem(107, "What the Loom Remembers", """
-            Every thread the loom has ever held
-            is still, somehow, part of the pattern,
-            even the ones that broke,
-            even the ones that had to be replaced.
-        """.trimIndent()),
-        Poem(108, "The Practice of Trusting Slowly", """
-            I don't trust all at once anymore.
-            I trust in small increments,
-            a little more each time
-            someone proves they're worth it.
-        """.trimIndent()),
-        Poem(109, "Held Light", """
-            The lantern doesn't ask
-            how dark the road ahead is.
-            It simply burns, steady,
-            for as far as its light will reach.
-        """.trimIndent()),
-        Poem(110, "What the Garden Keeps", """
-            The garden keeps no record of the weeds
-            once they're finally pulled.
-            It simply grows forward,
-            unbothered by what it used to hold.
-        """.trimIndent()),
-        Poem(111, "The Long Season of Almost", """
-            Some years are just almost,
-            almost ready, almost enough,
-            and even those years
-            are quietly preparing the ground for what's next.
-        """.trimIndent()),
-        Poem(112, "Small Harbor", """
-            Not every safe place is grand.
-            Sometimes it's just a quiet room,
-            a familiar chair,
-            enough shelter to catch your breath.
-        """.trimIndent()),
-        Poem(113, "What the Sail Trusts", """
-            The sail doesn't choose the wind.
-            It simply catches whatever comes,
-            and turns it, patiently,
-            into forward motion.
-        """.trimIndent()),
-        Poem(114, "The Practice of Small Repairs", """
-            I am learning to fix things
-            before they become emergencies,
-            one loose hinge at a time,
-            one honest conversation at a time.
-        """.trimIndent()),
-        Poem(115, "Held Steady", """
-            Not because nothing shook me,
-            but because I learned, slowly,
-            how to keep my feet
-            even while the ground was moving.
-        """.trimIndent()),
-        Poem(116, "What the Well Gives", """
-            The well doesn't measure
-            how much it's asked to give.
-            It simply refills, quietly,
-            from a source deeper than anyone can see.
-        """.trimIndent()),
-        Poem(117, "The Long Practice of Beginning Again", """
-            Every morning I forget,
-            and every morning I remember,
-            that beginning again
-            is not the same as starting over.
-        """.trimIndent()),
-        Poem(118, "Small Constellations", """
-            Not every night is full of stars.
-            Some nights offer just one,
-            small and steady,
-            and that one is still enough to steer by.
-        """.trimIndent()),
-        Poem(119, "What the Threshold Holds", """
-            Every doorway I've ever walked through
-            held both a leaving and an arriving,
-            and I'm learning to honor both,
-            instead of rushing past either.
-        """.trimIndent()),
-        Poem(120, "The Practice of Unclenching", """
-            My shoulders carry more
-            than they were ever asked to.
-            Today, just for a moment,
-            I am setting some of it down.
-        """.trimIndent()),
-        Poem(121, "Held Water", """
-            The cupped hands don't hold much,
-            just a little water at a time,
-            but enough, carried carefully,
-            can still fill an entire garden.
-        """.trimIndent()),
-        Poem(122, "What the Nest Knows", """
-            The nest is built one twig at a time,
-            unremarkable, imperfect,
-            and still, somehow, strong enough
-            to hold something entirely new.
-        """.trimIndent()),
-        Poem(123, "The Long Season of Waiting Rooms", """
-            Some of life happens in waiting rooms,
-            uncertain, quiet, in between,
-            and even there, something in us
-            is still, patiently, becoming.
-        """.trimIndent()),
-        Poem(124, "Small Corrections", """
-            I don't need a whole new direction.
-            I just need a small correction,
-            a slight turn of the wheel,
-            made early enough to matter.
-        """.trimIndent()),
-        Poem(125, "What the Harbor Remembers", """
-            The harbor remembers every ship
-            that ever left its waters,
-            and still keeps the light burning
-            for whichever one returns next.
-        """.trimIndent()),
-        Poem(126, "The Practice of Letting the Tide Turn", """
-            I used to fight the tide
-            with everything I had.
-            Now I wait for it to turn,
-            and swim only when the current agrees with me.
-        """.trimIndent()),
-        Poem(127, "Held Quiet", """
-            Not every feeling needs a word.
-            Some are meant to just sit with you,
-            unspoken, unresolved,
-            until they're ready to be understood.
-        """.trimIndent()),
-        Poem(128, "What the Milestone Marks", """
-            The milestone doesn't measure the whole road.
-            It just marks a single point,
-            proof that you were somewhere,
-            moving, even on the days it didn't feel like it.
-        """.trimIndent()),
-        Poem(129, "The Long Practice of Showing Up Anyway", """
-            Some days I show up inspired.
-            Most days I just show up,
-            tired, uncertain, ordinary,
-            and it turns out that's the version that actually builds something.
-        """.trimIndent()),
-        Poem(130, "Small Gravity", """
-            Some people just pull the room toward them,
-            not with noise, but with warmth,
-            a quiet gravity
-            that makes everyone else feel steadier too.
-        """.trimIndent()),
-        Poem(131, "What the Riverbank Holds", """
-            The riverbank doesn't stop the water.
-            It simply shapes where it flows,
-            patient, unmoving,
-            teaching the river its own particular course.
-        """.trimIndent()),
-        Poem(132, "The Practice of Naming Things Honestly", """
-            I am learning to call it what it is,
-            not softer, not harder,
-            just honest,
-            because honesty, it turns out, is where the healing starts.
-        """.trimIndent()),
-        Poem(133, "Held Silence", """
-            The best conversations I've had
-            included long, unhurried silences,
-            proof that comfort
-            doesn't always need to be filled with words.
-        """.trimIndent()),
-        Poem(134, "What the Trailhead Promises", """
-            The trailhead doesn't promise an easy climb.
-            It only promises a way forward,
-            and that, most days,
-            is exactly enough to start walking.
-        """.trimIndent()),
-        Poem(135, "The Long Practice of Forgiving Slowly", """
-            I don't forgive all at once.
-            I forgive a little, then a little more,
-            each time the memory
-            loses a bit more of its weight.
-        """.trimIndent()),
-        Poem(136, "Small Anchors", """
-            Not every steady thing is large.
-            Sometimes it's just a routine,
-            a familiar cup of tea,
-            small enough to hold onto on the hardest days.
-        """.trimIndent()),
-        Poem(137, "What the Orchard Learns", """
-            Every orchard learns, eventually,
-            that some years give more than others,
-            and that a lean year
-            is not the same as a failed one.
-        """.trimIndent()),
-        Poem(138, "The Practice of Asking for Help", """
-            It took me years to learn
-            that asking wasn't weakness,
-            it was just the fastest way
-            to actually get where I was trying to go.
-        """.trimIndent()),
-        Poem(139, "Held Weather", """
-            Every mood I've ever had
-            eventually passed like weather,
-            proof that even the heaviest storm
-            isn't the whole forecast.
-        """.trimIndent()),
-        Poem(140, "What the Lighthouse Remembers", """
-            The lighthouse remembers every ship
-            it's ever guided safely home,
-            though none of them ever wrote back,
-            and it keeps its light burning anyway.
-        """.trimIndent()),
-        Poem(141, "The Practice of Small Yeses", """
-            I said yes to the walk.
-            I said yes to the phone call.
-            None of it was large,
-            and all of it, somehow, was everything.
-        """.trimIndent()),
-        Poem(142, "Held Ground, Revisited", """
-            The garden I gave up on in July
-            came back anyway in September,
-            proof that giving up on something
-            doesn't always mean it's finished growing.
-        """.trimIndent()),
-        Poem(143, "What the Ember Waits For", """
-            The ember doesn't die when the flame does.
-            It waits, quiet and orange,
-            for the next piece of kindling,
-            ready to catch again.
-        """.trimIndent()),
-        Poem(144, "The Long Practice of Noticing", """
-            I am learning to notice
-            the ordinary good things,
-            not just the loud ones,
-            and my days feel fuller for it.
-        """.trimIndent()),
-        Poem(145, "Small Tides", """
-            Not every low point is a crisis.
-            Sometimes it's just low tide,
-            and the water, patient as ever,
-            is already on its way back in.
-        """.trimIndent()),
-        Poem(146, "What the Doorstep Holds", """
-            The doorstep has held
-            a thousand small goodbyes
-            and just as many small returns,
-            and it never once complained about either.
-        """.trimIndent()),
-        Poem(147, "The Practice of Trusting the Work", """
-            I don't always trust the outcome.
-            But I've learned to trust the work,
-            the showing up, the trying,
-            because that part, at least, is always mine.
-        """.trimIndent()),
-        Poem(148, "Held Momentum", """
-            The bicycle stays upright
-            only because it keeps moving.
-            Some days, that's the whole secret,
-            just keep the wheels turning.
-        """.trimIndent()),
-        Poem(149, "What the Season Teaches", """
-            Every season eventually ends,
-            not because it failed,
-            but because it was only ever meant
-            to be one part of a much longer year.
-        """.trimIndent()),
-        Poem(150, "The Long Practice of Gentle Correction", """
-            I don't need to punish myself
-            for every wrong turn.
-            I just need to notice it,
-            and gently, quietly, turn back toward the road.
-        """.trimIndent()),
-        Poem(151, "Small Fortunes", """
-            Not every fortune is made of gold.
-            Some of it is just an easy morning,
-            a kind word, a warm meal,
-            small and plain and entirely enough.
-        """.trimIndent()),
-        Poem(152, "What the Path Forgives", """
-            The path doesn't remember
-            every stumble along the way.
-            It simply continues,
-            open to whoever walks it next.
-        """.trimIndent()),
-        Poem(153, "The Practice of Honest Rest", """
-            I used to rest guiltily,
-            like it needed to be earned first.
-            Now I rest honestly,
-            because a tired body deserves care, not proof.
-        """.trimIndent()),
-        Poem(154, "Held Roots", """
-            The storm took the branches
-            but never touched the roots,
-            and by spring, the tree
-            had grown new ones anyway.
-        """.trimIndent()),
-        Poem(155, "What the Threadbare Coat Remembers", """
-            The old coat is thin now, worn soft,
-            but it remembers every winter
-            it's kept someone warm,
-            and it still has a few more in it yet.
-        """.trimIndent()),
-        Poem(156, "The Long Practice of Staying Curious", """
-            I don't have to know everything today.
-            I just have to stay curious,
-            willing to ask one more question
-            than I'm comfortable with.
-        """.trimIndent()),
-        Poem(157, "Small Confessions", """
-            I was scared. I said so.
-            That was the whole brave thing,
-            not fixing it, just naming it,
-            out loud, to someone who could hear it.
-        """.trimIndent()),
-        Poem(158, "What the Orchard Owes No One", """
-            The orchard doesn't grow for applause.
-            It grows because that's what orchards do,
-            quietly, faithfully,
-            whether or not anyone's watching this season.
-        """.trimIndent()),
-        Poem(159, "The Practice of Trusting Tomorrow", """
-            I don't need today to solve everything.
-            Tomorrow gets a turn too,
-            and I'm learning to trust it
-            with whatever's left unfinished tonight.
-        """.trimIndent()),
-        Poem(160, "Held Warmth", """
-            The stew simmers slow all afternoon,
-            no rushing, no shortcuts,
-            and by evening, it's exactly
-            what everyone needed without knowing it yet.
-        """.trimIndent()),
-        Poem(161, "What the Compass Forgives", """
-            The compass doesn't blame you
-            for the wrong turns you've taken.
-            It simply keeps pointing true,
-            ready whenever you're ready to follow it again.
-        """.trimIndent()),
-        Poem(162, "The Long Practice of Small Joys", """
+        Poem(4, "The Long Practice of Small Joys", """
             I am collecting small joys now,
             the smell of rain, a good song,
             an easy laugh,
             proof that the good stuff doesn't have to be big to count.
         """.trimIndent()),
-        Poem(163, "Small Constellations, Revisited", """
-            Even on the cloudiest nights,
-            I know the stars are still there,
-            waiting behind the gray,
-            patient for the sky to clear again.
-        """.trimIndent()),
-        Poem(164, "What the Bridge Forgives", """
-            The bridge doesn't remember
-            every heavy load that crossed it.
-            It just keeps holding,
-            steady, for whoever needs it next.
-        """.trimIndent()),
-        Poem(165, "The Practice of Small Apologies", """
-            I'm learning to say sorry quickly,
-            before pride gets in the way,
-            because the relationship
-            has always mattered more than being right.
-        """.trimIndent()),
-        Poem(166, "Held Distance", """
-            Some people I love are far away,
-            and the distance doesn't shrink the love,
-            it just asks for a little more patience,
-            a little more intention to stay close anyway.
-        """.trimIndent()),
-        Poem(167, "What the Field Learns Each Year", """
-            The field learns something new every season,
-            what to plant, what to rest,
-            and it never once resents
-            the years it has to lie fallow.
-        """.trimIndent()),
-        Poem(168, "The Long Practice of Choosing Again", """
-            I choose the harder, better thing
-            not once, but every single morning,
-            because willpower isn't a single decision,
-            it's a decision I keep making.
-        """.trimIndent()),
-        Poem(169, "Small Devotions", """
-            Not every devotion is loud.
-            Some of it is just showing up,
-            quietly, consistently,
-            for the people and things that matter.
-        """.trimIndent()),
-        Poem(170, "What the Wheel Remembers", """
-            The wheel doesn't fear the road ahead.
-            It's turned over rougher ground before,
-            and it trusts, simply by moving,
-            that it will find its way over this ground too.
-        """.trimIndent()),
-        Poem(171, "The Practice of Letting Things Be Small", """
-            Not everything needs to become a big deal.
-            Some things are allowed to just be small,
-            manageable, ordinary,
-            and that's a relief, not a disappointment.
-        """.trimIndent()),
-        Poem(172, "Held Company", """
-            Even in a quiet house,
-            I am never entirely alone,
-            carrying, as I do,
-            every kindness anyone has ever shown me.
-        """.trimIndent()),
-        Poem(173, "What the Orchard Gives Back", """
-            The orchard gives back
-            exactly what it was given,
-            water, patience, care,
-            turned slowly into something sweet.
-        """.trimIndent()),
-        Poem(174, "The Long Practice of Trusting Others", """
-            I am learning to let people help,
-            to believe their offers are sincere,
-            and not just a test
-            I'm quietly failing by accepting them.
-        """.trimIndent()),
-        Poem(175, "Small Sanctuaries", """
-            Not every sanctuary has walls.
-            Sometimes it's just a familiar song,
-            a favorite chair,
-            enough peace to catch your breath in.
-        """.trimIndent()),
-        Poem(176, "What the Harvest Forgives", """
-            The harvest doesn't judge the season
-            for the weeks that were hard.
-            It simply gathers
-            whatever grew, and calls it enough.
-        """.trimIndent()),
-        Poem(177, "The Practice of Slow Trust", """
-            Trust doesn't arrive all at once.
-            It arrives in small deposits,
-            each kept promise
-            adding a little more to the account.
-        """.trimIndent()),
-        Poem(178, "Held Silence, Revisited", """
-            Some of the best comfort I've received
-            came with no words at all,
-            just someone sitting beside me,
-            willing to simply stay.
-        """.trimIndent()),
-        Poem(179, "What the River Forgives", """
-            The river doesn't hold a grudge
-            against the banks that shape it.
-            It simply flows around them,
-            finding its way to the sea regardless.
-        """.trimIndent()),
-        Poem(180, "The Long Practice of Being Enough", """
-            I don't need to be more today.
-            I just need to be honestly, fully here,
-            and trust that this version of me
-            is enough for whatever today asks.
-        """.trimIndent()),
-        Poem(181, "Small Devotions, Revisited", """
-            The plant on the windowsill
-            asks for very little,
-            just water, and light, and attention,
-            and gives back green in return.
-        """.trimIndent()),
-        Poem(182, "What the Ladder Trusts", """
-            The ladder doesn't know
-            how high the climb will go.
-            It just trusts each rung,
-            one at a time, all the way up.
-        """.trimIndent()),
-        Poem(183, "The Practice of Speaking Plainly", """
-            I am learning to say what I mean,
-            without hedging, without hiding,
-            because plain words, it turns out,
-            build trust faster than careful ones.
-        """.trimIndent()),
-        Poem(184, "Held Warmth, Revisited", """
-            The fire doesn't ask
-            who deserves to be warmed by it.
-            It simply burns, generous,
-            for anyone who's cold enough to come close.
-        """.trimIndent()),
-        Poem(185, "What the Orchard Waits For", """
-            The orchard waits, every winter,
-            for a spring it has never once seen fail to arrive,
-            and that quiet, practiced trust
-            is worth learning from.
-        """.trimIndent()),
-        Poem(186, "The Long Practice of Small Mercies", """
-            I am learning to offer myself
-            the same mercy I offer others,
-            a little patience, a little grace,
-            for the days that don't go as planned.
-        """.trimIndent()),
-        Poem(187, "Small Constancies", """
-            Not every love is dramatic.
-            Some of it is just showing up
-            on the ordinary Tuesdays,
-            again and again, without fanfare.
-        """.trimIndent()),
-        Poem(188, "What the Lantern Trusts", """
-            The lantern doesn't need to see the whole road.
-            It only needs to light the next few steps,
-            and trusts that's enough
-            to get you the rest of the way.
-        """.trimIndent()),
-        Poem(189, "The Practice of Small Beginnings", """
-            Every big thing I've ever built
-            started as a small, uncertain first attempt,
-            and I try to remember that
-            whenever today's beginning feels too small to matter.
-        """.trimIndent()),
-        Poem(190, "Held Ground, Once More", """
-            The old fence has been mended
-            more times than anyone can count,
-            and it still stands,
-            proof that mending, again and again, is its own kind of strength.
-        """.trimIndent()),
-        Poem(191, "What the Vine Learns", """
-            The vine doesn't grow in a straight line.
-            It reaches, curls, adjusts,
-            finding its way toward the light
-            by whatever path actually works.
-        """.trimIndent()),
-        Poem(192, "The Practice of Trusting Your Own Pace", """
-            I stopped comparing my mile time
-            to anyone else's finish line.
-            Now I just run mine,
-            and somehow, that's enough to keep going.
-        """.trimIndent()),
-        Poem(193, "Small Rituals", """
-            The same cup, the same chair,
-            the same five quiet minutes,
-            not much to look at,
-            but enough to steady an entire day.
-        """.trimIndent()),
-        Poem(194, "What the Harbor Forgives", """
-            The harbor doesn't judge the ships
-            that come in battered from the storm.
-            It simply welcomes them,
-            steady and unbothered, exactly as they are.
-        """.trimIndent()),
-        Poem(195, "The Long Practice of Small Steps", """
-            I used to wait for the big leap.
-            Now I just take the small step,
-            over and over,
-            and somehow that adds up to the same distance.
-        """.trimIndent()),
-        Poem(196, "Held Quiet, Revisited", """
-            The best nights I remember
-            weren't the loudest ones.
-            They were the quiet ones,
-            just good company and nowhere else to be.
-        """.trimIndent()),
-        Poem(197, "What the Meadow Keeps", """
-            The meadow keeps growing
-            long after anyone stops watching,
-            proof that beauty doesn't need
-            an audience to keep showing up.
-        """.trimIndent()),
-        Poem(198, "The Practice of Letting Go Slowly", """
-            I didn't let go all at once.
-            I loosened my grip a little more
-            each time I proved to myself
-            that I could survive the loosening.
-        """.trimIndent()),
-        Poem(199, "Small Corrections, Revisited", """
-            A small course correction today
-            saves a much longer detour tomorrow,
-            and I'm learning to make them
-            before the drift becomes a problem.
-        """.trimIndent()),
-        Poem(200, "What the Orchard Keeper Knows", """
-            The orchard keeper doesn't rush the fruit.
-            She simply tends what's growing,
-            trusting the slow work of sun and rain
-            to do what her hands cannot.
-        """.trimIndent()),
-        Poem(201, "The Long Practice of Ordinary Days", """
-            Most of my life has happened
-            on days that felt entirely ordinary,
-            and I'm learning that ordinary
-            was actually where most of the living was.
-        """.trimIndent()),
-        Poem(202, "Small Devotions, Once More", """
-            I water the plant. I make the bed.
-            None of it is remarkable,
-            and all of it, somehow,
-            is how a good life is actually built.
-        """.trimIndent()),
-        Poem(203, "What the Rope Trusts", """
-            The rope doesn't know
-            how heavy the load will be.
-            It simply holds,
-            as tightly woven as it was built to be.
-        """.trimIndent()),
-        Poem(204, "The Practice of Being Seen", """
-            I used to hide the hard parts.
-            Now I let a few trusted people see them,
-            and every time, it turns out,
-            the hiding was heavier than the honesty.
-        """.trimIndent()),
-        Poem(205, "Held Ground, Yet Again", """
-            The mountain doesn't move
-            no matter how hard the wind blows.
-            I'm learning that kind of steadiness
-            one storm at a time.
-        """.trimIndent()),
-        Poem(206, "What the Orchard Gives Freely", """
-            The orchard doesn't ration its blossoms
-            in a good year.
-            It gives freely,
-            trusting there's more where that came from.
-        """.trimIndent()),
-        Poem(207, "The Long Practice of Small Gratitudes", """
-            I am learning to notice
-            the ordinary things that went right today,
-            and name them, quietly,
-            before moving on to the next thing.
-        """.trimIndent()),
-        Poem(208, "Small Sanctuaries, Revisited", """
-            Not every retreat requires travel.
-            Sometimes it's just ten quiet minutes,
-            a closed door,
-            and permission to simply breathe.
-        """.trimIndent()),
-        Poem(209, "What the Field Trusts", """
-            The field trusts the farmer's hand
-            long before it sees any results,
-            and that trust, season after season,
-            is repaid in a harvest.
-        """.trimIndent()),
-        Poem(210, "The Practice of Loving Slowly", """
-            Some love arrives all at once.
-            Mine has mostly arrived slowly,
-            one small proof at a time,
-            until one day, it was simply certain.
-        """.trimIndent()),
-        Poem(211, "Held Distance, Revisited", """
-            The stars are impossibly far away,
-            and still, on a clear night,
-            they manage to feel
-            like quiet, reliable company.
-        """.trimIndent()),
-        Poem(212, "What the Orchard Survives", """
-            The orchard has survived
-            droughts, floods, and hard frosts,
-            and every year it grows back,
-            a little wiser about what it can endure.
-        """.trimIndent()),
-        Poem(213, "The Long Practice of Choosing Kindness", """
-            It would have been easier to be short with them.
-            I chose kindness instead,
-            not because it was owed,
-            but because it was who I wanted to be.
-        """.trimIndent()),
-        Poem(214, "Small Fortunes, Revisited", """
-            A good night's sleep.
-            A meal shared with someone I love.
-            These aren't small things at all,
-            they only look small until you've gone without them.
-        """.trimIndent()),
-        Poem(215, "What the Wheelwright Knows", """
-            The wheelwright checks every spoke,
-            not because he expects failure,
-            but because he knows
-            that care, given early, prevents it.
-        """.trimIndent()),
-        Poem(216, "The Practice of Trusting Silence", """
-            Not every silence is a problem to solve.
-            Some of it is just rest,
-            a pause worth trusting
-            instead of rushing to fill.
-        """.trimIndent()),
-        Poem(217, "Held Ground, Final Return", """
-            The oldest oak in the county
-            has outlasted every storm
-            simply by refusing, patiently,
-            to loosen its grip on the ground.
-        """.trimIndent()),
-        Poem(218, "What the Orchard Owes the Rain", """
-            The orchard owes everything
-            to rain it never controlled,
-            and still it grows,
-            grateful, even for what it can't command.
-        """.trimIndent()),
-        Poem(219, "The Long Practice of Being Patient with Others", """
-            I am learning that everyone
-            is moving at the pace their life allows,
-            and patience with them
-            is really just patience with being human.
-        """.trimIndent()),
-        Poem(220, "Small Beginnings, Revisited", """
-            Every oak tree
-            was once small enough to step over.
-            Remember that, on the days
-            your own beginning feels too small to matter.
-        """.trimIndent()),
-        Poem(221, "What the Bridge Endures", """
-            The bridge endures every season,
-            heat, ice, wind, and weight,
-            not because it's unshakable,
-            but because it was built to bend a little and hold.
-        """.trimIndent()),
-        Poem(222, "The Practice of Small Trust", """
-            I trusted the process today,
-            even without proof it would work,
-            and that small trust
-            turned out to be exactly what got me through.
-        """.trimIndent()),
-        Poem(223, "Held Warmth, Final Return", """
-            The hearth doesn't need to be roaring
-            to still warm the whole room.
-            Sometimes a small, steady fire
-            is exactly the right amount of warmth.
-        """.trimIndent()),
-        Poem(224, "What the Orchard Learns From Loss", """
-            The orchard lost half its crop one year
-            to a storm no one predicted,
-            and still, the following spring,
-            it simply grew again.
-        """.trimIndent()),
-        Poem(225, "The Long Practice of Trusting Growth", """
-            I can't always see myself changing.
-            I only notice it later,
-            looking back at who I used to be,
-            and quietly thanking the growth I couldn't feel happening.
-        """.trimIndent()),
-        Poem(226, "Small Rituals, Revisited", """
-            The same walk, the same street,
-            the same five minutes of quiet,
-            small enough to seem unimportant,
-            and steady enough to hold an entire week together.
-        """.trimIndent()),
-        Poem(227, "What the Old Barn Remembers", """
-            The old barn has held
-            a hundred harvests, a hundred winters,
-            and it still stands,
-            simply because someone kept choosing to maintain it.
-        """.trimIndent()),
-        Poem(228, "The Practice of Small Honesty", """
-            I told the truth today,
-            even the small, unflattering parts,
-            and the relief that followed
-            was proof I'd been carrying it too long alone.
-        """.trimIndent()),
-        Poem(229, "Held Ground, One More Time", """
-            The riverbank holds its shape
-            through every flood season,
-            not by resisting the water,
-            but by letting it pass through, again and again.
-        """.trimIndent()),
-        Poem(230, "What the Orchard Teaches About Patience", """
-            The orchard doesn't rush the blossoms
-            just because spring feels late.
-            It waits, trusting the season,
-            and blooms exactly when it's ready.
-        """.trimIndent()),
-        Poem(231, "The Long Practice of Gentle Ambition", """
-            I still want big things.
-            I've just learned to want them gently,
-            without punishing myself
-            for the slow, ordinary pace of getting there.
-        """.trimIndent()),
-        Poem(232, "Small Fortunes, Final Return", """
-            A quiet morning.
-            A good cup of coffee.
-            A friend who checks in.
-            None of it is loud, and all of it is plenty.
-        """.trimIndent()),
-        Poem(233, "What the Quarry Teaches", """
-            The quarry doesn't yield its stone easily,
-            but every block, eventually,
-            comes free with patience,
-            and becomes something worth building.
-        """.trimIndent()),
-        Poem(234, "The Practice of Loving What's Ordinary", """
-            I am learning to love the ordinary Tuesdays,
-            not just the milestones,
-            because most of a life
-            is made of exactly this kind of day.
-        """.trimIndent()),
-        Poem(235, "Held Quiet, Final Return", """
-            Some of the deepest comfort
-            has come without a single word,
-            just someone choosing
-            to simply stay in the room with me.
-        """.trimIndent()),
-        Poem(236, "What the Orchard Owes the Bees", """
-            The orchard owes its harvest
-            to a hundred small, unseen visitors,
-            and gives, in return,
-            a season's worth of blossoms.
-        """.trimIndent()),
-        Poem(237, "The Long Practice of Believing Slowly", """
-            I didn't believe in myself all at once.
-            I believed a little more
-            every time I proved something
-            to the doubtful, careful part of me.
-        """.trimIndent()),
-        Poem(238, "Small Sanctuaries, Final Return", """
-            The porch at dusk.
-            The last light of the day.
-            Nothing grand, just enough peace
-            to close the day out gently.
-        """.trimIndent()),
-        Poem(239, "What the Orchard Knows About Time", """
-            The orchard doesn't measure time in hours.
-            It measures it in seasons,
-            patient enough to trust
-            that growth just takes as long as it takes.
-        """.trimIndent()),
-        Poem(240, "The Practice of Ending Well", """
-            Not every day ends triumphantly.
-            Some just end quietly, honestly,
-            and that quiet, honest ending
-            is still, somehow, a good way to close a day.
-        """.trimIndent()),
-        Poem(241, "Morning Errands", """
-            Milk, bread, a stamp for the letter,
-            small tasks that don't ask much of me,
-            and somehow, doing them anyway,
-            I remember how to feel useful again.
-        """.trimIndent()),
-        Poem(242, "The Neighbor's Porch Light", """
-            It comes on every evening at six,
-            steady as a small promise,
-            and I've never once needed to ask
-            why it matters that it's there.
-        """.trimIndent()),
-        Poem(243, "Waking Before the Alarm", """
-            There's a version of morning
-            that arrives before it's asked to,
-            quiet, unhurried, entirely mine,
-            before the day remembers to be loud.
-        """.trimIndent()),
-        Poem(244, "Two Cups", """
-            One for me, one for whoever
-            might still show up unannounced,
-            because hope, some mornings,
-            is just leaving room at the table.
-        """.trimIndent()),
-        Poem(245, "The Bus Stop at Dawn", """
-            Strangers standing close together,
-            each one carrying their own quiet morning,
-            none of us speaking,
-            all of us somehow understood.
-        """.trimIndent()),
-        Poem(246, "Folding Laundry", """
-            There is no hurry in this task,
-              just warm cotton and a steady rhythm,
-            and for ten unremarkable minutes,
-            my mind finally stops racing.
-        """.trimIndent()),
-        Poem(247, "The Dog Waiting by the Door", """
-            He doesn't know what today holds.
-            He just knows I'm still here,
-            and that, apparently,
-            is more than enough reason to wag his tail.
-        """.trimIndent()),
-        Poem(248, "Grocery List", """
-            Eggs, coffee, something green,
-            small proof that tomorrow
-            is already being planned for,
-            already, quietly, being trusted to come.
-        """.trimIndent()),
-        Poem(249, "The Kettle's Whistle", """
-            It always catches me off guard,
-            even though I put it on myself,
-            proof that even expected things
-            can still arrive like a small surprise.
-        """.trimIndent()),
-        Poem(250, "Sweeping the Porch", """
-            The leaves will be back tomorrow.
-            I sweep anyway,
-            not because it lasts,
-            but because the doing itself is the point.
-        """.trimIndent()),
-        Poem(251, "A Letter Never Sent", """
-            It sits in the drawer, unfinished,
-            not because the words weren't true,
-            but because some things
-            are meant to be written just for the writing.
-        """.trimIndent()),
-        Poem(252, "The Long Drive Home", """
-            Nothing to do but watch the road,
-            the fields blurring past the window,
-            and somewhere in that stillness,
-            my whole day finally settles.
-        """.trimIndent()),
-        Poem(253, "Waiting for the Kettle", """
-            Three minutes, no more,
-            just enough time to stand still,
-            hands on the counter,
-            doing absolutely nothing at all.
-        """.trimIndent()),
-        Poem(254, "The Empty Chair at Dinner", """
+        Poem(5, "Kept Warm", """
+            Someone, somewhere, is thinking of you
+            more gently than you think of yourself.
+            You may never know who.
+            Let that be reason enough
+            to be gentle with someone else today.
+        """.trimIndent()),
+        Poem(6, "Wordless Comfort", """
+            Some people fill a room with noise.
+            Others fill it just by being present,
+            a steady, wordless comfort
+            that somehow says everything.
+        """.trimIndent()),
+        Poem(7, "Between Stations", """
+            I am not who I was at the last stop,
+            not yet who I'll be at the next one.
+            Right now I am only motion,
+            only the space between two names for myself,
+            and that, it turns out, is allowed.
+        """.trimIndent()),
+        Poem(8, "The Empty Chair at Dinner", """
             We keep setting the table for five,
             even now, even after,
             because love doesn't always know
             how to make room for less.
         """.trimIndent()),
-        Poem(255, "Streetlights Coming On", """
-            One by one, down the block,
-              the evening announces itself,
-            and something in me softens,
-            grateful the day is finally winding down.
-        """.trimIndent()),
-        Poem(256, "The Unlocked Bicycle", """
-            I never bother with the lock anymore.
-            Not because nothing could happen,
-            but because I've decided
-            to trust this small corner of the world.
-        """.trimIndent()),
-        Poem(257, "Saturday Morning Silence", """
-            No alarm, no plan,
-            just the quiet hum of the refrigerator
-            and a whole day
-            waiting patiently to be decided.
-        """.trimIndent()),
-        Poem(258, "The Half-Read Book", """
-            It sits by the bed, bookmark still in place,
-            not abandoned, just paused,
-              waiting for a version of me
-            with a little more time to spare.
-        """.trimIndent()),
-        Poem(259, "Watering the Plants", """
-            A little for each one,
-            not too much, not too little,
-            the same quiet attention
-            I'm slowly learning to give myself.
-        """.trimIndent()),
-        Poem(260, "The First Cold Morning", """
-            Breath visible in the air,
-            a small, quiet proof
-            that the season has changed
-            while I wasn't entirely paying attention.
-        """.trimIndent()),
-        Poem(261, "Waiting at the Crosswalk", """
-            Thirty seconds of nothing to do,
-              just standing, just breathing,
-            and somehow, in that pause,
-            the whole rushed morning slows down a little.
-        """.trimIndent()),
-        Poem(262, "The Junk Drawer", """
-            Rubber bands, old keys, a broken watch,
-            small evidence of a life
-            still being sorted out,
-            one useless, sentimental object at a time.
-        """.trimIndent()),
-        Poem(263, "Leaving the Porch Light On", """
-            Not because anyone's expected,
-            just in case,
-            because some habits
-            are really just quiet forms of hope.
-        """.trimIndent()),
-        Poem(264, "The Long Checkout Line", """
-            Everyone here is carrying something,
-            groceries, worries, a whole day,
-            and none of us say much,
-            but somehow, we're all patient together.
-        """.trimIndent()),
-        Poem(265, "Morning Fog Over the Field", """
-            You can't see the far fence yet,
-            just the shape of it, waiting,
-            and I've learned to trust
-            that it's still there, even unseen.
-        """.trimIndent()),
-        Poem(266, "The Radio Left On", """
-            Someone else's voice fills the kitchen,
-            not because I need company,
-            just because silence, some mornings,
-            feels like one thing too many to hold.
-        """.trimIndent()),
-        Poem(267, "Waiting for the Bread to Rise", """
-            Nothing to do but let it happen,
-              trust the yeast, trust the warmth,
-            and somewhere in that waiting,
-            I remember how to be patient again.
-        """.trimIndent()),
-        Poem(268, "The Spare Key Under the Mat", """
-            Not much of a hiding place,
-            but enough to say
-            you're welcome here,
-            even when I'm not around to open the door myself.
-        """.trimIndent()),
-        Poem(269, "Late Bus, Early Morning", """
-            I stood there longer than planned,
-              cold hands, tired eyes,
-            and somehow it still arrived,
-            a small, unremarkable kind of faith rewarded.
-        """.trimIndent()),
-        Poem(270, "The Note on the Fridge", """
-            Three words, nothing fancy,
-            just proof that someone
-            was thinking of me
-            before they even left the house.
-        """.trimIndent()),
-        Poem(271, "Sunday's Slow Clock", """
-            Time moves differently today,
-              unhurried, generous,
-            and I let it,
-            instead of rushing to fill every hour.
-        """.trimIndent()),
-        Poem(272, "The Worn Path Across the Yard", """
-            No one planted it there.
-            It simply appeared,
-            proof that repetition, over time,
-            leaves its own kind of mark.
-        """.trimIndent()),
-        Poem(273, "Waiting Room Chairs", """
-            Rows of them, mismatched, ordinary,
-            and yet, in each one,
-            someone is quietly hoping
-            for good news on the other side of a door.
-        """.trimIndent()),
-        Poem(274, "The Last Slice", """
-            No one wanted to take it,
-            not out of politeness alone,
-            but because sharing, sometimes,
-            is just love wearing a very small disguise.
-        """.trimIndent()),
-        Poem(275, "Morning Frost on the Windshield", """
-            Ten extra minutes I didn't plan for,
-            scraping slow circles into the glass,
-            and somehow, that small delay
-            becomes the only quiet part of the whole morning.
-        """.trimIndent()),
-        Poem(276, "The Unanswered Phone Call", """
-            It rang twice and stopped.
-            I let it go,
-            not out of carelessness,
-              but because not everything needs answering right away.
-        """.trimIndent()),
-        Poem(277, "Sweeping Up the Broken Glass", """
-            It happened fast, without warning,
-            and still, the cleanup
-            gave my hands something steady to do
-            while the rest of me caught up.
-        """.trimIndent()),
-        Poem(278, "The Empty Parking Lot at Dawn", """
-            Just me and the pale light,
-            the whole day still unclaimed,
-            and for a moment,
-            it feels like the world is only just waking up.
-        """.trimIndent()),
-        Poem(279, "Waiting for the Water to Boil", """
-            You can't rush it,
-            no matter how impatient you are,
-              and I'm slowly learning
-            that some things simply take the time they take.
-        """.trimIndent()),
-        Poem(280, "The Faded Photograph on the Shelf", """
-            No one remembers exactly when it was taken,
-            just that everyone in it was smiling,
-            and somehow, that's the part
-            that still matters most.
-        """.trimIndent()),
-        Poem(281, "Morning Static on the Radio", """
-            Somewhere between two stations,
-              neither one quite clear,
-            and I leave it there a moment,
-            listening to the in-between.
-        """.trimIndent()),
-        Poem(282, "The Chipped Mug", """
-            It's not the nicest one in the cupboard,
-            but it's the one I always reach for,
-            proof that familiarity
-            beats a little polish every time.
-        """.trimIndent()),
-        Poem(283, "Waiting Out the Rain", """
-            No umbrella, no rush,
-              just the porch roof and a little patience,
-            and by the time it passes,
-            I'm in no more hurry than before.
-        """.trimIndent()),
-        Poem(284, "The Half-Finished Fence", """
-            It's been half done for a season now,
-            not abandoned, just paused,
-            waiting for a weekend
-            with a little more time and a little more will.
-        """.trimIndent()),
-        Poem(285, "Morning Shadows on the Wall", """
-            They move slower than I expect,
-              the whole hour passing
-            in small, quiet increments
-            I only notice if I actually stop to watch.
-        """.trimIndent()),
-        Poem(286, "The Borrowed Ladder", """
-            Still leaning against the shed,
-            waiting to be returned,
-            a small, overdue kindness
-            I keep meaning to repay properly.
-        """.trimIndent()),
-        Poem(287, "Waiting for the Mail", """
-            Nothing important is coming today,
-            probably,
-              and still I check,
-            a small daily ritual of hopeful patience.
-        """.trimIndent()),
-        Poem(288, "The Creaky Third Stair", """
-            Everyone in the house knows to skip it,
-            a small shared secret,
-            proof that even flaws
-            can become part of a home's particular language.
-        """.trimIndent()),
-        Poem(289, "Morning Coffee Gone Cold", """
-            I forgot it again, lost in thought,
-              and drank it anyway,
-            because some mornings,
-            the ritual matters more than the temperature.
-        """.trimIndent()),
-        Poem(290, "The Unmowed Corner of the Yard", """
-            It's grown a little wild there,
-            and I've decided to let it,
-              a small patch of yard
-            allowed to just be exactly what it wants to be.
-        """.trimIndent()),
-        Poem(291, "Waiting for News", """
-            The phone sits quiet on the table,
-              not ringing yet,
-            and I've learned, slowly,
-            how to breathe through that particular kind of waiting.
-        """.trimIndent()),
-        Poem(292, "The Dented Mailbox", """
-            It still works fine,
-            despite the dent from last winter's storm,
-              proof that a little damage
-            doesn't always mean something's broken beyond use.
-        """.trimIndent()),
-        Poem(293, "Morning Birdsong Through the Window", """
-            I don't know what they're saying,
-              only that it sounds like a good start,
-            and some mornings,
-            that's honestly all the encouragement I need.
-        """.trimIndent()),
-        Poem(294, "The Half-Empty Gas Tank", """
-            Enough to get where I'm going,
-              not enough to worry about yet,
-            and somehow that's exactly
-            the amount of certainty most days actually offer.
-        """.trimIndent()),
-        Poem(295, "Waiting Behind the Slow Car", """
-            No reason to rush past it,
-              I remind myself,
-            and somehow, following its pace,
-            I arrive exactly on time anyway.
-        """.trimIndent()),
-        Poem(296, "The Chalk Drawing Washed Away by Rain", """
-            It didn't last the week,
-              and it didn't need to,
-            because the joy of making it
-            was never really about it lasting.
-        """.trimIndent()),
-        Poem(297, "Morning Light Through the Curtain", """
-            It arrives the same way every day,
-              soft, unannounced, patient,
-            and somehow I never quite get used to
-            how much better it makes the room feel.
-        """.trimIndent()),
-        Poem(298, "The Overgrown Garden Path", """
-            You can still see where it used to be,
-              faint, but there,
-            proof that even neglected things
-            leave behind a shape worth following again.
-        """.trimIndent()),
-        Poem(299, "Waiting for Someone to Wake Up", """
-            The house is quiet, mostly mine,
-              and I sit with the stillness,
-            grateful, for a moment,
-            that not everything requires my attention yet.
-        """.trimIndent()),
-        Poem(300, "The Last Light Before Bed", """
-            One more check of the locks,
-              one more glance at the quiet house,
-            and then, finally,
-            permission to let the whole day go.
-        """.trimIndent()),
-        Poem(301, "The Cracked Sidewalk Square", """
-            A single square, uneven now,
-            pushed up by some root underneath,
-            still walked over daily,
-            proof that imperfect ground still carries weight just fine.
-        """.trimIndent()),
-        Poem(302, "Waiting for the Paint to Dry", """
-            Nothing to do but leave it alone,
-            resist the urge to check too soon,
-            and trust that patience,
-            here too, is simply part of the process.
-        """.trimIndent()),
-        Poem(303, "The Borrowed Umbrella", """
-            Not mine, but it kept me dry,
-            and I return it a little late,
-            grateful for a stranger's small trust
-            that I'd bring it back at all.
-        """.trimIndent()),
-        Poem(304, "Morning Steam Off the Lake", """
-            It rises slow, unhurried,
-            disappearing before it can be caught,
-            a small daily reminder
-            that some beautiful things are only ever brief.
-        """.trimIndent()),
-        Poem(305, "The Squeaky Gate", """
-            I've meant to oil it for weeks.
-            For now, it announces every visitor,
-            an accidental doorbell
-            that somehow still gets the job done.
-        """.trimIndent()),
-        Poem(306, "Waiting at the Pharmacy Counter", """
-            Everyone here is a little tired,
-            a little worried, a little hopeful,
-            and the quiet waiting
-            has its own kind of shared understanding.
-        """.trimIndent()),
-        Poem(307, "The Half-Eaten Apple on the Desk", """
-            Left there mid-thought,
-            a small pause in an otherwise busy afternoon,
-            proof that even focus
-            needs a little room to wander.
-        """.trimIndent()),
-        Poem(308, "Morning Puddles After the Storm", """
-            Small mirrors scattered across the yard,
-            holding the whole sky
-            for exactly as long as the sun takes
-            to dry them up again.
-        """.trimIndent()),
-        Poem(309, "The Forgotten Umbrella by the Door", """
-            It's been there for weeks,
-            waiting for a rain that hasn't come,
-            patient in its own small way,
-            ready whenever it's finally needed.
-        """.trimIndent()),
-        Poem(310, "Waiting for the Toast", """
-            Thirty seconds, no more,
-            just enough time to notice
-            the smell of something simple
-            about to be exactly what's needed.
-        """.trimIndent()),
-        Poem(311, "The Chalk Marks on the Doorframe", """
-            A little higher every year,
-            small proof, in pencil and chalk,
-            that time is passing
-            even on days that feel entirely unremarkable.
-        """.trimIndent()),
-        Poem(312, "Morning Frost on the Grass", """
-            It won't last past nine,
-            but for now, the whole yard
-            looks dusted in something quiet,
-            worth noticing before it disappears.
-        """.trimIndent()),
-        Poem(313, "The Well-Worn Doorstep", """
-            Smoothed down by a thousand footsteps,
-            not by anyone's grand plan,
-            just by the simple, daily act
-            of people coming home.
-        """.trimIndent()),
-        Poem(314, "Waiting for the Elevator", """
-            A minute, maybe two,
-            standing in a hallway with strangers,
-            all of us headed somewhere,
-            none of us in any particular hurry to say so.
-        """.trimIndent()),
-        Poem(315, "The Empty Nest in the Eaves", """
-            The birds moved on months ago,
-            but the nest stays,
-            a quiet reminder
-            that something good was built here once.
-        """.trimIndent()),
-        Poem(316, "Morning Puddle Reflections", """
-            The sky looks different from down here,
-            upside down, rippled, brief,
-            and somehow still recognizable
-            as the same good morning above it.
-        """.trimIndent()),
-        Poem(317, "The Half-Written Grocery List", """
-            Milk, eggs, and then nothing,
-            interrupted mid-thought
-            by something more urgent,
-            still sitting there, waiting to be finished.
-        """.trimIndent()),
-        Poem(318, "Waiting for the Kettle to Cool", """
-            You can't rush this part either,
-            no matter how thirsty you are,
-            and I've learned, slowly,
-            that some good things simply need a minute first.
-        """.trimIndent()),
-        Poem(319, "The Chipped Paint on the Fence", """
-            It's needed a new coat for a while,
-            and it still does its job anyway,
-            proof that function
-            doesn't always wait for things to look their best.
-        """.trimIndent()),
-        Poem(320, "Morning Light on the Kitchen Table", """
-            The same spot, every day,
-            a small patch of gold
-            that arrives right on schedule,
-            whether or not I remember to notice it.
-        """.trimIndent()),
-        Poem(321, "The Half-Read Newspaper", """
-            Left open on the porch step,
-            most of the news still unread,
-            because some mornings,
-            the sitting outside mattered more than the headlines.
-        """.trimIndent()),
-        Poem(322, "Waiting for the Bread to Cool", """
-            The hardest patience of the whole process,
-            standing near it, resisting,
-            and somehow, waiting the extra minutes
-            makes the first slice taste even better.
-        """.trimIndent()),
-        Poem(323, "The Sun-Faded Curtains", """
-            Lighter now than when we hung them,
-            proof of a hundred ordinary mornings
-            spent quietly, together,
-            in this particular room.
-        """.trimIndent()),
-        Poem(324, "Morning Dew on the Car", """
-            A light film across the windshield,
-            gone in a few minutes of driving,
-            small evidence
-            that the night was cooler than the day will be.
-        """.trimIndent()),
-        Poem(325, "The Uneven Garden Row", """
-            Not perfectly straight,
-            but it still grew just fine,
-            proof that a crooked start
-            doesn't ruin a good harvest.
-        """.trimIndent()),
-        Poem(326, "Waiting for the Movie to Start", """
-            The lights dim, the chatter quiets,
-            and for a moment before it begins,
-            there's a small, shared anticipation
-            worth savoring on its own.
-        """.trimIndent()),
-        Poem(327, "The Handwritten Recipe Card", """
-            Stained, a little faded,
-            passed down more from habit than instruction,
-            proof that some things
-            are best learned by simply doing them together.
-        """.trimIndent()),
-        Poem(328, "Morning Light Through the Blinds", """
-            Thin stripes across the floor,
-            moving slowly as the hour turns,
-            a small, quiet clock
-            no one needs to wind.
-        """.trimIndent()),
-        Poem(329, "The Overfull Bookshelf", """
-            One more book than it should hold,
-            leaning slightly, still standing,
-            proof that a little too much
-            isn't always too much to carry.
-        """.trimIndent()),
-        Poem(330, "Waiting for the Coffee to Brew", """
-            The smell arrives before the taste does,
-            a small promise
-            that something good
-            is only a few minutes away now.
-        """.trimIndent()),
-        Poem(331, "The Handprint in the Old Cement", """
-            Small, permanent, unplanned,
-            a little proof of a moment
-            that no one meant to preserve,
-            and somehow it lasted anyway.
-        """.trimIndent()),
-        Poem(332, "Morning Light on the Stairs", """
-            It climbs a little higher every week,
-            marking the slow turn of the season,
-            a small, patient clock
-            built into the walls themselves.
-        """.trimIndent()),
-        Poem(333, "The Worn Welcome Mat", """
-            Thousands of footsteps have crossed it,
-            some in a hurry, some slow,
-            and it's held up for all of them,
-            asking nothing but a wipe of the shoes.
-        """.trimIndent()),
-        Poem(334, "Waiting for Someone to Call Back", """
-            The phone stays quiet a while longer,
-            and I let it,
-            trusting that the silence
-            doesn't mean what my worry wants it to mean.
-        """.trimIndent()),
-        Poem(335, "The Chipped Teacup Saved from the Donation Box", """
-            Not because it's useful anymore,
-            just because it's familiar,
-            proof that some things
-            earn their keep simply by being remembered fondly.
-        """.trimIndent()),
-        Poem(336, "Morning Steam Off the Coffee Cup", """
-            It curls upward, disappears,
-            gone before I've even taken the first sip,
-            small proof
-            that warmth doesn't need to last to matter.
-        """.trimIndent()),
-        Poem(337, "The Overgrown Hedge", """
-            It's needed trimming for weeks,
-            and somehow, left wild,
-            it's become its own kind of shelter
-            for whatever's nesting in it now.
-        """.trimIndent()),
-        Poem(338, "Waiting for the Rain to Start", """
-            You can smell it before it arrives,
-            a change in the air,
-            a small warning
-            that gives you just enough time to get inside.
-        """.trimIndent()),
-        Poem(339, "The Dog-Eared Page", """
-            Marked, not by a bookmark,
-            just by the corner folded down,
-            proof that this particular story
-            was worth remembering exactly where it stopped.
-        """.trimIndent()),
-        Poem(340, "Morning Light Catching the Dust", """
-            You only notice it in the sunbeam,
-            floating, slow, unbothered,
-            proof that even the overlooked parts of a room
-            are moving quietly all the time.
-        """.trimIndent()),
-        Poem(341, "The Half-Full Water Glass by the Bed", """
-            Left there from last night,
-            still good enough for this morning,
-            a small, unglamorous kindness
-            from yesterday's version of me.
-        """.trimIndent()),
-        Poem(342, "Waiting for the Traffic Light", """
-            A minute, maybe less,
-            enough time to notice
-            the sky, the street, the whole ordinary morning
-            moving on without waiting for permission.
-        """.trimIndent()),
-        Poem(343, "The Chalk Hopscotch Fading on the Driveway", """
-            Drawn last week, already fading,
-            not because it failed,
-            but because it did exactly
-            what it was drawn to do.
-        """.trimIndent()),
-        Poem(344, "Morning Light on the Kettle", """
-            A small gleam across the metal,
-            gone the moment a cloud passes,
-            proof that even brief light
-            is still worth noticing while it's here.
-        """.trimIndent()),
-        Poem(345, "The Overstuffed Junk Drawer", """
-            Rubber bands, spare batteries, old receipts,
-            small evidence of a life
-            still figuring out what to keep
-            and what to finally let go of.
-        """.trimIndent()),
-        Poem(346, "Waiting for the Dryer to Finish", """
-            The hum fills the hallway,
-            a small, steady background,
-            proof that some progress
-            happens quietly, out of sight.
-        """.trimIndent()),
-        Poem(347, "The Handmade Birthday Card", """
-            A little crooked, a little smudged,
-            and somehow better
-            for every imperfect line,
-            proof that effort shows even when skill doesn't.
-        """.trimIndent()),
-        Poem(348, "Morning Light Through the Kitchen Window", """
-            It arrives the same way every day,
-            unhurried, generous,
-            and somehow still manages
-            to make the smallest kitchen feel like enough.
-        """.trimIndent()),
-        Poem(349, "The Chipped Doorframe", """
-            Marked by a dozen small moves,
-            furniture in, furniture out,
-            proof that a home
-            gathers its story in nicks and small dents.
-        """.trimIndent()),
-        Poem(350, "Waiting for the Ice to Melt", """
-            You can't hurry it,
-            no matter how thirsty you are,
-            and I'm learning, slowly,
-            that some cooling takes exactly as long as it takes.
-        """.trimIndent()),
-        Poem(351, "The Overgrown Path to the Mailbox", """
-            No one's trimmed it back in a while,
-            and still, every day,
-            someone walks it anyway,
-            proof that a path stays a path through use alone.
-        """.trimIndent()),
-        Poem(352, "Morning Light on the Wet Grass", """
-            Each blade catching a little shine,
-            gone the moment the sun climbs higher,
-            small proof
-            that even brief beauty is still beauty.
-        """.trimIndent()),
-        Poem(353, "The Half-Finished Puzzle on the Table", """
-            Left there for later,
-            most of the sky still missing,
-            proof that some things
-            are meant to be returned to, not rushed.
-        """.trimIndent()),
-        Poem(354, "Waiting for the Fog to Lift", """
-            You can't see the far hill yet,
-            just trust that it's there,
-            and by mid morning,
-            it always, somehow, reappears.
-        """.trimIndent()),
-        Poem(355, "The Chalk-Dusted Chalkboard", """
-            Erased a hundred times,
-            still holding faint ghosts
-            of everything it used to say,
-            proof that even clean slates carry a little history.
-        """.trimIndent()),
-        Poem(356, "Morning Light on the Empty Street", """
-            No cars yet, no noise yet,
-            just the quiet pavement
-            catching the first color of the day
-            before anyone's awake to notice.
-        """.trimIndent()),
-        Poem(357, "The Overfilled Watering Can", """
-            A little too much, spilling slightly,
-            and the garden doesn't mind,
-            proof that generosity,
-            even imperfectly given, still helps something grow.
-        """.trimIndent()),
-        Poem(358, "Waiting for the Bus in the Cold", """
-            Hands in pockets, breath visible,
-            and still, somehow, patient,
-            trusting that warmth
-            is only a few minutes further down the road.
-        """.trimIndent()),
-        Poem(359, "The Chipped Front Step", """
-            Worn down by decades of arrivals,
-            not ruined, just well used,
-            proof that being walked on, in the right way,
-            can just mean being needed.
-        """.trimIndent()),
-        Poem(360, "Morning Light Filling the Whole Room", """
-            Slowly, corner by corner,
-            until there's nowhere left for the dark to hide,
-            and the whole day,
-            quietly, finally, begins.
-        """.trimIndent()),
+        Poem(9, "Held Breath", """
+            There is a moment right before the good news,
+            right before the hard news,
+            when nothing has happened yet.
+            Learn to be at peace there too.
+        """.trimIndent()),
+        Poem(10, "Repair", """
+            Every mended thing carries the seam
+            where it was broken, and that's not shame,
+            that's proof it was worth fixing.
+            Wear your seams. They're not scars.
+            They're the record of your staying.
+        """.trimIndent()),
+
+        // --- Original poems (bylined) ---
+
+        Poem(11, "Cruelty", """
+            Humanity regresses
+            I drown in my spirals
+            The rich continue to plot
+            I continue to rot.
+
+            The dark, evil minds
+            all seem unbound, flourishing
+            I continue to rot.
+        """.trimIndent(), "MVt"),
+        Poem(12, "To all the oppressed", """
+            Can you hear the chanting,
+            the echoing,
+            the bass deep in your chest,
+            feel your insides
+            shaking, trembling,
+            that fire of justice
+            crying, howling
+
+            STAND UP
+            FIGHT BACK
+            STOMP DOWN
+            TEAR DOWN
+            PUSH BACK
+            LIBERATION
+                 DRAWS
+                   NEAR!
+        """.trimIndent(), "MVt"),
+        Poem(13, "Did you find hope?", """
+            Under the torn blanket
+            Behind the stove
+            Near the fallen, mossy tree
+            In your deepest thoughts
+            Did you find hope?
+
+            In your loved ones caress
+            In their loving embrace
+            looking up at the stars
+            the cosmic enlightenment
+            Did you find what you were looking for?
+        """.trimIndent(), "MVt"),
+        Poem(14, "Longing", """
+            There are times I find myself
+            Yearning
+            For the quiet of the trees
+            The clarity of the brook
+            The destruction of a wave
+            The gentleness of a breeze
+
+            I want a contradictory balance
+            To hold both calm and fury at once
+            To desire the explosion of nothingness
+            I want to understand the universe in me
+            To understand the lives beyond mine
+
+            Do the wise
+            Draw lines
+            With opposing forces?
+        """.trimIndent(), "MVt"),
+
+        // --- Public-domain poems ---
+
+        Poem(15, "Nothing Gold Can Stay", """
+            Nature's first green is gold,
+            Her hardest hue to hold.
+            Her early leaf's a flower;
+            But only so an hour.
+            Then leaf subsides to leaf.
+            So Eden sank to grief,
+            So dawn goes down to day.
+            Nothing gold can stay.
+        """.trimIndent(), "Robert Frost"),
+        Poem(16, "Dreams", """
+            Hold fast to dreams
+            For if dreams die
+            Life is a broken-winged bird
+            That cannot fly.
+            Hold fast to dreams
+            For when dreams go
+            Life is a barren field
+            Frozen with snow.
+        """.trimIndent(), "Langston Hughes"),
+        Poem(17, "Mother to Son", """
+            Well, son, I'll tell you:
+            Life for me ain't been no crystal stair.
+            It's had tacks in it,
+            And splinters,
+            And boards torn up,
+            And places with no carpet on the floor —
+            Bare.
+            But all the time
+            I'se been a-climbin' on,
+            And reachin' landin's,
+            And turnin' corners,
+            And sometimes goin' in the dark
+            Where there ain't been no light.
+            So boy, don't you turn back.
+            Don't you set down on the steps
+            'Cause you finds it's kinder hard.
+            Don't you fall now —
+            For I'se still goin', honey,
+            I'se still climbin',
+            And life for me ain't been no crystal stair.
+        """.trimIndent(), "Langston Hughes"),
+        Poem(18, "I, Too", """
+            I, too, sing America.
+
+            I am the darker brother.
+            They send me to eat in the kitchen
+            When company comes,
+            But I laugh,
+            And eat well,
+            And grow strong.
+
+            Tomorrow,
+            I'll be at the table
+            When company comes.
+            Nobody'll dare
+            Say to me,
+            "Eat in the kitchen,"
+            Then.
+
+            Besides,
+            They'll see how beautiful I am
+            And be ashamed —
+
+            I, too, am America.
+        """.trimIndent(), "Langston Hughes"),
+        Poem(19, "The Negro Speaks of Rivers", """
+            I've known rivers:
+            I've known rivers ancient as the world and older than the flow of human blood in human veins.
+
+            My soul has grown deep like the rivers.
+
+            I bathed in the Euphrates when dawns were young.
+            I built my hut near the Congo and it lulled me to sleep.
+            I looked upon the Nile and raised the pyramids above it.
+            I heard the singing of the Mississippi when Abe Lincoln went down to New Orleans, and I've seen its muddy bosom turn all golden in the sunset.
+
+            I've known rivers:
+            Ancient, dusky rivers.
+
+            My soul has grown deep like the rivers.
+        """.trimIndent(), "Langston Hughes"),
+        Poem(20, "If We Must Die", """
+            If we must die—let it not be like hogs
+            Hunted and penned in an inglorious spot,
+            While round us bark the mad and hungry dogs,
+            Making their mock at our accursed lot.
+            If we must die—oh, let us nobly die,
+            So that our precious blood may not be shed
+            In vain; then even the monsters we defy
+            Shall be constrained to honor us though dead!
+            Oh, Kinsmen! we must meet the common foe;
+            Though far outnumbered, let us show us brave,
+            And for their thousand blows deal one death-blow!
+            What though before us lies the open grave?
+            Like men we'll face the murderous, cowardly pack,
+            Pressed to the wall, dying, but fighting back!
+        """.trimIndent(), "Claude McKay"),
+        Poem(21, "The Tropics in New York", """
+            Bananas ripe and green, and ginger-root,
+            Cocoa in pods and alligator pears,
+            And tangerines and mangoes and grape fruit,
+            Fit for the highest prize at parish fairs,
+
+            Set in the window, bringing memories
+            Of fruit-trees laden by low-singing rills,
+            And dewy dawns, and mystical blue skies
+            In benediction over nun-like hills.
+
+            My eyes grew dim, and I could no more gaze;
+            A wave of longing through my body swept,
+            And, hungry for the old, familiar ways,
+            I turned aside and bowed my head and wept.
+        """.trimIndent(), "Claude McKay"),
+        Poem(22, "From the Dark Tower", """
+            We shall not always plant while others reap
+            The golden increment of bursting fruit,
+            Nor always countenance, abject and mute,
+            That lesser men should hold their brothers cheap;
+            Not everlastingly while others sleep
+            Shall we beguile their limbs with mellow flute,
+            Not always bend to some more subtle brute;
+            We were not made eternally to weep.
+
+            The night whose sable breast relieves the stark,
+            White stars is no less lovely being dark,
+            And there are buds that cannot bloom at all
+            In light, but crumple, piteous, and fall.
+
+            So in the dark we hide the heart that bleeds,
+            And wait, and tend our agonizing seeds.
+        """.trimIndent(), "Countee Cullen"),
+        Poem(23, "Your World", """
+            Your world is as big as you make it.
+            I know, for I used to abide
+            In the narrowest nest in a corner,
+            My wings pressing close to my side.
+
+            But I sighted the distant horizon
+            Where the skyline encircled the sea
+            And I throbbed with a burning desire
+            To travel this immensity.
+
+            I battered the cordons around me
+            And cradled my wings on the breeze,
+            Then soared to the uttermost reaches
+            With rapture, with power, with ease!
+        """.trimIndent(), "Georgia Douglas Johnson"),
+        Poem(24, "Bury Me in a Free Land", """
+            Make me a grave where'er you will,
+            In a lowly plain, or a lofty hill;
+            Make it among earth's humblest graves,
+            But not in a land where men are slaves.
+
+            I could not rest if around my grave
+            I heard the steps of a trembling slave;
+            His shadow above my silent tomb
+            Would make it a place of fearful gloom.
+
+            I could not rest if I heard the tread
+            Of a coffle gang to the shambles led,
+            And the mother's shriek of wild despair
+            Rise like a curse on the trembling air.
+
+            I could not sleep if I saw the lash
+            Drinking her blood at each fearful gash,
+            And I saw her babes torn from her breast,
+            Like trembling doves from their parent nest.
+
+            I'd shudder and start if I heard the bay
+            Of bloodhounds seizing their human prey,
+            And I heard the captive plead in vain
+            As they bound afresh his galling chain.
+
+            If I saw young girls from their mother's arms
+            Bartered and sold for their youthful charms,
+            My eye would flash with a mournful flame,
+            My death-paled cheek grow red with shame.
+
+            I would sleep, dear friends, where bloated might
+            Can rob no man of his dearest right;
+            My rest shall be calm in any grave
+            Where none can call his brother a slave.
+
+            I ask no monument, proud and high,
+            To arrest the gaze of the passers-by;
+            All that my yearning spirit craves,
+            Is bury me not in a land of slaves.
+        """.trimIndent(), "Frances E. W. Harper"),
+        Poem(25, "We Wear the Mask", """
+            We wear the mask that grins and lies,
+            It hides our cheeks and shades our eyes, —
+            This debt we pay to human guile;
+            With torn and bleeding hearts we smile,
+            And mouth with myriad subtleties.
+
+            Why should the world be over-wise,
+            In counting all our tears and sighs?
+            Nay, let them only see us, while
+            We wear the mask.
+
+            We smile, but, O great Christ, our cries
+            To thee from tortured souls arise.
+            We sing, but oh the clay is vile
+            Beneath our feet, and long the mile;
+            But let the world dream otherwise,
+            We wear the mask!
+        """.trimIndent(), "Paul Laurence Dunbar"),
+        Poem(26, "Life", """
+            A crust of bread and a corner to sleep in,
+            A minute to smile and an hour to weep in,
+            A pint of joy to a peck of trouble,
+            And never a laugh but the moans come double;
+                And that is life!
+
+            A crust and a corner that love makes precious,
+            With a smile to warm and the tears to refresh us;
+            And joy seems sweeter when cares come after,
+            And a moan is the finest of foils for laughter;
+                And that is life!
+        """.trimIndent(), "Paul Laurence Dunbar"),
+        Poem(27, "“Hope” is the thing with feathers", """
+            "Hope" is the thing with feathers
+            That perches in the soul,
+            And sings the tune without the words,
+            And never stops at all,
+
+            And sweetest in the gale is heard;
+            And sore must be the storm
+            That could abash the little bird
+            That kept so many warm.
+
+            I've heard it in the chillest land,
+            And on the strangest sea;
+            Yet, never, in extremity,
+            It asked a crumb of me.
+        """.trimIndent(), "Emily Dickinson"),
+        Poem(28, "If I can stop one heart from breaking", """
+            If I can stop one heart from breaking,
+            I shall not live in vain;
+            If I can ease one life the aching,
+            Or cool one pain,
+            Or help one fainting robin
+            Unto his nest again,
+            I shall not live in vain.
+        """.trimIndent(), "Emily Dickinson"),
+        Poem(29, "The Bustle in a House", """
+            The bustle in a house
+            The morning after death
+            Is solemnest of industries
+            Enacted upon earth, —
+
+            The sweeping up the heart,
+            And putting love away
+            We shall not want to use again
+            Until eternity.
+        """.trimIndent(), "Emily Dickinson"),
+        Poem(30, "I'm Nobody! Who are you?", """
+            I'm Nobody! Who are you?
+            Are you – Nobody – too?
+            Then there's a pair of us!
+            Don't tell! they'd advertise – you know!
+
+            How dreary – to be – Somebody!
+            How public – like a Frog –
+            To tell one's name – the livelong June –
+            To an admiring Bog!
+        """.trimIndent(), "Emily Dickinson"),
+        Poem(31, "My Life Closed Twice Before Its Close", """
+            My life closed twice before its close;
+            It yet remains to see
+            If Immortality unveil
+            A third event to me,
+
+            So huge, so hopeless to conceive,
+            As these that twice befell.
+            Parting is all we know of heaven,
+            And all we need of hell.
+        """.trimIndent(), "Emily Dickinson"),
+        Poem(32, "Invictus", """
+            Out of the night that covers me,
+            Black as the pit from pole to pole,
+            I thank whatever gods may be
+            For my unconquerable soul.
+
+            In the fell clutch of circumstance
+            I have not winced nor cried aloud.
+            Under the bludgeonings of chance
+            My head is bloody, but unbowed.
+
+            Beyond this place of wrath and tears
+            Looms but the Horror of the shade,
+            And yet the menace of the years
+            Finds and shall find me unafraid.
+
+            It matters not how strait the gate,
+            How charged with punishments the scroll,
+            I am the master of my fate,
+            I am the captain of my soul.
+        """.trimIndent(), "William Ernest Henley"),
+        Poem(33, "Remember", """
+            Remember me when I am gone away,
+            Gone far away into the silent land;
+            When you can no more hold me by the hand,
+            Nor I half turn to go, yet turning stay.
+            Remember me when no more day by day
+            You tell me of our future that you planned:
+            Only remember me; you understand
+            It will be late to counsel then or pray.
+            Yet if you should forget me for a while
+            And afterwards remember, do not grieve:
+            For if the darkness and corruption leave
+            A vestige of the thoughts that once I had,
+            Better by far you should forget and smile
+            Than that you should remember and be sad.
+        """.trimIndent(), "Christina Rossetti"),
+        Poem(34, "A Birthday", """
+            My heart is like a singing bird
+            Whose nest is in a water'd shoot;
+            My heart is like an apple-tree
+            Whose boughs are bent with thick-set fruit;
+            My heart is like a rainbow shell
+            That paddles in a halcyon sea;
+            My heart is gladder than all these
+            Because my love is come to me.
+
+            Raise me a dais of silk and down;
+            Hang it with vair and purple dyes;
+            Carve it in doves and pomegranates,
+            And peacocks with a hundred eyes;
+            Work it in gold and silver grapes,
+            In leaves and silver fleurs-de-lys;
+            Because the birthday of my life
+            Is come, my love is come to me.
+        """.trimIndent(), "Christina Rossetti"),
+        Poem(35, "Echo", """
+            Come to me in the silence of the night;
+            Come in the speaking silence of a dream;
+            Come with soft rounded cheeks and eyes as bright
+            As sunlight on a stream;
+            Come back in tears,
+            O memory, hope, love of finished years.
+
+            O dream how sweet, too sweet, too bitter sweet,
+            Whose wakening should have been in Paradise,
+            Where souls brimful of love abide and meet;
+            Where thirsting longing eyes
+            Watch the slow door
+            That opening, letting in, lets out no more.
+
+            Yet come to me in dreams, that I may live
+            My very life again though cold in death:
+            Come back to me in dreams, that I may give
+            Pulse for pulse, breath for breath:
+            Speak low, lean low,
+            As long ago, my love, how long ago.
+        """.trimIndent(), "Christina Rossetti"),
+        Poem(36, "Outwitted", """
+            He drew a circle that shut me out —
+            Heretic, rebel, a thing to flout.
+            But Love and I had the wit to win:
+            We drew a circle that took him in!
+        """.trimIndent(), "Edwin Markham"),
+        Poem(37, "There Will Come Soft Rains", """
+            There will come soft rains and the smell of the ground,
+            And swallows circling with their shimmering sound;
+
+            And frogs in the pools singing at night,
+            And wild plum trees in tremulous white;
+
+            Robins will wear their feathery fire,
+            Whistling their whims on a low fence-wire;
+
+            And not one will know of the war, not one
+            Will care at last when it is done.
+
+            Not one would mind, neither bird nor tree,
+            If mankind perished utterly;
+
+            And Spring herself, when she woke at dawn
+            Would scarcely know that we were gone.
+        """.trimIndent(), "Sara Teasdale"),
+        Poem(38, "Barter", """
+            Life has loveliness to sell,
+            All beautiful and splendid things,
+            Blue waves whitened on a cliff,
+            Soaring fire that sways and sings,
+            And children's faces looking up
+            Holding wonder like a cup.
+
+            Life has loveliness to sell,
+            Music like a curve of gold,
+            Scent of pine trees in the rain,
+            Eyes that love you, arms that hold,
+            And for your spirit's still delight,
+            Holy thoughts that star the night.
+
+            Spend all you have for loveliness,
+            Buy it and never count the cost;
+            For one white singing hour of peace
+            Count many a year of strife well lost,
+            And for a breath of ecstasy
+            Give all you have been, or could be.
+        """.trimIndent(), "Sara Teasdale"),
+        Poem(39, "Stars", """
+            Alone in the night
+            On a dark hill
+            With pines around me
+            Spicy and still,
+
+            And a heaven full of stars
+            Over my head,
+            White and topaz
+            And misty red;
+
+            Myriads with beating
+            Hearts of fire
+            That aeons
+            Cannot vex or tire;
+
+            Up the dome of heaven
+            Like a great hill,
+            I watch them marching
+            Stately and still,
+
+            And I know that I
+            Am honored to be
+            Witness
+            Of so much majesty.
+        """.trimIndent(), "Sara Teasdale"),
+        Poem(40, "Afternoon on a Hill", """
+            I will be the gladdest thing
+            Under the sun!
+            I will touch a hundred flowers
+            And not pick one.
+
+            I will look at cliffs and clouds
+            With quiet eyes,
+            Watch the wind bow down the grass,
+            And the grass rise.
+
+            And when lights begin to show
+            Up from the town,
+            I will mark which must be mine,
+            And then start down!
+        """.trimIndent(), "Edna St. Vincent Millay"),
+        Poem(41, "Travel", """
+            The railroad track is miles away,
+            And the day is loud with voices speaking,
+            Yet there isn't a train goes by all day
+            But I hear its whistle shrieking.
+
+            All night there isn't a train goes by,
+            Though the night is still for sleep and dreaming,
+            But I see its cinders red on the sky,
+            And hear its engine steaming.
+
+            My heart is warm with the friends I make,
+            And better friends I'll not be knowing;
+            Yet there isn't a train I wouldn't take,
+            No matter where it's going.
+        """.trimIndent(), "Edna St. Vincent Millay"),
+        Poem(42, "Requiem", """
+            Under the wide and starry sky,
+            Dig the grave and let me lie.
+            Glad did I live and gladly die,
+            And I laid me down with a will.
+
+            This be the verse you grave for me:
+            Here he lies where he longed to be;
+            Home is the sailor, home from sea,
+            And the hunter home from the hill.
+        """.trimIndent(), "Robert Louis Stevenson"),
+        Poem(43, "Leisure", """
+            What is this life if, full of care,
+            We have no time to stand and stare.
+
+            No time to stand beneath the boughs
+            And stare as long as sheep or cows.
+
+            No time to see, when woods we pass,
+            Where squirrels hide their nuts in grass.
+
+            No time to see, in broad daylight,
+            Streams full of stars, like skies at night.
+
+            No time to turn at Beauty's glance,
+            And watch her feet, how they can dance.
+
+            No time to wait till her mouth can
+            Enrich that smile her eyes began.
+
+            A poor life this if, full of care,
+            We have no time to stand and stare.
+        """.trimIndent(), "W. H. Davies"),
+        Poem(44, "Sea Fever", """
+            I must go down to the seas again, to the lonely sea and the sky,
+            And all I ask is a tall ship and a star to steer her by;
+            And the wheel's kick and the wind's song and the white sail's shaking,
+            And a grey mist on the sea's face, and a grey dawn breaking.
+
+            I must go down to the seas again, for the call of the running tide
+            Is a wild call and a clear call that may not be denied;
+            And all I ask is a windy day with the white clouds flying,
+            And the flung spray and the blown spume, and the sea-gulls crying.
+
+            I must go down to the seas again, to the vagrant gypsy life,
+            To the gull's way and the whale's way where the wind's like a whetted knife;
+            And all I ask is a merry yarn from a laughing fellow-rover,
+            And quiet sleep and a sweet dream when the long trick's over.
+        """.trimIndent(), "John Masefield"),
+        Poem(45, "Loveliest of Trees", """
+            Loveliest of trees, the cherry now
+            Is hung with bloom along the bough,
+            And stands about the woodland ride
+            Wearing white for Eastertide.
+
+            Now, of my threescore years and ten,
+            Twenty will not come again,
+            And take from seventy springs a score,
+            It only leaves me fifty more.
+
+            And since to look at things in bloom
+            Fifty springs are little room,
+            About the woodlands I will go
+            To see the cherry hung with snow.
+        """.trimIndent(), "A. E. Housman"),
+        Poem(46, "With Rue My Heart Is Laden", """
+            With rue my heart is laden
+            For golden friends I had,
+            For many a rose-lipt maiden
+            And many a lightfoot lad.
+
+            By brooks too broad for leaping
+            The lightfoot boys are laid;
+            The rose-lipt girls are sleeping
+            In fields where roses fade.
+        """.trimIndent(), "A. E. Housman"),
+        Poem(47, "The Clod and the Pebble", """
+            "Love seeketh not itself to please,
+            Nor for itself hath any care,
+            But for another gives its ease,
+            And builds a Heaven in Hell's despair."
+
+            So sung a little Clod of Clay,
+            Trodden with the cattle's feet,
+            But a Pebble of the brook
+            Warbled out these metres meet:
+
+            "Love seeketh only Self to please,
+            To bind another to its delight,
+            Joys in another's loss of ease,
+            And builds a Hell in Heaven's despite."
+        """.trimIndent(), "William Blake"),
+        Poem(48, "Laughing Song", """
+            When the green woods laugh with the voice of joy,
+            And the dimpling stream runs laughing by;
+            When the air does laugh with our merry wit,
+            And the green hill laughs with the noise of it;
+
+            When the meadows laugh with lively green,
+            And the grasshopper laughs in the merry scene;
+            When Mary and Susan and Emily
+            With their sweet round mouths sing "Ha, ha, he!"
+
+            When the painted birds laugh in the shade,
+            Where our table with cherries and nuts is spread:
+            Come live, and be merry, and join with me,
+            To sing the sweet chorus of "Ha, ha, he!"
+        """.trimIndent(), "William Blake"),
+        Poem(49, "Say Not the Struggle Nought Availeth", """
+            Say not the struggle nought availeth,
+            The labour and the wounds are vain,
+            The enemy faints not, nor faileth,
+            And as things have been they remain.
+
+            If hopes were dupes, fears may be liars;
+            It may be, in yon smoke concealed,
+            Your comrades chase e'en now the fliers,
+            And, but for you, possess the field.
+
+            For while the tired waves, vainly breaking,
+            Seem here no painful inch to gain,
+            Far back, through creeks and inlets making,
+            Comes silent, flooding in, the main.
+
+            And not by eastern windows only,
+            When daylight comes, comes in the light;
+            In front the sun climbs slow, how slowly!
+            But westward, look, the land is bright!
+        """.trimIndent(), "Arthur Hugh Clough"),
+        Poem(50, "The Pasture", """
+            I'm going out to clean the pasture spring;
+            I'll only stop to rake the leaves away
+            (And wait to watch the water clear, I may):
+            I sha'n't be gone long. — You come too.
+
+            I'm going out to fetch the little calf
+            That's standing by the mother. It's so young,
+            It totters when she licks it with her tongue.
+            I sha'n't be gone long. — You come too.
+        """.trimIndent(), "Robert Frost"),
+        Poem(51, "Dust of Snow", """
+            The way a crow
+            Shook down on me
+            The dust of snow
+            From a hemlock tree
+
+            Has given my heart
+            A change of mood
+            And saved some part
+            Of a day I had rued.
+        """.trimIndent(), "Robert Frost"),
+        Poem(52, "Ozymandias", """
+            I met a traveller from an antique land
+            Who said: Two vast and trunkless legs of stone
+            Stand in the desert... Near them, on the sand,
+            Half sunk, a shattered visage lies, whose frown,
+            And wrinkled lip, and sneer of cold command,
+            Tell that its sculptor well those passions read
+            Which yet survive, stamped on these lifeless things,
+            The hand that mocked them, and the heart that fed;
+            And on the pedestal these words appear:
+            "My name is Ozymandias, king of kings:
+            Look on my works, ye Mighty, and despair!"
+            Nothing beside remains. Round the decay
+            Of that colossal wreck, boundless and bare
+            The lone and level sands stretch far away.
+        """.trimIndent(), "Percy Bysshe Shelley"),
+        Poem(53, "The World Is Too Much with Us", """
+            The world is too much with us; late and soon,
+            Getting and spending, we lay waste our powers;—
+            Little we see in Nature that is ours;
+            We have given our hearts away, a sordid boon!
+            This Sea that bares her bosom to the moon;
+            The winds that will be howling at all hours,
+            And are up-gathered now like sleeping flowers;
+            For this, for everything, we are out of tune;
+            It moves us not. Great God! I'd rather be
+            A Pagan suckled in a creed outworn;
+            So might I, standing on this pleasant lea,
+            Have glimpses that would make me less forlorn;
+            Have sight of Proteus rising from the sea;
+            Or hear old Triton blow his wreathèd horn.
+        """.trimIndent(), "William Wordsworth"),
+        Poem(54, "My Heart Leaps Up", """
+            My heart leaps up when I behold
+            A rainbow in the sky:
+            So was it when my life began;
+            So is it now I am a man;
+            So be it when I shall grow old,
+            Or let me die!
+            The Child is father of the Man;
+            And I could wish my days to be
+            Bound each to each by natural piety.
+        """.trimIndent(), "William Wordsworth"),
+        Poem(55, "The Darkling Thrush", """
+            I leant upon a coppice gate
+            When Frost was spectre-grey,
+            And Winter's dregs made desolate
+            The weakening eye of day.
+            The tangled bine-stems scored the sky
+            Like strings of broken lyres,
+            And all mankind that haunted nigh
+            Had sought their household fires.
+
+            The land's sharp features seemed to be
+            The Century's corpse outleant,
+            His crypt the cloudy canopy,
+            The wind his death-lament.
+            The ancient pulse of germ and birth
+            Was shrunken hard and dry,
+            And every spirit upon earth
+            Seemed fervourless as I.
+
+            At once a voice arose among
+            The bleak twigs overhead
+            In a full-hearted evensong
+            Of joy illimited;
+            An aged thrush, frail, gaunt, and small,
+            In blast-beruffled plume,
+            Had chosen thus to fling his soul
+            Upon the growing gloom.
+
+            So little cause for carolings
+            Of such ecstatic sound
+            Was written on terrestrial things
+            Afar or nigh around,
+            That I could think there trembled through
+            His happy good-night air
+            Some blessed Hope, whereof he knew
+            And I was unaware.
+        """.trimIndent(), "Thomas Hardy"),
+        Poem(56, "How Do I Love Thee? (Sonnet 43)", """
+            How do I love thee? Let me count the ways.
+            I love thee to the depth and breadth and height
+            My soul can reach, when feeling out of sight
+            For the ends of being and ideal grace.
+            I love thee to the level of every day's
+            Most quiet need, by sun and candle-light.
+            I love thee freely, as men strive for right;
+            I love thee purely, as they turn from praise.
+            I love thee with the passion put to use
+            In my old griefs, and with my childhood's faith.
+            I love thee with a love I seemed to lose
+            With my lost saints. I love thee with the breath,
+            Smiles, tears, of all my life; and, if God choose,
+            I shall but love thee better after death.
+        """.trimIndent(), "Elizabeth Barrett Browning"),
+        Poem(57, "Sonnet 116", """
+            Let me not to the marriage of true minds
+            Admit impediments. Love is not love
+            Which alters when it alteration finds,
+            Or bends with the remover to remove.
+            O no! it is an ever-fixed mark
+            That looks on tempests and is never shaken;
+            It is the star to every wandering bark,
+            Whose worth's unknown, although his height be taken.
+            Love's not Time's fool, though rosy lips and cheeks
+            Within his bending sickle's compass come;
+            Love alters not with his brief hours and weeks,
+            But bears it out even to the edge of doom.
+            If this be error and upon me proved,
+            I never writ, nor no man ever loved.
+        """.trimIndent(), "William Shakespeare"),
+        Poem(58, "Since There's No Help", """
+            Since there's no help, come let us kiss and part—
+            Nay, I have done, you get no more of me;
+            And I am glad, yea glad with all my heart,
+            That thus so cleanly I myself can free.
+            Shake hands for ever, cancel all our vows,
+            And when we meet at any time again,
+            Be it not seen in either of our brows
+            That we one jot of former love retain.
+            Now at the last gasp of Love's latest breath,
+            When, his pulse failing, Passion speechless lies;
+            When Faith is kneeling by his bed of death,
+            And Innocence is closing up his eyes—
+            Now, if thou wouldst, when all have given him over,
+            From death to life thou might'st him yet recover.
+        """.trimIndent(), "Michael Drayton"),
+        Poem(59, "The Eagle", """
+            He clasps the crag with crooked hands;
+            Close to the sun in lonely lands,
+            Ring'd with the azure world, he stands.
+
+            The wrinkled sea beneath him crawls;
+            He watches from his mountain walls,
+            And like a thunderbolt he falls.
+        """.trimIndent(), "Alfred, Lord Tennyson"),
+        Poem(60, "Fall, Leaves, Fall", """
+            Fall, leaves, fall; die, flowers, away;
+            Lengthen night and shorten day;
+            Every leaf speaks bliss to me
+            Fluttering from the autumn tree.
+
+            I shall smile when wreaths of snow
+            Blossom where the rose should grow;
+            I shall sing when night's decay
+            Ushers in a drearier day.
+        """.trimIndent(), "Emily Brontë"),
+        Poem(61, "Solitude", """
+            Laugh, and the world laughs with you;
+            Weep, and you weep alone.
+            For the sad old earth must borrow its mirth,
+            But has trouble enough of its own.
+
+            Sing, and the hills will answer;
+            Sigh, it is lost on the air.
+            The echoes bound to a joyful sound,
+            But shrink from voicing care.
+
+            Rejoice, and men will seek you;
+            Grieve, and they turn and go.
+            They want full measure of all your pleasure,
+            But they do not need your woe.
+
+            Be glad, and your friends are many;
+            Be sad, and you lose them all.
+            There are none to decline your nectared wine,
+            But alone you must drink life's gall.
+
+            Feast, and your halls are crowded;
+            Fast, and the world goes by.
+            Succeed and give, and it helps you live,
+            But no man can help you die.
+
+            There is room in the halls of pleasure
+            For a large and lordly train,
+            But one by one we must all file on
+            Through the narrow aisles of pain.
+        """.trimIndent(), "Ella Wheeler Wilcox"),
+        Poem(62, "Silver", """
+            Slowly, silently, now the moon
+            Walks the night in her silver shoon;
+            This way, and that, she peers, and sees
+            Silver fruit upon silver trees;
+            One by one the casements catch
+            Her beams beneath the silvery thatch;
+            Couched in his kennel, like a log,
+            With paws of silver sleeps the dog;
+            From their shadowy cote the white breasts peep
+            Of doves in a silver-feathered sleep;
+            A harvest mouse goes scampering by,
+            With silver claws, and silver eye;
+            And moveless fish in the water gleam,
+            By silver reeds in a silver stream.
+        """.trimIndent(), "Walter de la Mare"),
+        Poem(63, "Adlestrop", """
+            Yes. I remember Adlestrop—
+            The name, because one afternoon
+            Of heat the express-train drew up there
+            Unwontedly. It was late June.
+
+            The steam hissed. Someone cleared his throat.
+            No one left and no one came
+            On the bare platform. What I saw
+            Was Adlestrop—only the name
+
+            And willows, willow-herb, and grass,
+            And meadowsweet, and haycocks dry,
+            No whit less still and lonely fair
+            Than the high cloudlets in the sky.
+
+            And for that minute a blackbird sang
+            Close by, and round him, mistier,
+            Farther and farther, all the birds
+            Of Oxfordshire and Gloucestershire.
+        """.trimIndent(), "Edward Thomas"),
+        Poem(64, "Fog", """
+            The fog comes
+            on little cat feet.
+
+            It sits looking
+            over harbor and city
+            on silent haunches
+            and then moves on.
+        """.trimIndent(), "Carl Sandburg"),
+        Poem(65, "Grass", """
+            Pile the bodies high at Austerlitz and Waterloo.
+            Shovel them under and let me work—
+            I am the grass; I cover all.
+
+            And pile them high at Gettysburg
+            And pile them high at Ypres and Verdun.
+            Shovel them under and let me work.
+            Two years, ten years, and passengers ask the conductor:
+            What place is this?
+            Where are we now?
+
+            I am the grass.
+            Let me work.
+        """.trimIndent(), "Carl Sandburg"),
+        Poem(66, "Futility", """
+            Move him into the sun—
+            Gently its touch awoke him once,
+            At home, whispering of fields half-sown.
+            Always it woke him, even in France,
+            Until this morning and this snow.
+            If anything might rouse him now
+            The kind old sun will know.
+
+            Think how it wakes the seeds—
+            Woke once the clays of a cold star.
+            Are limbs, so dear-achieved, are sides
+            Full-nerved—still warm—too hard to stir?
+            Was it for this the clay grew tall?
+            —O what made fatuous sunbeams toil
+            To break earth's sleep at all?
+        """.trimIndent(), "Wilfred Owen"),
+        Poem(67, "To My Dear and Loving Husband", """
+            If ever two were one, then surely we.
+            If ever man were loved by wife, then thee.
+            If ever wife was happy in a man,
+            Compare with me, ye women, if you can.
+            I prize thy love more than whole mines of gold,
+            Or all the riches that the East doth hold.
+            My love is such that rivers cannot quench,
+            Nor ought but love from thee give recompense.
+            Thy love is such I can no way repay;
+            The heavens reward thee manifold, I pray.
+            Then while we live, in love let's so persever,
+            That when we live no more, we may live ever.
+        """.trimIndent(), "Anne Bradstreet"),
+        Poem(68, "On My First Son", """
+            Farewell, thou child of my right hand, and joy;
+            My sin was too much hope of thee, loved boy.
+            Seven years thou wert lent to me, and I thee pay,
+            Exacted by thy fate, on the just day.
+            O, could I lose all father now! For why
+            Will man lament the state he should envy?
+            To have so soon 'scaped world's and flesh's rage,
+            And, if no other misery, yet age?
+            Rest in soft peace, and, asked, say, "Here doth lie
+            Ben Jonson his best piece of poetry."
+            For whose sake henceforth all his vows be such
+            As what he loves may never like too much.
+        """.trimIndent(), "Ben Jonson"),
+        Poem(69, "On the Grasshopper and Cricket", """
+            The poetry of earth is never dead:
+            When all the birds are faint with the hot sun,
+            And hide in cooling trees, a voice will run
+            From hedge to hedge about the new-mown mead;
+            That is the Grasshopper's — he takes the lead
+            In summer luxury, — he has never done
+            With his delights; for when tired out with fun
+            He rests at ease beneath some pleasant weed.
+            The poetry of earth is ceasing never:
+            On a lone winter evening, when the frost
+            Has wrought a silence, from the stove there shrills
+            The Cricket's song, in warmth increasing ever,
+            And seems to one in drowsiness half lost,
+            The Grasshopper's among some grassy hills.
+        """.trimIndent(), "John Keats"),
+        Poem(70, "Little Trotty Wagtail", """
+            Little trotty wagtail, he went in the rain,
+            And twittering, tottering sideways he ne'er got straight again.
+            He stooped to get a worm, and looked up to get a fly,
+            And then he flew away ere his feathers they were dry.
+
+            Little trotty wagtail, he waddled in the mud,
+            And left his little footmarks, trample where he would.
+            He waddled in the water-pudge, and waggle went his tail,
+            And chirrupt up his wings to dry upon the garden rail.
+
+            Little trotty wagtail, you nimble all about,
+            And in the dimpling water-pudge you waddle in and out;
+            Your home is nigh at hand, and in the warm pig-stye,
+            So, little Master Wagtail, I'll bid you a "Good-bye."
+        """.trimIndent(), "John Clare"),
+        Poem(71, "Spring, the Sweet Spring", """
+            Spring, the sweet spring, is the year's pleasant king;
+            Then blooms each thing, then maids dance in a ring,
+            Cold doth not sting, the pretty birds do sing:
+            Cuckoo, jug-jug, pu-we, to-witta-woo!
+
+            The palm and may make country houses gay,
+            Lambs frisk and play, the shepherds pipe all day,
+            And we hear aye birds tune this merry lay:
+            Cuckoo, jug-jug, pu-we, to-witta-woo!
+
+            The fields breathe sweet, the daisies kiss our feet,
+            Young lovers meet, old wives a-sunning sit,
+            In every street these tunes our ears do greet:
+            Cuckoo, jug-jug, pu-we, to-witta-woo!
+            Spring, the sweet spring!
+        """.trimIndent(), "Thomas Nashe"),
+        Poem(72, "Home-Thoughts, from Abroad", """
+            Oh, to be in England
+            Now that April's there,
+            And whoever wakes in England
+            Sees, some morning, unaware,
+            That the lowest boughs and the brushwood sheaf
+            Round the elm-tree bole are in tiny leaf,
+            While the chaffinch sings on the orchard bough
+            In England — now!
+
+            And after April, when May follows,
+            And the whitethroat builds, and all the swallows!
+            Hark, where my blossomed pear-tree in the hedge
+            Leans to the field and scatters on the clover
+            Blossoms and dewdrops — at the bent spray's edge —
+            That's the wise thrush; he sings each song twice over,
+            Lest you should think he never could recapture
+            The first fine careless rapture!
+            And though the fields look rough with hoary dew,
+            All will be gay when noontide wakes anew
+            The buttercups, the little children's dower
+            — Far brighter than this gaudy melon-flower!
+        """.trimIndent(), "Robert Browning"),
+        Poem(73, "Autumn Fires", """
+            In the other gardens
+            And all up the vale,
+            From the autumn bonfires
+            See the smoke trail!
+
+            Pleasant summer over
+            And all the summer flowers,
+            The red fire blazes,
+            The grey smoke towers.
+
+            Sing a song of seasons!
+            Something bright in all!
+            Flowers in the summer,
+            Fires in the fall!
+        """.trimIndent(), "Robert Louis Stevenson"),
+        Poem(74, "Tall Nettles", """
+            Tall nettles cover up, as they have done
+            These many springs, the rusty harrow, the plough
+            Long worn out, and the roller made of stone:
+            Only the elm butt tops the nettles now.
+
+            This corner of the farmyard I like most:
+            As well as any bloom upon a flower
+            I like the dust on the nettles, never lost
+            Except to prove the sweetness of a shower.
+        """.trimIndent(), "Edward Thomas"),
+        Poem(75, "Who Has Seen the Wind?", """
+            Who has seen the wind?
+            Neither I nor you:
+            But when the leaves hang trembling,
+            The wind is passing through.
+
+            Who has seen the wind?
+            Neither you nor I:
+            But when the trees bow down their heads,
+            The wind is passing by.
+        """.trimIndent(), "Christina Rossetti"),
+        Poem(76, "Reapers", """
+            Black reapers with the sound of steel on stones
+            Are sharpening scythes. I see them place the hones
+            In their hip-pockets as a thing that's done,
+            And start their silent swinging, one by one.
+            Black horses drive a mower through the weeds,
+            And there, a field rat, startled, squealing bleeds,
+            His belly close to ground. I see the blade,
+            Blood-stained, continue cutting weeds and shade.
+        """.trimIndent(), "Jean Toomer"),
+        Poem(77, "Indian Weavers", """
+            Weavers, weaving at break of day,
+            Why do you weave a garment so gay?
+            Blue as the wing of a halcyon wild,
+            We weave the robes of a new-born child.
+
+            Weavers, weaving at fall of night,
+            Why do you weave a garment so bright?
+            Like the plumes of a peacock, purple and green,
+            We weave the marriage-veils of a queen.
+
+            Weavers, weaving solemn and still,
+            What do you weave in the moonlight chill?
+            White as a feather and white as a cloud,
+            We weave a dead man's funeral shroud.
+        """.trimIndent(), "Sarojini Naidu"),
+        Poem(78, "The New Colossus", """
+            Not like the brazen giant of Greek fame,
+            With conquering limbs astride from land to land;
+            Here at our sea-washed, sunset gates shall stand
+            A mighty woman with a torch, whose flame
+            Is the imprisoned lightning, and her name
+            Mother of Exiles. From her beacon-hand
+            Glows world-wide welcome; her mild eyes command
+            The air-bridged harbor that twin cities frame.
+            "Keep, ancient lands, your storied pomp!" cries she
+            With silent lips. "Give me your tired, your poor,
+            Your huddled masses yearning to breathe free,
+            The wretched refuse of your teeming shore.
+            Send these, the homeless, tempest-tost to me,
+            I lift my lamp beside the golden door!"
+        """.trimIndent(), "Emma Lazarus"),
+        Poem(79, "America", """
+            Although she feeds me bread of bitterness,
+            And sinks into my throat her tiger's tooth,
+            Stealing my breath of life, I will confess
+            I love this cultured hell that tests my youth.
+            Her vigor flows like tides into my blood,
+            Giving me strength erect against her hate,
+            Her bigness sweeps my being like a flood.
+            Yet, as a rebel fronts a king in state,
+            I stand within her walls with not a shred
+            Of terror, malice, not a word of jeer.
+            Darkly I gaze into the days ahead,
+            And see her might and granite wonders there,
+            Beneath the touch of Time's unerring hand,
+            Like priceless treasures sinking in the sand.
+        """.trimIndent(), "Claude McKay"),
+        Poem(80, "Saturday's Child", """
+            Some are teethed on a silver spoon,
+            With the stars strung for a rattle;
+            I cut my teeth as the black raccoon —
+            For implements of battle.
+
+            Some are swaddled in silk and down,
+            And heralded by a star;
+            They swathed my limbs in a sackcloth gown
+            On a night that was black as tar.
+
+            For some, godfather and goddame
+            The opulent fairies be;
+            Dame Poverty gave me my name,
+            And Pain godfathered me.
+
+            For I was born on Saturday —
+            "Bad time for planting a seed,"
+            Was all my father had to say,
+            And, "One mouth more to feed."
+
+            Death cut the strings that gave me life,
+            And handed me to Sorrow,
+            The only kind of middle wife
+            My folks could beg or borrow.
+        """.trimIndent(), "Countee Cullen"),
+        Poem(81, "The Heart of a Woman", """
+            The heart of a woman goes forth with the dawn,
+            As a lone bird, soft winging, so restlessly on,
+            Afar o'er life's turrets and vales does it roam
+            In the wake of those echoes the heart calls home.
+
+            The heart of a woman falls back with the night,
+            And enters some alien cage in its plight,
+            And tries to forget it has dreamed of the stars
+            While it breaks, breaks, breaks on the sheltering bars.
+        """.trimIndent(), "Georgia Douglas Johnson"),
+        Poem(82, "Break, Break, Break", """
+            Break, break, break,
+            On thy cold gray stones, O Sea!
+            And I would that my tongue could utter
+            The thoughts that arise in me.
+
+            O, well for the fisherman's boy,
+            That he shouts with his sister at play!
+            O, well for the sailor lad,
+            That he sings in his boat on the bay!
+
+            And the stately ships go on
+            To their haven under the hill;
+            But O for the touch of a vanish'd hand,
+            And the sound of a voice that is still!
+
+            Break, break, break,
+            At the foot of thy crags, O Sea!
+            But the tender grace of a day that is dead
+            Will never come back to me.
+        """.trimIndent(), "Alfred, Lord Tennyson"),
+        Poem(83, "If Thou Must Love Me (Sonnet 14)", """
+            If thou must love me, let it be for nought
+            Except for love's sake only. Do not say
+            "I love her for her smile — her look — her way
+            Of speaking gently, — for a trick of thought
+            That falls in well with mine, and certes brought
+            A sense of pleasant ease on such a day" —
+            For these things in themselves, Belovèd, may
+            Be changed, or change for thee, — and love, so wrought,
+            May be unwrought so. Neither love me for
+            Thine own dear pity's wiping my cheeks dry, —
+            A creature might forget to weep, who bore
+            Thy comfort long, and lose thy love thereby!
+            But love me for love's sake, that evermore
+            Thou mayst love on, through love's eternity.
+        """.trimIndent(), "Elizabeth Barrett Browning"),
+        Poem(84, "The Tide Rises, the Tide Falls", """
+            The tide rises, the tide falls,
+            The twilight darkens, the curlew calls;
+            Along the sea-sands damp and brown
+            The traveller hastens toward the town,
+            And the tide rises, the tide falls.
+
+            Darkness settles on roofs and walls,
+            But the sea, the sea in darkness calls;
+            The little waves, with their soft, white hands,
+            Efface the footprints in the sands,
+            And the tide rises, the tide falls.
+
+            The morning breaks; the steeds in their stalls
+            Stamp and neigh, as the hostler calls;
+            The day returns, but nevermore
+            Returns the traveller to the shore,
+            And the tide rises, the tide falls.
+        """.trimIndent(), "Henry Wadsworth Longfellow"),
+        Poem(85, "Into My Heart an Air That Kills", """
+            Into my heart an air that kills
+            From yon far country blows:
+            What are those blue remembered hills,
+            What spires, what farms are those?
+
+            That is the land of lost content,
+            I see it shining plain,
+            The happy highways where I went
+            And cannot come again.
+        """.trimIndent(), "A. E. Housman"),
+        Poem(86, "Life", """
+            Life, believe, is not a dream
+            So dark as sages say;
+            Oft a little morning rain
+            Foretells a pleasant day.
+
+            Sometimes there are clouds of gloom,
+            But these are transient all;
+            If the shower will make the roses bloom,
+            O why lament its fall?
+
+            Rapidly, merrily,
+            Life's sunny hours flit by,
+            Gratefully, cheerily,
+            Enjoy them as they fly!
+
+            What though Death at times steps in
+            And calls our Best away?
+            What though sorrow seems to win,
+            O'er hope, a heavy sway?
+
+            Yet Hope again elastic springs,
+            Unconquered, though she fell;
+            Still buoyant are her golden wings,
+            Still strong to bear us well.
+
+            Manfully, fearlessly,
+            The day of trial bear,
+            For gloriously, victoriously,
+            Can courage quell despair!
+        """.trimIndent(), "Charlotte Brontë"),
+        Poem(87, "The Rainy Day", """
+            The day is cold, and dark, and dreary;
+            It rains, and the wind is never weary;
+            The vine still clings to the mouldering wall,
+            But at every gust the dead leaves fall,
+            And the day is dark and dreary.
+
+            My life is cold, and dark, and dreary;
+            It rains, and the wind is never weary;
+            My thoughts still cling to the mouldering Past,
+            But the hopes of youth fall thick in the blast,
+            And the days are dark and dreary.
+
+            Be still, sad heart! and cease repining;
+            Behind the clouds is the sun still shining;
+            Thy fate is the common fate of all,
+            Into each life some rain must fall,
+            Some days must be dark and dreary.
+        """.trimIndent(), "Henry Wadsworth Longfellow"),
+        Poem(88, "On His Seventy-Fifth Birthday", """
+            I strove with none, for none was worth my strife.
+            Nature I loved, and, next to Nature, Art:
+            I warm'd both hands before the fire of life;
+            It sinks, and I am ready to depart.
+        """.trimIndent(), "Walter Savage Landor"),
+        Poem(89, "Everyone Sang", """
+            Everyone suddenly burst out singing;
+            And I was filled with such delight
+            As prisoned birds must find in freedom,
+            Winging wildly across the white
+            Orchards and dark-green fields; on — on — and out of sight.
+
+            Everyone's voice was suddenly lifted;
+            And beauty came like the setting sun:
+            My heart was shaken with tears; and horror
+            Drifted away ... O, but Everyone
+            Was a bird; and the song was wordless; the singing will never be done.
+        """.trimIndent(), "Siegfried Sassoon"),
+        Poem(90, "Recuerdo", """
+            We were very tired, we were very merry —
+            We had gone back and forth all night on the ferry.
+            It was bare and bright, and smelled like a stable —
+            But we looked into a fire, we leaned across a table,
+            We lay on a hill-top underneath the moon;
+            And the whistles kept blowing, and the dawn came soon.
+
+            We were very tired, we were very merry —
+            We had gone back and forth all night on the ferry;
+            And you ate an apple, and I ate a pear,
+            From a dozen of each we had bought somewhere;
+            And the sky went wan, and the wind came cold,
+            And the sun rose dripping, a bucketful of gold.
+
+            We were very tired, we were very merry,
+            We had gone back and forth all night on the ferry.
+            We hailed "Good morrow, mother!" to a shawl-covered head,
+            And bought a morning paper, which neither of us read;
+            And she wept, "God bless you!" for the apples and pears,
+            And we gave her all our money but our subway fares.
+        """.trimIndent(), "Edna St. Vincent Millay"),
+        Poem(91, "A Little Song of Life", """
+            Glad that I live am I;
+            That the sky is blue;
+            Glad for the country lanes,
+            And the fall of dew.
+
+            After the sun the rain;
+            After the rain the sun;
+            This is the way of life,
+            Till the work be done.
+
+            All that we need to do,
+            Be we low or high,
+            Is to see that we grow
+            Nearer the sky.
+        """.trimIndent(), "Lizette Woodworth Reese"),
+        Poem(92, "Jenny Kiss'd Me", """
+            Jenny kiss'd me when we met,
+            Jumping from the chair she sat in;
+            Time, you thief, who love to get
+            Sweets into your list, put that in!
+            Say I'm weary, say I'm sad,
+            Say that health and wealth have miss'd me,
+            Say I'm growing old, but add,
+            Jenny kiss'd me.
+        """.trimIndent(), "Leigh Hunt"),
+        Poem(93, "In Time of 'The Breaking of Nations'", """
+            Only a man harrowing clods
+            In a slow silent walk
+            With an old horse that stumbles and nods
+            Half asleep as they stalk.
+
+            Only thin smoke without flame
+            From the heaps of couch-grass;
+            Yet this will go onward the same
+            Though Dynasties pass.
+
+            Yonder a maid and her wight
+            Come whispering by:
+            War's annals will cloud into night
+            Ere their story die.
+        """.trimIndent(), "Thomas Hardy"),
+        Poem(94, "The Rhodora", """
+            In May, when sea-winds pierced our solitudes,
+            I found the fresh Rhodora in the woods,
+            Spreading its leafless blooms in a damp nook,
+            To please the desert and the sluggish brook.
+            The purple petals, fallen in the pool,
+            Made the black water with their beauty gay;
+            Here might the red-bird come his plumes to cool,
+            And court the flower that cheapens his array.
+            Rhodora! if the sages ask thee why
+            This charm is wasted on the earth and sky,
+            Tell them, dear, that if eyes were made for seeing,
+            Then Beauty is its own excuse for being:
+            Why thou wert there, O rival of the rose!
+            I never thought to ask, I never knew:
+            But, in my simple ignorance, suppose
+            The self-same Power that brought me there brought you.
+        """.trimIndent(), "Ralph Waldo Emerson"),
+        Poem(95, "Fable", """
+            The mountain and the squirrel
+            Had a quarrel;
+            And the former called the latter "Little Prig."
+            Bun replied,
+            "You are doubtless very big;
+            But all sorts of things and weather
+            Must be taken in together,
+            To make up a year
+            And a sphere.
+            And I think it no disgrace
+            To occupy my place.
+            If I'm not so large as you,
+            You are not so small as I,
+            And not half so spry.
+            I'll not deny you make
+            A very pretty squirrel track;
+            Talents differ; all is well and wisely put;
+            If I cannot carry forests on my back,
+            Neither can you crack a nut."
+        """.trimIndent(), "Ralph Waldo Emerson"),
+        Poem(96, "A Man Said to the Universe", """
+            A man said to the universe:
+            "Sir, I exist!"
+            "However," replied the universe,
+            "The fact has not created in me
+            A sense of obligation."
+        """.trimIndent(), "Stephen Crane"),
+        Poem(97, "The Leaden-Eyed", """
+            Let not young souls be smothered out before
+            They do quaint deeds and fully flaunt their pride.
+            It is the world's one crime its babes grow dull,
+            Its poor are ox-like, limp and leaden-eyed.
+
+            Not that they starve, but starve so dreamlessly,
+            Not that they sow, but that they seldom reap,
+            Not that they serve, but have no gods to serve,
+            Not that they die, but that they die like sheep.
+        """.trimIndent(), "Vachel Lindsay"),
+        Poem(98, "A Decade", """
+            When you came, you were like red wine and honey,
+            And the taste of you burnt my mouth with its sweetness.
+            Now you are like morning bread,
+            Smooth and pleasant.
+            I hardly taste you at all for I know your savour,
+            But I am completely nourished.
+        """.trimIndent(), "Amy Lowell"),
+        Poem(99, "Wind and Silver", """
+            Greatly shining,
+            The Autumn moon floats in the thin sky;
+            And the fish-ponds shake their backs and flash their dragon scales
+            As she passes over them.
+        """.trimIndent(), "Amy Lowell"),
+        Poem(100, "Oread", """
+            Whirl up, sea—
+            whirl your pointed pines,
+            splash your great pines
+            on our rocks,
+            hurl your green over us,
+            cover us with your pools of fir.
+        """.trimIndent(), "H. D."),
+        Poem(101, "November Night", """
+            Listen…
+            With faint dry sound,
+            Like steps of passing ghosts,
+            The leaves, frost-crisp'd, break from the trees
+            And fall.
+        """.trimIndent(), "Adelaide Crapsey"),
+        Poem(102, "Triad", """
+            These be
+            Three silent things:
+            The falling snow… the hour
+            Before the dawn… the mouth of one
+            Just dead.
+        """.trimIndent(), "Adelaide Crapsey"),
+        Poem(103, "The Passionate Shepherd to His Love", """
+            Come live with me and be my love,
+            And we will all the pleasures prove
+            That valleys, groves, hills, and fields,
+            Woods, or steepy mountain yields.
+
+            And we will sit upon the rocks,
+            Seeing the shepherds feed their flocks,
+            By shallow rivers to whose falls
+            Melodious birds sing madrigals.
+
+            And I will make thee beds of roses
+            And a thousand fragrant posies,
+            A cap of flowers, and a kirtle
+            Embroidered all with leaves of myrtle;
+
+            A gown made of the finest wool
+            Which from our pretty lambs we pull;
+            Fair lined slippers for the cold,
+            With buckles of the purest gold;
+
+            A belt of straw and ivy buds,
+            With coral clasps and amber studs:
+            And if these pleasures may thee move,
+            Come live with me and be my love.
+
+            The shepherds' swains shall dance and sing
+            For thy delight each May morning:
+            If these delights thy mind may move,
+            Then live with me and be my love.
+        """.trimIndent(), "Christopher Marlowe"),
+        Poem(104, "Now Winter Nights Enlarge", """
+            Now winter nights enlarge
+            The number of their hours;
+            And clouds their storms discharge
+            Upon the airy towers.
+            Let now the chimneys blaze
+            And cups o'erflow with wine,
+            Let well-tuned words amaze
+            With harmony divine.
+            Now yellow waxen lights
+            Shall wait on honey love
+            While youthful revels, masques, and courtly sights
+            Sleep's leaden spells remove.
+
+            This time doth well dispense
+            With lovers' long discourse;
+            Much speech hath some defence,
+            Though beauty no remorse.
+            All do not all things well;
+            Some measures comely tread,
+            Some knotted riddles tell,
+            Some poems smoothly read.
+            The summer hath his joys,
+            And winter his delights;
+            Though love and all his pleasures are but toys,
+            They shorten tedious nights.
+        """.trimIndent(), "Thomas Campion"),
+        Poem(105, "Work Without Hope", """
+            All Nature seems at work. Slugs leave their lair—
+            The bees are stirring—birds are on the wing—
+            And Winter slumbering in the open air,
+            Wears on his smiling face a dream of Spring!
+            And I the while, the sole unbusy thing,
+            Nor honey make, nor pair, nor build, nor sing.
+
+            Yet well I ken the banks where amaranths blow,
+            Have traced the fount whence streams of nectar flow.
+            Bloom, O ye amaranths! bloom for whom ye may,
+            For me ye bloom not! Glide, rich streams, away!
+            With lips unbrightened, wreathless brow, I stroll:
+            And would you learn the spells that drowse my soul?
+            Work without Hope draws nectar in a sieve,
+            And Hope without an object cannot live.
+        """.trimIndent(), "Samuel Taylor Coleridge"),
+        Poem(106, "She Walks in Beauty", """
+            She walks in beauty, like the night
+            Of cloudless climes and starry skies;
+            And all that's best of dark and bright
+            Meet in her aspect and her eyes:
+            Thus mellowed to that tender light
+            Which heaven to gaudy day denies.
+
+            One shade the more, one ray the less,
+            Had half impaired the nameless grace
+            Which waves in every raven tress,
+            Or softly lightens o'er her face;
+            Where thoughts serenely sweet express
+            How pure, how dear their dwelling-place.
+
+            And on that cheek, and o'er that brow,
+            So soft, so calm, yet eloquent,
+            The smiles that win, the tints that glow,
+            But tell of days in goodness spent,
+            A mind at peace with all below,
+            A heart whose love is innocent!
+        """.trimIndent(), "Lord Byron"),
+        Poem(107, "Music, When Soft Voices Die", """
+            Music, when soft voices die,
+            Vibrates in the memory—
+            Odours, when sweet violets sicken,
+            Live within the sense they quicken.
+
+            Rose leaves, when the rose is dead,
+            Are heaped for the belovèd's bed;
+            And so thy thoughts, when thou art gone,
+            Love itself shall slumber on.
+        """.trimIndent(), "Percy Bysshe Shelley"),
+        Poem(108, "When I Have Fears That I May Cease to Be", """
+            When I have fears that I may cease to be
+            Before my pen has gleaned my teeming brain,
+            Before high-pilèd books, in charactery,
+            Hold like rich garners the full ripened grain;
+            When I behold, upon the night's starred face,
+            Huge cloudy symbols of a high romance,
+            And think that I may never live to trace
+            Their shadows, with the magic hand of chance;
+            And when I feel, fair creature of an hour,
+            That I shall never look upon thee more,
+            Never have relish in the faery power
+            Of unreflecting love—then on the shore
+            Of the wide world I stand alone, and think
+            Till love and fame to nothingness do sink.
+        """.trimIndent(), "John Keats"),
+        Poem(109, "The Death-Bed", """
+            We watched her breathing through the night,
+            Her breathing soft and low,
+            As in her breast the wave of life
+            Kept heaving to and fro.
+
+            So silently we seemed to speak,
+            So slowly moved about,
+            As we had lent her half our powers
+            To eke her being out.
+
+            Our very hopes belied our fears,
+            Our fears our hopes belied—
+            We thought her dying when she slept,
+            And sleeping when she died.
+
+            For when the morn came dim and sad,
+            And chill with early showers,
+            Her quiet eyelids closed—she had
+            Another morn than ours.
+        """.trimIndent(), "Thomas Hood"),
+        Poem(110, "Requiescat", """
+            Strew on her roses, roses,
+            And never a spray of yew!
+            In quiet she reposes;
+            Ah, would that I did too!
+
+            Her mirth the world required;
+            She bathed it in smiles of glee.
+            But her heart was tired, tired,
+            And now they let her be.
+
+            Her life was turning, turning,
+            In mazes of heat and sound.
+            But for peace her soul was yearning,
+            And now peace laps her round.
+
+            Her cabined, ample spirit,
+            It fluttered and failed for breath.
+            To-night it doth inherit
+            The vasty hall of death.
+        """.trimIndent(), "Matthew Arnold"),
+        Poem(111, "Vitae Summa Brevis", """
+            They are not long, the weeping and the laughter,
+            Love and desire and hate:
+            I think they have no portion in us after
+            We pass the gate.
+
+            They are not long, the days of wine and roses:
+            Out of a misty dream
+            Our path emerges for a while, then closes
+            Within a dream.
+        """.trimIndent(), "Ernest Dowson"),
+        Poem(112, "Renouncement", """
+            I must not think of thee; and, tired yet strong,
+            I shun the thought that lurks in all delight—
+            The thought of thee—and in the blue heaven's height,
+            And in the sweetest passage of a song.
+            Oh, just beyond the fairest thoughts that throng
+            This breast, the thought of thee waits, hidden yet bright;
+            But it must never, never come in sight;
+            I must stop short of thee the whole day long.
+            But when sleep comes to close each difficult day,
+            When night gives pause to the long watch I keep,
+            And all my bonds I needs must loose apart,
+            Must doff my will as raiment laid away,—
+            With the first dream that comes with the first sleep
+            I run, I run, I am gathered to thy heart.
+        """.trimIndent(), "Alice Meynell"),
+        Poem(113, "Love Without Hope", """
+            Love without hope, as when the young bird-catcher
+            Swept off his tall hat to the Squire's own daughter,
+            So let the imprisoned larks escape and fly
+            Singing about her head, as she rode by.
+        """.trimIndent(), "Robert Graves"),
+        Poem(114, "Sea Love", """
+            Tide be runnin' the great world over:
+            'Twas only last June month I mind that we
+            Was thinkin' the toss and the call in the breast of the lover
+            So everlastin' as the sea.
+
+            Here's the same little fishes that sputter and swim,
+            Wi' the moon's old glim on the grey, wet sand;
+            An' him no more to me nor me to him
+            Than the wind goin' over my hand.
+        """.trimIndent(), "Charlotte Mew"),
+        Poem(115, "Thaw", """
+            Over the land freckled with snow half-thawed
+            The speculating rooks at their nests cawed
+            And saw from elm-tops, delicate as flowers of grass,
+            What we below could not see, Winter pass.
+        """.trimIndent(), "Edward Thomas"),
+        Poem(116, "The Owl", """
+            Downhill I came, hungry, and yet not starved;
+            Cold, yet had heat within me that was proof
+            Against the North wind; tired, yet so that rest
+            Had seemed the sweetest thing under a roof.
+
+            Then at the inn I had food, fire, and rest,
+            Knowing how hungry, cold, and tired was I.
+            All of the night was quite barred out except
+            An owl's cry, a most melancholy cry
+
+            Shaken out long and clear upon the hill,
+            No merry note, nor cause of merriment,
+            But one telling me plain what I escaped
+            And others could not, that night, as in I went.
+
+            And salted was my food, and my repose,
+            Salted and sobered, too, by the bird's voice
+            Speaking for all who lay under the stars,
+            Soldiers and poor, unable to rejoice.
+        """.trimIndent(), "Edward Thomas"),
+        Poem(117, "Nightingales", """
+            Beautiful must be the mountains whence ye come,
+            And bright in the fruitful valleys the streams, wherefrom
+            Ye learn your song:
+            Where are those starry woods? O might I wander there,
+            Among the flowers, which in that heavenly air
+            Bloom the year long!
+
+            Nay, barren are those mountains and spent the streams:
+            Our song is the voice of desire, that haunts our dreams,
+            A throe of the heart,
+            Whose pining visions dim, forbidden hopes profound,
+            No dying cadence nor long sigh can sound,
+            For all our art.
+
+            Alone, aloud in the raptured ear of men
+            We pour our dark nocturnal secret; and then,
+            As night is withdrawn
+            From these sweet-springing meads and bursting boughs of May,
+            Dream, while the innumerable choir of day
+            Welcome the dawn.
+        """.trimIndent(), "Robert Bridges"),
+        Poem(118, "Nod", """
+            Softly along the road of evening,
+            In a twilight dim with rose,
+            Wrinkled with age, and drenched with dew,
+            Old Nod, the shepherd, goes.
+
+            His drowsy flock streams on before him,
+            Their fleeces charged with gold,
+            To where the sun's last beam leans low
+            On Nod the shepherd's fold.
+
+            The hedge is quick and green with briar,
+            From their sand the conies creep;
+            And all the birds that fly in heaven
+            Flock singing home to sleep.
+
+            His lambs outnumber a noon's roses,
+            Yet, when night's shadows fall,
+            His blind old sheep-dog, Slumber-soon,
+            Misses not one of all.
+
+            His are the quiet steeps of dreamland,
+            The waters of no-more-pain,
+            His ram's bell rings 'neath an arch of stars,
+            "Rest, rest, and rest again."
+        """.trimIndent(), "Walter de la Mare"),
+        Poem(119, "Weathers", """
+            This is the weather the cuckoo likes,
+            And so do I;
+            When showers betumble the chestnut spikes,
+            And nestlings fly;
+            And the little brown nightingale bills his best,
+            And they sit outside at "The Traveller's Rest,"
+            And maids come forth sprig-muslin drest,
+            And citizens dream of the south and west,
+            And so do I.
+
+            This is the weather the shepherd shuns,
+            And so do I;
+            When beeches drip in browns and duns,
+            And thresh and ply;
+            And hill-hid tides throb, throe on throe,
+            And meadow rivulets overflow,
+            And drops on gate-bars hang in a row,
+            And rooks in families homeward go,
+            And so do I.
+        """.trimIndent(), "Thomas Hardy"),
+        Poem(120, "Afterwards", """
+            When the Present has latched its postern behind my tremulous stay,
+            And the May month flaps its glad green leaves like wings,
+            Delicate-filmed as new-spun silk, will the neighbours say,
+            "He was a man who used to notice such things"?
+
+            If it be in the dusk when, like an eyelid's soundless blink,
+            The dewfall-hawk comes crossing the shades to alight
+            Upon the wind-warped upland thorn, a gazer may think,
+            "To him this must have been a familiar sight."
+
+            If I pass during some nocturnal blackness, mothy and warm,
+            When the hedgehog travels furtively over the lawn,
+            One may say, "He strove that such innocent creatures should come to no harm,
+            But he could do little for them; and now he is gone."
+
+            If, when hearing that I have been stilled at last, they stand at the door,
+            Watching the full-starred heavens that winter sees,
+            Will this thought rise on those who will meet my face no more,
+            "He was one who had an eye for such mysteries"?
+
+            And will any say when my bell of quittance is heard in the gloom,
+            And a crossing breeze cuts a pause in its outrollings,
+            Till they rise again, as they were a new bell's boom,
+            "He hears it not now, but used to notice such things"?
+        """.trimIndent(), "Thomas Hardy"),
+        Poem(121, "Cargoes", """
+            Quinquireme of Nineveh from distant Ophir,
+            Rowing home to haven in sunny Palestine,
+            With a cargo of ivory,
+            And apes and peacocks,
+            Sandalwood, cedarwood, and sweet white wine.
+
+            Stately Spanish galleon coming from the Isthmus,
+            Dipping through the Tropics by the palm-green shores,
+            With a cargo of diamonds,
+            Emeralds, amethysts,
+            Topazes, and cinnamon, and gold moidores.
+
+            Dirty British coaster with a salt-caked smoke-stack,
+            Butting through the Channel in the mad March days,
+            With a cargo of Tyne coal,
+            Road-rails, pig-lead,
+            Firewood, iron-ware, and cheap tin trays.
+        """.trimIndent(), "John Masefield"),
+        Poem(122, "The Poplar Field", """
+            The poplars are felled, farewell to the shade
+            And the whispering sound of the cool colonnade:
+            The winds play no longer and sing in the leaves,
+            Nor Ouse on his bosom their image receives.
+
+            Twelve years have elapsed since I first took a view
+            Of my favourite field, and the bank where they grew,
+            And now in the grass behold they are laid,
+            And the tree is my seat that once lent me a shade.
+
+            The blackbird has fled to another retreat
+            Where the hazels afford him a screen from the heat,
+            And the scene where his melody charmed me before
+            Resounds with his sweet-flowing ditty no more.
+
+            My fugitive years are all hasting away,
+            And I must ere long lie as lowly as they,
+            With a turf on my breast and a stone at my head,
+            Ere another such grove shall arise in its stead.
+
+            'Tis a sight to engage me, if anything can,
+            To muse on the perishing pleasures of man;
+            Though his life be a dream, his enjoyments, I see,
+            Have a being less durable even than he.
+        """.trimIndent(), "William Cowper"),
+        Poem(123, "November Cotton Flower", """
+            Boll-weevil's coming, and the winter's cold,
+            Made cotton-stalks look rusty, seasons old,
+            And cotton, scarce as any southern snow,
+            Was vanishing; the branch, so pinched and slow,
+            Failed in its function as the autumn rake;
+            Drouth fighting soil had caused the soil to take
+            All water from the streams; dead birds were found
+            In wells a hundred feet below the ground—
+            Such was the season when the flower bloomed.
+            Old folks were startled, and it soon assumed
+            Significance. Superstition saw
+            Something it had never seen before:
+            Brown eyes that loved without a trace of fear,
+            Beauty so sudden for that time of year.
+        """.trimIndent(), "Jean Toomer"),
+        Poem(124, "The Black Finger", """
+            I have just seen a most beautiful thing,
+            Slim and still,
+            Against a gold, gold sky,
+            A straight black cypress,
+            Sensitive,
+            Exquisite,
+            A black finger
+            Pointing upwards.
+            Why, beautiful still finger, are you black?
+            And why are you pointing upwards?
+        """.trimIndent(), "Angelina Weld Grimké"),
+        Poem(125, "For a Poet", """
+            I have wrapped my dreams in a silken cloth,
+            And laid them away in a box of gold;
+            Where long will cling the lips of the moth,
+            I have wrapped my dreams in a silken cloth;
+            I hide no hate; I am not even wroth
+            Who found earth's breath so keen and cold;
+            I have wrapped my dreams in a silken cloth,
+            And laid them away in a box of gold.
+        """.trimIndent(), "Countee Cullen"),
+        Poem(126, "Preparedness", """
+            For all your days prepare,
+            And meet them ever alike:
+            When you are the anvil, bear—
+            When you are the hammer, strike.
+        """.trimIndent(), "Edwin Markham"),
+        Poem(127, "There Is No Frigate Like a Book", """
+            There is no Frigate like a Book
+            To take us Lands away,
+            Nor any Coursers like a Page
+            Of prancing Poetry—
+            This Traverse may the poorest take
+            Without oppress of Toll—
+            How frugal is the Chariot
+            That bears the Human soul.
+        """.trimIndent(), "Emily Dickinson"),
+        Poem(128, "The Coin", """
+            Into my heart's treasury
+            I slipped a coin
+            That time cannot take
+            Nor a thief purloin,—
+            Oh better than the minting
+            Of a gold-crowned king
+            Is the safe-kept memory
+            Of a lovely thing.
+        """.trimIndent(), "Sara Teasdale"),
+        Poem(129, "The Vagabond", """
+            Give to me the life I love,
+            Let the lave go by me,
+            Give the jolly heaven above
+            And the byway nigh me.
+            Bed in the bush with stars to see,
+            Bread I dip in the river—
+            There's the life for a man like me,
+            There's the life for ever.
+
+            Let the blow fall soon or late,
+            Let what will be o'er me;
+            Give the face of earth around
+            And the road before me.
+            Wealth I seek not, hope nor love,
+            Nor a friend to know me;
+            All I seek, the heaven above
+            And the road below me.
+
+            Or let autumn fall on me
+            Where afield I linger,
+            Silencing the bird on tree,
+            Biting the blue finger.
+            White as meal the frosty field—
+            Warm the fireside haven—
+            Not to autumn will I yield,
+            Not to winter even!
+
+            Let the blow fall soon or late,
+            Let what will be o'er me;
+            Give the face of earth around,
+            And the road before me.
+            Wealth I ask not, hope nor love,
+            Nor a friend to know me;
+            All I ask, the heaven above
+            And the road below me.
+        """.trimIndent(), "Robert Louis Stevenson"),
+        Poem(130, "Tears", """
+            When I consider Life and its few years—
+            A wisp of fog betwixt us and the sun;
+            A call to battle, and the battle done
+            Ere the last echo dies within our ears;
+            A rose choked in the grass; an hour of fears;
+            The gusts that past a darkening shore do beat;
+            The burst of music down an unlistening street,—
+            I wonder at the idleness of tears.
+            Ye old, old dead, and ye of yesternight,
+            Chieftains, and bards, and keepers of the sheep,
+            By every cup of sorrow that you had,
+            Loose me from tears, and make me see aright
+            How each hath back what once he stayed to weep:
+            Homer his sight, David his little lad!
+        """.trimIndent(), "Lizette Woodworth Reese"),
+        Poem(131, "We Never Know How High We Are", """
+            We never know how high we are
+            Till we are called to rise;
+            And then, if we are true to plan,
+            Our statures touch the skies—
+
+            The Heroism we recite
+            Would be a daily thing,
+            Did not ourselves the Cubits warp
+            For fear to be a King—
+        """.trimIndent(), "Emily Dickinson"),
+        Poem(132, "I Want to Die While You Love Me", """
+            I want to die while you love me,
+            While yet you hold me fair,
+            While laughter lies upon my lips
+            And lights are in my hair.
+
+            I want to die while you love me,
+            And bear to that still bed,
+            Your kisses turbulent, unspent,
+            To warm me when I'm dead.
+
+            I want to die while you love me,
+            Oh, who would care to live
+            Till love has nothing more to ask
+            And nothing more to give!
+
+            I want to die while you love me,
+            And never, never see
+            The glory of this perfect day
+            Grow dim or cease to be!
+        """.trimIndent(), "Georgia Douglas Johnson"),
+        Poem(133, "A Winter Twilight", """
+            A silence slipping around like death,
+            Yet chased by a whisper, a sigh, a breath;
+            One group of trees, lean, naked and cold,
+            Inking their crests 'gainst a sky green-gold;
+            One path that knows where the corn flowers were;
+            Lonely, apart, unyielding, one fir;
+            And over it softly leaning down,
+            One star that I loved ere the fields went brown.
+        """.trimIndent(), "Angelina Weld Grimké"),
     )
 }
-

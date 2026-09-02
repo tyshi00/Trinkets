@@ -1,35 +1,19 @@
 package com.tyshi00.trinkets
 
-// Short literary and historical quotes (each under 15 words, one quote per
-// source work), attributed to the real author and work they come from.
+// Short attributed quotes (each under 15 words), one per source work.
 //
-// CURATION STANDARD: authors are selected for their own record, not just for
-// a pleasant turn of phrase. Everyone here is someone whose life's work
-// advanced human dignity, equality, justice, or plain humaneness:
-// abolitionists, anti-colonial leaders, suffragists, humanitarians, civil
-// rights organizers, and writers who used their work to argue for the people
-// their societies discarded.
+// Curation: authors are chosen for their record as well as their words —
+// people whose life's work advanced human dignity, equality, or justice.
+// Anyone with a well-documented record of racism, antisemitism, misogyny,
+// or other bigotry is excluded regardless of literary stature.
 //
-// Figures with well-documented records of racism, antisemitism, misogyny, or
-// other bigotry are excluded regardless of literary stature.
-//
-// SOURCING: where a quote's exact wording or origin is disputed, it is either
-// omitted or the attribution is hedged rather than overstated. Widely
-// circulated but fabricated quotes are deliberately left out; the "I freed a
-// thousand slaves" line attributed to Harriet Tubman, for example, is a
-// documented modern invention and is not used here.
-//
-// Most entries are public domain. A smaller set of twentieth and
-// twenty-first century entries appear as brief attributed quotations. No
-// quotes are drawn from Abrahamic scripture, and each author/work pair is
-// used at most once (so a generic label like "collected speeches" may recur
-// across different people, but never twice for the same person).
-//
-// LANGUAGES: quotes appear in their original language where that language
-// is one the app displays well: Portuguese, Spanish, Mandarin, French,
-// Italian, and Japanese, alongside English. Where the original is in a
-// script or language outside that set, a public-domain translation is cited.
-// See docs/CONTENT.md for sourcing standards.
+// Sourcing: verify exact wording; hedge or omit disputed attributions;
+// never use fabricated "quotes" (e.g. the Tubman "I freed a thousand
+// slaves" line, a modern invention). Most entries are public domain; some
+// are brief quotations from modern works. No Abrahamic scripture. Quotes
+// appear in their original language where the app displays it well
+// (Portuguese, Spanish, Mandarin, French, Italian, Japanese), otherwise a
+// public-domain translation is cited. See docs/CONTENT.md.
 object TrinketsExcerpts {
     val ALL: List<Excerpt> = listOf(
 
@@ -670,6 +654,34 @@ object TrinketsExcerpts {
         Excerpt(302, "There is no such thing as being neutral about human dignity.", "Leymah Gbowee", "Mighty Be Our Powers"),
 
         Excerpt(303, "Extremists have shown what frightens them most: a girl with a book.", "Malala Yousafzai", "collected addresses"),
+
+        // Single lines from contemporary poems (the Poems bucket reproduces
+        // only public-domain poems in full; these stay short and attributed).
+        Excerpt(304, "Joy is not made to be a crumb.", "Mary Oliver", "Don't Hesitate"),
+        Excerpt(305, "They give off such hints of gladness.", "Mary Oliver", "When I Am Among the Trees"),
+        Excerpt(306, "The sun rises in spite of everything.", "Derek Mahon", "Everything Is Going to Be All Right"),
+        Excerpt(307, "Enough. These few words are enough.", "David Whyte", "Enough"),
+        Excerpt(308, "Live the questions now.", "Rainer Maria Rilke", "Letters to a Young Poet"),
+        Excerpt(309, "I may have many sorrows; dawn is not one of them.", "Derek Walcott", "Alba"),
+        Excerpt(310, "Have compassion for everyone you meet, even if they don't want it.", "Miller Williams", "Compassion"),
+        Excerpt(311, "There is a sorrow beyond all grief which leads to joy.", "Rashani Rea", "There Is a Brokenness"),
+        Excerpt(312, "This is the presence that doesn't.", "Rumi", "This We Have Now (tr. Coleman Barks)"),
+        Excerpt(313, "Ten thousand flowers in spring, the moon in autumn.", "Wu Men", "untitled verse (tr. Stephen Mitchell)"),
+        Excerpt(314, "Listen to the wind singing in your veins.", "John Welwood", "Forget About Enlightenment"),
+        Excerpt(315, "There was no thing on earth I wanted to possess.", "Czeslaw Milosz", "Gift (tr. the author and Robert Hass)"),
+        Excerpt(316, "Each step is the journey; a single note the song.", "Arlene Gay Levine", "Here Is the Road"),
+        Excerpt(317, "Gratitude arrives, not because we are willing, but because it insists on itself.", "Rosemerry Wahtola Trommer", "Autumnal"),
+        Excerpt(318, "As if what exists, exists so that it can be lost and become precious.", "Lisel Mueller", "In Passing"),
+        Excerpt(319, "I hold my face between my hands. No, I am not crying.", "Thich Nhat Hanh", "For Warmth"),
+        Excerpt(320, "Who you are is whole.", "Danna Faulds", "Birthright"),
+        Excerpt(321, "I will not die an unlived life.", "Dawna Markova", "I Will Not Die an Unlived Life"),
+        Excerpt(322, "Stand still. Wherever you are is called Here.", "David Wagoner", "Lost"),
+        Excerpt(323, "Are we standing now, quietly, in the new life?", "Juan Ramon Jimenez", "Oceans (tr. Robert Bly)"),
+        Excerpt(324, "I come into the peace of wild things.", "Wendell Berry", "The Peace of Wild Things"),
+        Excerpt(325, "I go among trees and sit still.", "Wendell Berry", "A Timbered Choir"),
+        Excerpt(326, "Sometimes the best thing to do is trust.", "Thomas R. Smith", "Trust"),
+        Excerpt(327, "The whole world shares your tears.", "Vikram Seth", "All You Who Sleep Tonight"),
+        Excerpt(328, "Trinkets of borrowed loves.", "Maya Angelou", "When You Come"),
 
     )
 }

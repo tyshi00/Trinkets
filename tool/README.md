@@ -35,22 +35,24 @@ All content is bundled directly into the app, not fetched from the network, so e
 
 | Bucket | Items |
 | --- | --- |
-| Poems | 360 |
+| Poems | 133 |
 | Philosophy prompts | 360 |
 | Morning prompts | 360 |
 | Trivia | 360 |
 | Today in History | 582 |
-| Literary excerpts | 303 |
+| Literary excerpts | 328 |
 | Jokes | 207 |
 | Reflection prompts | 94 |
 
-The buckets aren't the same size on purpose. Poems, philosophy, morning prompts, and trivia are original writing, so they hit a full 360-day year. Today in History is larger because it's keyed to real calendar dates rather than a rotation. Excerpts, jokes, and reflection prompts are smaller because each entry has to be a real, attributable thing rather than something invented to fill a slot. See [`tool/docs/CONTENT.md`](tool/docs/CONTENT.md) for sourcing rules and how to keep growing each bucket.
+The buckets aren't the same size on purpose. Philosophy, morning prompts, and trivia are original writing, so they hit a full 360-day year. Today in History is larger because it's keyed to real calendar dates rather than a rotation. Poems, excerpts, jokes, and reflection prompts are smaller because each entry has to be a real, attributable thing rather than something invented to fill a slot; Poems pairs fourteen originals with public-domain poems that are found and verified one at a time. See [`tool/docs/CONTENT.md`](tool/docs/CONTENT.md) for sourcing rules and how to keep growing each bucket.
 
-## Credits and licence
+## Credits and License
 
-Trinkets is built on the [Light SDK](https://github.com/lightphone/light-sdk) by The Light Phone, which is MIT licensed. The MIT licence and copyright notice are retained in [`LICENSE`](./LICENSE).
+Trinkets is built on the [Light SDK](https://github.com/lightphone/light-sdk) by The Light Phone, which is MIT licensed. The MIT License and copyright notice are retained in [`LICENSE`](./LICENSE).
 
-The Reflection prompts are adapted from Light Phone's **Reflect** tool. Trinkets uses the prompt text but drops Reflect's nine-category filtering, drawing from the whole pool instead, and adds the check-off system. Reflect is distributed as a standalone extraction of an `examples/reflect` module from the Light SDK repo; the extraction itself ships no licence file, so the MIT licence is inherited from the upstream SDK rather than stated directly on that repo.
+Poem of the Day reproduces public-domain poems in full, each credited on screen to its author (Frost, Hughes, Dickinson, Rossetti, Dunbar, Teasdale, Millay, and others). Literary Excerpts quotes single lines (under 15 words) from real works, including some still in copyright, as brief attributed quotations.
+
+The Reflection prompts are adapted from Light Phone's **Reflect** tool. Trinkets uses the prompt text but drops Reflect's nine-category filtering, drawing from the whole pool instead, and adds the check-off system. Reflect is distributed as a standalone extraction of an `examples/reflect` module from the Light SDK repo; the extraction itself ships no license file, so the MIT License is inherited from the upstream SDK rather than stated directly on that repo.
 
 The shake-to-shuffle gesture uses `LightShakeDetector` and `LightHapticFeedback`, ported from a newer Light SDK release than the one vendored here.
 

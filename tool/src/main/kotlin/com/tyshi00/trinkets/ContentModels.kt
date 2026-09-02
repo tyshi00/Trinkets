@@ -3,21 +3,19 @@ package com.tyshi00.trinkets
 import java.time.LocalDate
 
 // === Content models ===
-// All copy in these buckets is original writing produced for this app (or,
-// for Today in History, original wording describing real, well-documented
-// historical facts), nothing here is reproduced from a third-party
-// copyrighted source. Data lives in the generated Trinkets*Content.kt files
-// as plain Kotlin lists (the Light SDK sandbox doesn't expose Context, so
-// this app can't read bundled JSON/asset files. See docs/design_decisions
-// in the SDK root for the LocalContext restriction).
+// Most buckets are original writing for this app. Two are not: Literary
+// Excerpts are short attributed quotations, and Poems also carries a set of
+// public-domain poems alongside the originals. Data lives in plain Kotlin
+// lists because the Light SDK sandbox doesn't expose Context, so the app
+// can't read bundled JSON/asset files. See docs/CONTENT.md.
 
-data class Poem(val id: Int, val title: String, val body: String)
+/** author is null for the app's own poems, set for public-domain works. */
+data class Poem(val id: Int, val title: String, val body: String, val author: String? = null)
 
 /**
- * A short, verifiably public-domain quote (under 15 words) from a real
- * literary work, properly attributed. Unlike Poems, which are original
- * writing for this app, Excerpts are meant to be genuine tidbits of
- * existing literature. See docs/CONTENT.md for sourcing rules.
+ * A short attributed quote (under 15 words) from a real literary work. Most
+ * are public domain; some are brief quotations from modern works. See
+ * docs/CONTENT.md for sourcing rules.
  */
 data class Excerpt(val id: Int, val quote: String, val author: String, val work: String)
 

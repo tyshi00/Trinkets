@@ -12,6 +12,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.lifecycle.viewModelScope
 import com.thelightphone.sdk.LightScreen
 import com.thelightphone.sdk.LightViewModel
@@ -178,6 +179,8 @@ fun openFeatureScreen(
             topBarTitle = "Poem of the Day",
             heading = poem?.title.orEmpty(),
             body = poem?.body.orEmpty(),
+            secondaryLine = poem?.author?.let { "— $it" },
+            bodyAlign = TextAlign.Start,
             emptyMessage = "No poems have been added yet.",
         )
     }
