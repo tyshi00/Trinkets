@@ -12,8 +12,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
+import com.thelightphone.sdk.ui.LocalHapticsEnabled
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -96,14 +99,17 @@ class LightActivity internal constructor() : ComponentActivity() {
                             .weight(1f)
                             .fillMaxWidth(),
                     ) {
+                        val hapticsEnabled by rememberHapticsEnabled().collectAsState()
                         val content: @Composable () -> Unit = { screen.Content() }
-                        if (screen is ViewModelStoreOwner) {
-                            CompositionLocalProvider(
-                                LocalViewModelStoreOwner provides screen,
-                                content = content,
-                            )
-                        } else {
-                            content()
+                        CompositionLocalProvider(LocalHapticsEnabled provides hapticsEnabled) {
+                            if (screen is ViewModelStoreOwner) {
+                                CompositionLocalProvider(
+                                    LocalViewModelStoreOwner provides screen,
+                                    content = content,
+                                )
+                            } else {
+                                content()
+                            }
                         }
                     }
                 }

@@ -12,7 +12,7 @@ at runtime, and embedding the data in Kotlin sidesteps that.
 
 | Bucket | File | Count today |
 |---|---|---|
-| Poems | `TrinketsPoems.kt` | 133 (14 original + 119 public-domain; see note below) |
+| Poems | `TrinketsPoems.kt` | 127 (14 original + 113 public-domain; see note below) |
 | Philosophy prompts | `TrinketsPhilosophyPrompts.kt` | 360 |
 | Morning prompts | `TrinketsMorningPrompts.kt` | 360 (120 gentle / 120 steady / 120 energizing) |
 | Trivia | `TrinketsTrivia.kt` | 360 |
@@ -77,7 +77,15 @@ reproduced in full, each with its `author` set. Rules:
 - **No bigots.** Authors with well-documented records of racism,
   antisemitism, homophobia, transphobia, or similar are excluded, however
   celebrated. This is why Kipling, Yeats, Whitman, Larkin, Burns, Pound,
-  and Eliot are not here.
+  and Eliot are not here. Emerson (Anglo-Saxon racial hierarchy in
+  *English Traits* and the journals, alongside his abolitionism), Vachel
+  Lindsay ("The Congo", condemned by Du Bois and the NAACP), Marlowe
+  (*The Jew of Malta*), and Nashe (*Christ's Tears Over Jerusalem*) were
+  removed under this rule in v1.4.0, and the poems of theirs that were
+  here are not to be restored.
+- **No abusers.** Separately from bigotry, an author whose documented
+  personal conduct fails the "humane themselves" bar is excluded too.
+  This is why Byron is not here.
 - Verify the exact text against a reliable source, not a quote-aggregator.
 - Poem text renders left-aligned, so line breaks and indentation in the
   raw strings are shown as written.

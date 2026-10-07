@@ -21,13 +21,16 @@ private val SHAKE_HAPTIC_DURATION = 60.milliseconds
  * confirm the shake registered. Wraps [SensorManager] internally so tool code
  * never has to touch a raw Context or system service.
  *
- * Ported from a newer Light SDK. The upstream version reads a
- * `LocalHapticsEnabled` CompositionLocal that this SDK version doesn't provide,
- * so [hapticsEnabled] is a plain parameter here instead. Devices with no
+ * Ported from a newer Light SDK. [hapticsEnabled] defaults to the user's
+ * global haptics preference via [LocalHapticsEnabled], the same signal
+ * [lightClickable] uses, and can be overridden per call site. Devices with no
  * accelerometer simply never fire, rather than crashing.
  */
 @Composable
-fun LightShakeDetector(hapticsEnabled: Boolean = true, onShake: () -> Unit) {
+fun LightShakeDetector(
+    hapticsEnabled: Boolean = LocalHapticsEnabled.current,
+    onShake: () -> Unit,
+) {
     val context = LocalContext.current
     val currentOnShake by rememberUpdatedState(onShake)
     val currentHaptics by rememberUpdatedState(hapticsEnabled)

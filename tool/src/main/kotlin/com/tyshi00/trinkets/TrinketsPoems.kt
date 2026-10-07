@@ -1082,23 +1082,6 @@ object TrinketsPoems {
             Your home is nigh at hand, and in the warm pig-stye,
             So, little Master Wagtail, I'll bid you a "Good-bye."
         """.trimIndent(), "John Clare"),
-        Poem(71, "Spring, the Sweet Spring", """
-            Spring, the sweet spring, is the year's pleasant king;
-            Then blooms each thing, then maids dance in a ring,
-            Cold doth not sting, the pretty birds do sing:
-            Cuckoo, jug-jug, pu-we, to-witta-woo!
-
-            The palm and may make country houses gay,
-            Lambs frisk and play, the shepherds pipe all day,
-            And we hear aye birds tune this merry lay:
-            Cuckoo, jug-jug, pu-we, to-witta-woo!
-
-            The fields breathe sweet, the daisies kiss our feet,
-            Young lovers meet, old wives a-sunning sit,
-            In every street these tunes our ears do greet:
-            Cuckoo, jug-jug, pu-we, to-witta-woo!
-            Spring, the sweet spring!
-        """.trimIndent(), "Thomas Nashe"),
         Poem(72, "Home-Thoughts, from Abroad", """
             Oh, to be in England
             Now that April's there,
@@ -1455,45 +1438,6 @@ object TrinketsPoems {
             War's annals will cloud into night
             Ere their story die.
         """.trimIndent(), "Thomas Hardy"),
-        Poem(94, "The Rhodora", """
-            In May, when sea-winds pierced our solitudes,
-            I found the fresh Rhodora in the woods,
-            Spreading its leafless blooms in a damp nook,
-            To please the desert and the sluggish brook.
-            The purple petals, fallen in the pool,
-            Made the black water with their beauty gay;
-            Here might the red-bird come his plumes to cool,
-            And court the flower that cheapens his array.
-            Rhodora! if the sages ask thee why
-            This charm is wasted on the earth and sky,
-            Tell them, dear, that if eyes were made for seeing,
-            Then Beauty is its own excuse for being:
-            Why thou wert there, O rival of the rose!
-            I never thought to ask, I never knew:
-            But, in my simple ignorance, suppose
-            The self-same Power that brought me there brought you.
-        """.trimIndent(), "Ralph Waldo Emerson"),
-        Poem(95, "Fable", """
-            The mountain and the squirrel
-            Had a quarrel;
-            And the former called the latter "Little Prig."
-            Bun replied,
-            "You are doubtless very big;
-            But all sorts of things and weather
-            Must be taken in together,
-            To make up a year
-            And a sphere.
-            And I think it no disgrace
-            To occupy my place.
-            If I'm not so large as you,
-            You are not so small as I,
-            And not half so spry.
-            I'll not deny you make
-            A very pretty squirrel track;
-            Talents differ; all is well and wisely put;
-            If I cannot carry forests on my back,
-            Neither can you crack a nut."
-        """.trimIndent(), "Ralph Waldo Emerson"),
         Poem(96, "A Man Said to the Universe", """
             A man said to the universe:
             "Sir, I exist!"
@@ -1501,17 +1445,6 @@ object TrinketsPoems {
             "The fact has not created in me
             A sense of obligation."
         """.trimIndent(), "Stephen Crane"),
-        Poem(97, "The Leaden-Eyed", """
-            Let not young souls be smothered out before
-            They do quaint deeds and fully flaunt their pride.
-            It is the world's one crime its babes grow dull,
-            Its poor are ox-like, limp and leaden-eyed.
-
-            Not that they starve, but starve so dreamlessly,
-            Not that they sow, but that they seldom reap,
-            Not that they serve, but have no gods to serve,
-            Not that they die, but that they die like sheep.
-        """.trimIndent(), "Vachel Lindsay"),
         Poem(98, "A Decade", """
             When you came, you were like red wine and honey,
             And the taste of you burnt my mouth with its sweetness.
@@ -1548,37 +1481,6 @@ object TrinketsPoems {
             Before the dawn… the mouth of one
             Just dead.
         """.trimIndent(), "Adelaide Crapsey"),
-        Poem(103, "The Passionate Shepherd to His Love", """
-            Come live with me and be my love,
-            And we will all the pleasures prove
-            That valleys, groves, hills, and fields,
-            Woods, or steepy mountain yields.
-
-            And we will sit upon the rocks,
-            Seeing the shepherds feed their flocks,
-            By shallow rivers to whose falls
-            Melodious birds sing madrigals.
-
-            And I will make thee beds of roses
-            And a thousand fragrant posies,
-            A cap of flowers, and a kirtle
-            Embroidered all with leaves of myrtle;
-
-            A gown made of the finest wool
-            Which from our pretty lambs we pull;
-            Fair lined slippers for the cold,
-            With buckles of the purest gold;
-
-            A belt of straw and ivy buds,
-            With coral clasps and amber studs:
-            And if these pleasures may thee move,
-            Come live with me and be my love.
-
-            The shepherds' swains shall dance and sing
-            For thy delight each May morning:
-            If these delights thy mind may move,
-            Then live with me and be my love.
-        """.trimIndent(), "Christopher Marlowe"),
         Poem(104, "Now Winter Nights Enlarge", """
             Now winter nights enlarge
             The number of their hours;
@@ -1623,28 +1525,6 @@ object TrinketsPoems {
             Work without Hope draws nectar in a sieve,
             And Hope without an object cannot live.
         """.trimIndent(), "Samuel Taylor Coleridge"),
-        Poem(106, "She Walks in Beauty", """
-            She walks in beauty, like the night
-            Of cloudless climes and starry skies;
-            And all that's best of dark and bright
-            Meet in her aspect and her eyes:
-            Thus mellowed to that tender light
-            Which heaven to gaudy day denies.
-
-            One shade the more, one ray the less,
-            Had half impaired the nameless grace
-            Which waves in every raven tress,
-            Or softly lightens o'er her face;
-            Where thoughts serenely sweet express
-            How pure, how dear their dwelling-place.
-
-            And on that cheek, and o'er that brow,
-            So soft, so calm, yet eloquent,
-            The smiles that win, the tints that glow,
-            But tell of days in goodness spent,
-            A mind at peace with all below,
-            A heart whose love is innocent!
-        """.trimIndent(), "Lord Byron"),
         Poem(107, "Music, When Soft Voices Die", """
             Music, when soft voices die,
             Vibrates in the memory—

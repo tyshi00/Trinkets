@@ -1,37 +1,17 @@
 package com.tyshi00.trinkets
 
-import androidx.compose.foundation.background
-import com.thelightphone.sdk.ui.lightClickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewModelScope
 import com.thelightphone.sdk.LightScreen
 import com.thelightphone.sdk.LightViewModel
 import com.thelightphone.sdk.SealedLightActivity
 import com.thelightphone.sdk.SimpleLightScreen
-import com.thelightphone.sdk.ui.LightBarButton
-import com.thelightphone.sdk.ui.LightBottomBar
-import com.thelightphone.sdk.ui.LightIcon
-import com.thelightphone.sdk.ui.LightIcons
-import com.thelightphone.sdk.ui.LightScrollView
-import com.thelightphone.sdk.ui.LightText
-import com.thelightphone.sdk.ui.LightTextVariant
-import com.thelightphone.sdk.ui.LightTheme
 import com.thelightphone.sdk.ui.LightThemeController
-import com.thelightphone.sdk.ui.LightThemeTokens
-import com.thelightphone.sdk.ui.LightTopBar
-import com.thelightphone.sdk.ui.LightTopBarCenter
 import com.thelightphone.sdk.ui.gridUnitsAsDp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -190,309 +170,173 @@ class SettingsScreen(
 
     @Composable
     override fun Content() {
-        val themeColors by LightThemeController.colors.collectAsState()
         val state by viewModel.state.collectAsState()
 
-        LightTheme(colors = themeColors) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(LightThemeTokens.colors.background),
-            ) {
-                LightTopBar(
-                    leftButton = LightBarButton.LightIcon(
-                        icon = LightIcons.BACK,
-                        onClick = { goBack() },
-                    ),
-                    center = LightTopBarCenter.Text("Settings"),
-                    modifier = Modifier.padding(bottom = 1f.gridUnitsAsDp()),
-                )
+        SettingsScaffold(title = "Settings", onBack = { goBack() }) {
+            SettingsOptionRow(
+                title = "Invert screen color",
+                checked = state.invertColors,
+                onClick = { viewModel.toggleInvertColors() },
+            )
 
-                LightScrollView(
-                    modifier = Modifier
-                        .weight(1f)
-                        .fillMaxWidth()
-                        .padding(horizontal = 1f.gridUnitsAsDp()),
-                ) {
-                    // Invert colors
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .lightClickable { viewModel.toggleInvertColors() }
-                            .padding(vertical = 0.75f.gridUnitsAsDp()),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        LightIcon(
-                            icon = if (state.invertColors) LightIcons.TOGGLE_OFF else LightIcons.TOGGLE_ON,
-                        )
-                        Spacer(modifier = Modifier.width(0.75f.gridUnitsAsDp()))
-                        LightText(
-                            text = "Invert screen color",
-                            variant = LightTextVariant.Copy,
-                            modifier = Modifier.weight(1f),
-                        )
+            SettingsOptionRow(
+                title = "Home screen shows",
+                subtitle = state.homeDefault.label,
+                onClick = {
+                    val visibleOptions = buildList {
+                        add(HomeDefault.COUNTDOWN)
+                        if (state.visibility.poemEnabled) add(HomeDefault.POEM)
+                        if (state.visibility.excerptEnabled) add(HomeDefault.EXCERPT)
+                        if (state.visibility.historyEnabled) add(HomeDefault.HISTORY)
+                        if (state.visibility.reflectionEnabled) add(HomeDefault.REFLECTION)
+                        if (state.visibility.philosophyEnabled) add(HomeDefault.PHILOSOPHY)
+                        if (state.visibility.morningEnabled) add(HomeDefault.MORNING)
+                        if (state.visibility.jokeEnabled) add(HomeDefault.JOKE)
+                        if (state.visibility.triviaEnabled) add(HomeDefault.TRIVIA)
                     }
-
-                    // Home screen default
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .lightClickable {
-                                val visibleOptions = buildList {
-                                    add(HomeDefault.COUNTDOWN)
-                                    if (state.visibility.poemEnabled) add(HomeDefault.POEM)
-                                    if (state.visibility.excerptEnabled) add(HomeDefault.EXCERPT)
-                                    if (state.visibility.historyEnabled) add(HomeDefault.HISTORY)
-                                    if (state.visibility.reflectionEnabled) add(HomeDefault.REFLECTION)
-                                    if (state.visibility.philosophyEnabled) add(HomeDefault.PHILOSOPHY)
-                                    if (state.visibility.morningEnabled) add(HomeDefault.MORNING)
-                                    if (state.visibility.jokeEnabled) add(HomeDefault.JOKE)
-                                    if (state.visibility.triviaEnabled) add(HomeDefault.TRIVIA)
-                                }
-                                navigateTo(
-                                    screenFactory = { HomeDefaultPickerScreen(it, state.homeDefault, visibleOptions) },
-                                    resultCallback = { result -> if (result != null) viewModel.setHomeDefault(result) },
-                                )
-                            }
-                            .padding(vertical = 0.75f.gridUnitsAsDp()),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Column(modifier = Modifier.weight(1f)) {
-                            LightText(text = "Home screen shows", variant = LightTextVariant.Copy)
-                            LightText(text = state.homeDefault.label, variant = LightTextVariant.Fine, lighten = true)
-                        }
-                    }
-
-                    // Split home screen, with the two slot pickers nested
-                    // underneath and only shown while it's switched on.
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .lightClickable { viewModel.toggleSplitHome() }
-                            .padding(vertical = 0.75f.gridUnitsAsDp()),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        LightIcon(icon = if (state.splitHomeEnabled) LightIcons.TOGGLE_OFF else LightIcons.TOGGLE_ON)
-                        Spacer(modifier = Modifier.width(0.75f.gridUnitsAsDp()))
-                        Column(modifier = Modifier.weight(1f)) {
-                            LightText(text = "Split home screen", variant = LightTextVariant.Copy)
-                            LightText(
-                                text = "Shows two features at once, stacked",
-                                variant = LightTextVariant.Fine,
-                                lighten = true,
-                            )
-                        }
-                    }
-
-                    if (state.splitHomeEnabled) {
-                        val slotOptions = buildList {
-                            add(SplitSlot.COUNTDOWN)
-                            if (state.visibility.poemEnabled) add(SplitSlot.POEM)
-                            if (state.visibility.excerptEnabled) add(SplitSlot.EXCERPT)
-                            if (state.visibility.historyEnabled) add(SplitSlot.HISTORY)
-                            if (state.visibility.reflectionEnabled) add(SplitSlot.REFLECTION)
-                            if (state.visibility.philosophyEnabled) add(SplitSlot.PHILOSOPHY)
-                            if (state.visibility.morningEnabled) add(SplitSlot.MORNING)
-                            if (state.visibility.jokeEnabled) add(SplitSlot.JOKE)
-                            if (state.visibility.triviaEnabled) add(SplitSlot.TRIVIA)
-                        }
-
-                        SplitSlotRow(
-                            label = "Top feature",
-                            value = state.splitPrimary.label,
-                            onClick = {
-                                navigateTo(
-                                    screenFactory = {
-                                        SplitSlotPickerScreen(it, "Top feature", state.splitPrimary, slotOptions)
-                                    },
-                                    resultCallback = { result -> if (result != null) viewModel.setSplitPrimary(result) },
-                                )
-                            },
-                        )
-
-                        SplitSlotRow(
-                            label = "Bottom feature",
-                            value = state.splitSecondary.label,
-                            onClick = {
-                                navigateTo(
-                                    screenFactory = {
-                                        SplitSlotPickerScreen(it, "Bottom feature", state.splitSecondary, slotOptions)
-                                    },
-                                    resultCallback = { result -> if (result != null) viewModel.setSplitSecondary(result) },
-                                )
-                            },
-                        )
-                    }
-
-                    Spacer(modifier = Modifier.height(0.5f.gridUnitsAsDp()))
-                    LightText(text = "FEATURES", variant = LightTextVariant.Detail, lighten = true)
-
-                    FeatureToggleRow("Poem of the Day", state.visibility.poemEnabled) {
-                        viewModel.toggleFeature(TrinketsFeature.POEM)
-                    }
-                    FeatureToggleRow("Literary excerpt", state.visibility.excerptEnabled) {
-                        viewModel.toggleFeature(TrinketsFeature.EXCERPT)
-                    }
-                    FeatureToggleRow("Today in History", state.visibility.historyEnabled) {
-                        viewModel.toggleFeature(TrinketsFeature.HISTORY)
-                    }
-                    FeatureToggleRow("Reflection", state.visibility.reflectionEnabled) {
-                        viewModel.toggleFeature(TrinketsFeature.REFLECTION)
-                    }
-                    FeatureToggleRow("Philosophy prompt", state.visibility.philosophyEnabled) {
-                        viewModel.toggleFeature(TrinketsFeature.PHILOSOPHY)
-                    }
-                    FeatureToggleRow("Morning prompt", state.visibility.morningEnabled) {
-                        viewModel.toggleFeature(TrinketsFeature.MORNING)
-                    }
-                    FeatureToggleRow("Joke of the Day", state.visibility.jokeEnabled) {
-                        viewModel.toggleFeature(TrinketsFeature.JOKE)
-                    }
-                    FeatureToggleRow("Trivia", state.visibility.triviaEnabled) {
-                        viewModel.toggleFeature(TrinketsFeature.TRIVIA)
-                    }
-
-                    // Motivation intensity, only meaningful while Morning Prompt is on.
-                    if (state.visibility.morningEnabled) {
-                        Spacer(modifier = Modifier.height(0.5f.gridUnitsAsDp()))
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .lightClickable {
-                                    navigateTo(
-                                        screenFactory = { IntensityPickerScreen(it, state.motivationIntensity) },
-                                        resultCallback = { result -> viewModel.setMotivationIntensity(result) },
-                                    )
-                                }
-                                .padding(vertical = 0.75f.gridUnitsAsDp()),
-                            verticalAlignment = Alignment.CenterVertically,
-                        ) {
-                            Column(modifier = Modifier.weight(1f)) {
-                                LightText(text = "Morning prompt intensity", variant = LightTextVariant.Copy)
-                                LightText(
-                                    text = state.motivationIntensity?.label ?: "Any (default)",
-                                    variant = LightTextVariant.Fine,
-                                    lighten = true,
-                                )
-                            }
-                        }
-                    }
-
-                    Spacer(modifier = Modifier.height(0.5f.gridUnitsAsDp()))
-                    LightText(text = "COUNTDOWNS", variant = LightTextVariant.Detail, lighten = true)
-
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .lightClickable { viewModel.toggleCountdownTimer() }
-                            .padding(vertical = 0.75f.gridUnitsAsDp()),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        LightIcon(icon = if (state.countdownTimerEnabled) LightIcons.TOGGLE_OFF else LightIcons.TOGGLE_ON)
-                        Spacer(modifier = Modifier.width(0.75f.gridUnitsAsDp()))
-                        Column(modifier = Modifier.weight(1f)) {
-                            LightText(text = "Countdown timer", variant = LightTextVariant.Copy)
-                            LightText(
-                                text = "Shows hours, minutes, and seconds alongside days",
-                                variant = LightTextVariant.Fine,
-                                lighten = true,
-                            )
-                        }
-                    }
-
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .lightClickable {
-                                navigateTo(
-                                    screenFactory = { DateFormatPickerScreen(it, state.dateFormat) },
-                                    resultCallback = { result -> if (result != null) viewModel.setDateFormat(result) },
-                                )
-                            }
-                            .padding(vertical = 0.75f.gridUnitsAsDp()),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Column(modifier = Modifier.weight(1f)) {
-                            LightText(text = "Default date format", variant = LightTextVariant.Copy)
-                            LightText(text = state.dateFormat.label, variant = LightTextVariant.Fine, lighten = true)
-                        }
-                    }
-
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .lightClickable {
-                                navigateTo(
-                                    screenFactory = { TimeFormatPickerScreen(it, state.timeFormat) },
-                                    resultCallback = { result -> if (result != null) viewModel.setTimeFormat(result) },
-                                )
-                            }
-                            .padding(vertical = 0.75f.gridUnitsAsDp()),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Column(modifier = Modifier.weight(1f)) {
-                            LightText(text = "Default time format", variant = LightTextVariant.Copy)
-                            LightText(text = state.timeFormat.label, variant = LightTextVariant.Fine, lighten = true)
-                        }
-                    }
-
-                    Spacer(modifier = Modifier.height(0.5f.gridUnitsAsDp()))
-
-                    LightText(
-                        text = "Reset all data",
-                        variant = LightTextVariant.Copy,
-                        lighten = true,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .lightClickable {
-                                navigateTo(
-                                    screenFactory = {
-                                        ConfirmResetScreen(
-                                            it,
-                                            "Reset all data? This will permanently clear every countdown and every preference.",
-                                        )
-                                    },
-                                    resultCallback = { confirmed -> if (confirmed == true) viewModel.resetAll() },
-                                )
-                            }
-                            .padding(vertical = 0.75f.gridUnitsAsDp()),
+                    navigateTo(
+                        screenFactory = { HomeDefaultPickerScreen(it, state.homeDefault, visibleOptions) },
+                        resultCallback = { result -> if (result != null) viewModel.setHomeDefault(result) },
                     )
+                },
+            )
+
+            // Split home screen, with the two slot pickers nested underneath
+            // and only shown while it's switched on.
+            SettingsOptionRow(
+                title = "Split home screen",
+                subtitle = "Shows two features at once, stacked",
+                checked = state.splitHomeEnabled,
+                onClick = { viewModel.toggleSplitHome() },
+            )
+
+            if (state.splitHomeEnabled) {
+                val slotOptions = buildList {
+                    add(SplitSlot.COUNTDOWN)
+                    if (state.visibility.poemEnabled) add(SplitSlot.POEM)
+                    if (state.visibility.excerptEnabled) add(SplitSlot.EXCERPT)
+                    if (state.visibility.historyEnabled) add(SplitSlot.HISTORY)
+                    if (state.visibility.reflectionEnabled) add(SplitSlot.REFLECTION)
+                    if (state.visibility.philosophyEnabled) add(SplitSlot.PHILOSOPHY)
+                    if (state.visibility.morningEnabled) add(SplitSlot.MORNING)
+                    if (state.visibility.jokeEnabled) add(SplitSlot.JOKE)
+                    if (state.visibility.triviaEnabled) add(SplitSlot.TRIVIA)
                 }
 
-                LightBottomBar(items = listOf())
+                SettingsOptionRow(
+                    title = "Top feature",
+                    subtitle = state.splitPrimary.label,
+                    nested = true,
+                    onClick = {
+                        navigateTo(
+                            screenFactory = {
+                                SplitSlotPickerScreen(it, "Top feature", state.splitPrimary, slotOptions)
+                            },
+                            resultCallback = { result -> if (result != null) viewModel.setSplitPrimary(result) },
+                        )
+                    },
+                )
+
+                SettingsOptionRow(
+                    title = "Bottom feature",
+                    subtitle = state.splitSecondary.label,
+                    nested = true,
+                    onClick = {
+                        navigateTo(
+                            screenFactory = {
+                                SplitSlotPickerScreen(it, "Bottom feature", state.splitSecondary, slotOptions)
+                            },
+                            resultCallback = { result -> if (result != null) viewModel.setSplitSecondary(result) },
+                        )
+                    },
+                )
+            }
+
+            SettingsSectionHeader("FEATURES")
+
+            SettingsOptionRow(title = "Poem of the Day", checked = state.visibility.poemEnabled) {
+                viewModel.toggleFeature(TrinketsFeature.POEM)
+            }
+            SettingsOptionRow(title = "Literary excerpt", checked = state.visibility.excerptEnabled) {
+                viewModel.toggleFeature(TrinketsFeature.EXCERPT)
+            }
+            SettingsOptionRow(title = "Today in History", checked = state.visibility.historyEnabled) {
+                viewModel.toggleFeature(TrinketsFeature.HISTORY)
+            }
+            SettingsOptionRow(title = "Reflection", checked = state.visibility.reflectionEnabled) {
+                viewModel.toggleFeature(TrinketsFeature.REFLECTION)
+            }
+            SettingsOptionRow(title = "Philosophy prompt", checked = state.visibility.philosophyEnabled) {
+                viewModel.toggleFeature(TrinketsFeature.PHILOSOPHY)
+            }
+            SettingsOptionRow(title = "Morning prompt", checked = state.visibility.morningEnabled) {
+                viewModel.toggleFeature(TrinketsFeature.MORNING)
+            }
+            SettingsOptionRow(title = "Joke of the Day", checked = state.visibility.jokeEnabled) {
+                viewModel.toggleFeature(TrinketsFeature.JOKE)
+            }
+            SettingsOptionRow(title = "Trivia", checked = state.visibility.triviaEnabled) {
+                viewModel.toggleFeature(TrinketsFeature.TRIVIA)
+            }
+
+            // Motivation intensity, only meaningful while Morning Prompt is on.
+            if (state.visibility.morningEnabled) {
+                SettingsOptionRow(
+                    title = "Morning prompt intensity",
+                    subtitle = state.motivationIntensity?.label ?: "Any (default)",
+                    onClick = {
+                        navigateTo(
+                            screenFactory = { IntensityPickerScreen(it, state.motivationIntensity) },
+                            resultCallback = { result -> viewModel.setMotivationIntensity(result) },
+                        )
+                    },
+                )
+            }
+
+            SettingsSectionHeader("COUNTDOWNS")
+
+            SettingsOptionRow(
+                title = "Countdown timer",
+                subtitle = "Shows hours, minutes, and seconds alongside days",
+                checked = state.countdownTimerEnabled,
+                onClick = { viewModel.toggleCountdownTimer() },
+            )
+
+            SettingsOptionRow(
+                title = "Default date format",
+                subtitle = state.dateFormat.label,
+                onClick = {
+                    navigateTo(
+                        screenFactory = { DateFormatPickerScreen(it, state.dateFormat) },
+                        resultCallback = { result -> if (result != null) viewModel.setDateFormat(result) },
+                    )
+                },
+            )
+
+            SettingsOptionRow(
+                title = "Default time format",
+                subtitle = state.timeFormat.label,
+                onClick = {
+                    navigateTo(
+                        screenFactory = { TimeFormatPickerScreen(it, state.timeFormat) },
+                        resultCallback = { result -> if (result != null) viewModel.setTimeFormat(result) },
+                    )
+                },
+            )
+
+            Spacer(modifier = Modifier.height(1f.gridUnitsAsDp()))
+
+            SettingsDangerRow(title = "Reset all data") {
+                navigateTo(
+                    screenFactory = {
+                        ConfirmResetScreen(
+                            it,
+                            "Reset all data? This will permanently clear every countdown and every preference.",
+                        )
+                    },
+                    resultCallback = { confirmed -> if (confirmed == true) viewModel.resetAll() },
+                )
             }
         }
-    }
-}
-
-/** An indented picker row for one half of the split Home screen. */
-@Composable
-private fun SplitSlotRow(label: String, value: String, onClick: () -> Unit) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .lightClickable(onClick = onClick)
-            .padding(start = 2.5f.gridUnitsAsDp(), top = 0.5f.gridUnitsAsDp(), bottom = 0.5f.gridUnitsAsDp()),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Column(modifier = Modifier.weight(1f)) {
-            LightText(text = label, variant = LightTextVariant.Copy)
-            LightText(text = value, variant = LightTextVariant.Fine, lighten = true)
-        }
-    }
-}
-
-@Composable
-private fun FeatureToggleRow(label: String, enabled: Boolean, onToggle: () -> Unit) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .lightClickable(onClick = onToggle)
-            .padding(vertical = 0.75f.gridUnitsAsDp()),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        LightIcon(icon = if (enabled) LightIcons.TOGGLE_OFF else LightIcons.TOGGLE_ON)
-        Spacer(modifier = Modifier.width(0.75f.gridUnitsAsDp()))
-        LightText(text = label, variant = LightTextVariant.Copy, modifier = Modifier.weight(1f))
     }
 }

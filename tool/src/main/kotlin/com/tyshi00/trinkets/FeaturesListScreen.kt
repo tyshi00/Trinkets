@@ -1,35 +1,14 @@
 package com.tyshi00.trinkets
 
-import androidx.compose.foundation.background
-import com.thelightphone.sdk.ui.lightClickable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.lifecycle.viewModelScope
 import com.thelightphone.sdk.LightScreen
 import com.thelightphone.sdk.LightViewModel
 import com.thelightphone.sdk.SealedLightActivity
 import com.thelightphone.sdk.SimpleLightScreen
-import com.thelightphone.sdk.ui.LightBarButton
-import com.thelightphone.sdk.ui.LightBottomBar
-import com.thelightphone.sdk.ui.LightIcons
-import com.thelightphone.sdk.ui.LightScrollView
-import com.thelightphone.sdk.ui.LightText
-import com.thelightphone.sdk.ui.LightTextVariant
-import com.thelightphone.sdk.ui.LightTheme
-import com.thelightphone.sdk.ui.LightThemeController
-import com.thelightphone.sdk.ui.LightThemeTokens
-import com.thelightphone.sdk.ui.LightTopBar
-import com.thelightphone.sdk.ui.LightTopBarCenter
-import com.thelightphone.sdk.ui.gridUnitsAsDp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -81,73 +60,35 @@ class FeaturesListScreen(
 
     @Composable
     override fun Content() {
-        val themeColors by LightThemeController.colors.collectAsState()
         val state by viewModel.state.collectAsState()
 
-        LightTheme(colors = themeColors) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(LightThemeTokens.colors.background),
-            ) {
-                LightTopBar(
-                    leftButton = LightBarButton.LightIcon(
-                        icon = LightIcons.BACK,
-                        onClick = { goBack() },
-                    ),
-                    center = LightTopBarCenter.Text("Features"),
-                    modifier = Modifier.padding(bottom = 1f.gridUnitsAsDp()),
+        val visible = TrinketsFeature.entries
+            .filter { state.visibility.isEnabled(it) }
+            .filterNot { it in state.featuresOnHome }
+
+        SettingsScaffold(
+            title = "Features",
+            onBack = { goBack() },
+            scroll = visible.isNotEmpty(),
+        ) {
+            if (visible.isEmpty()) {
+                SettingsEmptyMessage(
+                    if (state.featuresOnHome.isEmpty()) {
+                        "Every feature is turned off. Enable some in Settings."
+                    } else {
+                        "Everything that's on is already showing on your home screen."
+                    },
                 )
-
-                val visible = TrinketsFeature.entries
-                    .filter { state.visibility.isEnabled(it) }
-                    .filterNot { it in state.featuresOnHome }
-
-                if (visible.isEmpty()) {
-                    Box(
-                        modifier = Modifier
-                            .weight(1f)
-                            .fillMaxWidth()
-                            .padding(horizontal = 1f.gridUnitsAsDp()),
-                        contentAlignment = Alignment.Center,
-                    ) {
-                        LightText(
-                            text = if (state.featuresOnHome.isEmpty()) {
-                                "Every feature is turned off. Enable some in Settings."
-                            } else {
-                                "Everything that's on is already showing on your home screen."
+            } else {
+                visible.forEach { feature ->
+                    SettingsOptionRow(title = feature.label) {
+                        navigateTo(
+                            screenFactory = {
+                                openFeatureScreen(it, feature, state.motivationIntensity)
                             },
-                            variant = LightTextVariant.Copy,
-                            lighten = true,
                         )
                     }
-                } else {
-                    LightScrollView(
-                        modifier = Modifier
-                            .weight(1f)
-                            .fillMaxWidth()
-                            .padding(horizontal = 1f.gridUnitsAsDp()),
-                    ) {
-                        visible.forEach { feature ->
-                            LightText(
-                                text = feature.label,
-                                variant = LightTextVariant.Copy,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .lightClickable {
-                                        navigateTo(
-                                            screenFactory = {
-                                                openFeatureScreen(it, feature, state.motivationIntensity)
-                                            },
-                                        )
-                                    }
-                                    .padding(vertical = 0.75f.gridUnitsAsDp()),
-                            )
-                        }
-                    }
                 }
-
-                LightBottomBar(items = listOf())
             }
         }
     }
